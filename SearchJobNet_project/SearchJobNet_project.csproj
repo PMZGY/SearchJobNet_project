@@ -127,9 +127,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\CommentController\CommentController.cs" />
+    <Compile Include="Controllers\MemberController\MemberController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\CommentModel\Comment.cs" />
+    <Compile Include="Models\CommentModel\CommentModel.cs" />
+    <Compile Include="Models\MemberModel\Member.cs" />
+    <Compile Include="Models\MemberModel\MemberModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -151,8 +157,11 @@
     <Folder Include="browser_components\fonts\" />
     <Folder Include="browser_components\images\" />
     <Folder Include="browser_components\js\" />
-    <Folder Include="Controllers\" />
-    <Folder Include="Models\" />
+    <Folder Include="Controllers\HistoryController\" />
+    <Folder Include="Controllers\HomeController\" />
+    <Folder Include="Controllers\JobController\" />
+    <Folder Include="Models\HistoryModel\" />
+    <Folder Include="Models\SearchJobModel\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
