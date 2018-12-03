@@ -144,6 +144,11 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Views\History\HistoryView.cshtml" />
+    <Content Include="Views\HomePage\HomePageView.cshtml" />
+    <Content Include="Views\JobDetail\JobDetailView.cshtml" />
+    <Content Include="Views\JobLists\JobListsView.cshtml" />
+    <Content Include="Views\MyFavorite\MyFavoriteView.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
