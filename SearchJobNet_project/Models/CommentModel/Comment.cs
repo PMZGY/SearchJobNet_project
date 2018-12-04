@@ -1,39 +1,44 @@
 ﻿using System;
+using CM = SearchJobNet_project.Models.CommentModel;
 
 namespace SearchJobNet_project.Models.CommentModel
 {
     public class Comment
     {
         // 新增評論
-        public Boolean insertComment(string comment)
+        public Boolean insertComment(CM.CommentModel iComment)
         {
-            CommentModel cm = new CommentModel();
-            cm.Context = comment;
+            // do SQL insertComment
             return true;
         }
 
         // 修改評論
-        public Boolean modifyComment(string comment)
+        public Boolean modifyComment(CM.CommentModel mComment)
         {
-            CommentModel cm = new CommentModel();
-            cm.Context = comment;
+            // do SQL modifyComment
             return true;
         }
 
         // 刪除評論
-        public Boolean delComment(string comment)
+        public Boolean delComment(CM.CommentModel comment)
         {
-            CommentModel cm = new CommentModel();
-            cm.Context = "";
+            // do SQL delComment
             return true;
         }
 
         // 檢舉評論
-        public Boolean reportComment(string comment)
+        public Boolean reportComment(CM.CommentModel comment)
         {
-            CommentModel cm = new CommentModel();
-            cm.Context = "";
+            // do SQL reportComment
             return true;
         }
+
+        // 瀏覽評論
+        public Boolean browseComment(CM.CommentModel comment)
+        {
+            // do SQL browseComment
+            return true;
+        }
+
     }
 }
