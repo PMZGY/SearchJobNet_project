@@ -117,11 +117,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="browser_components\js\bootstrap.js" />
+    <Content Include="browser_components\js\jquery-2.2.3.min.js" />
     <Content Include="Global.asax" />
     <Content Include="Home.html" />
     <Content Include="JobList.html" />
     <Content Include="scripts\ai.0.22.9-build00167.js" />
     <Content Include="scripts\ai.0.22.9-build00167.min.js" />
+    <Content Include="scripts\HomePage.js" />
     <Content Include="Web.config" />
     <Content Include="原index .html" />
   </ItemGroup>
@@ -149,9 +152,9 @@
     </Content>
     <Content Include="Views\History\HistoryView.cshtml" />
     <Content Include="Views\Home\HomePageView.cshtml" />
-    <Content Include="Views\JobDetail\JobDetailView.cshtml" />
-    <Content Include="Views\JobLists\JobListsView.cshtml" />
-    <Content Include="Views\MyFavorite\MyFavoriteView.cshtml" />
+    <Content Include="Views\Job\JobDetailView.cshtml" />
+    <Content Include="Views\Job\JobListView.cshtml" />
+    <Content Include="Views\Job\MyFavoriteView.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -164,10 +167,11 @@
     <Folder Include="browser_components\css\" />
     <Folder Include="browser_components\fonts\" />
     <Folder Include="browser_components\images\" />
-    <Folder Include="browser_components\js\" />
     <Folder Include="Models\HistoryModel\" />
     <Folder Include="Models\SearchJobModel\" />
-    <Folder Include="Views\Job\" />
+    <Folder Include="Views\JobDetail\" />
+    <Folder Include="Views\JobLists\" />
+    <Folder Include="Views\MyFavorite\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

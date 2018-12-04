@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 <html lang="zxx">
 <head>
-    <title>Home</title>
+    <title>MyFavorite</title>
     <!--/metadata -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="UTF-8">
@@ -20,17 +20,17 @@
 		}
     </script>
     <!-- //for-mobile-apps -->
-    <link href="browser_components/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
-    <link href="browser_components/css/font-awesome.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="~/browser_components/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="~/browser_components/css/font-awesome.css" rel="stylesheet" type="text/css" media="all" />
     <!-- header and footer stylesheet -->
-    <link href="browser_components/css/style.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="~/browser_components/css/style.css" rel="stylesheet" type="text/css" media="all" />
     <!-- //header and footer stylesheet -->
     <!-- lightbox css file -->
-    <link href="browser_components/css/lightcase.css" rel="stylesheet" type="text/css" />
+    <link href="~/browser_components/css/lightcase.css" rel="stylesheet" type="text/css" />
     <!-- css file -->
     <!-- Testimonials-slider-css-files -->
-    <link rel="stylesheet" href="css/owl.carousel.css" type="text/css" media="all">
-    <link href="browser_components/css/owl.theme.css" rel="stylesheet">
+    <link rel="stylesheet" href="~/css/owl.carousel.css" type="text/css" media="all">
+    <link href="~/browser_components/css/owl.theme.css" rel="stylesheet">
     <!-- //Testimonials-slider-css-files -->
     <!-- online fonts -->
     <link href="http://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
@@ -45,7 +45,6 @@
             <div class="container">
                 <div class="w3-header-top-grids">
                     <div class="w3-header-top-left">
-                        <p><i class="fa fa-volume-control-phone" aria-hidden="true"></i>芃諭 ~~~</p>
                     </div>
                     <div class="w3-header-top-right">
                         <div class="agileinfo-social-grids">
@@ -74,7 +73,7 @@
                             <span class="icon-bar"></span>
                         </button>
                         <div class="navbar-brand logo ">
-                            <h1><a href="index.html">求職網</a></h1>
+                            <h1>@Html.ActionLink("求職網", "toMyFavoriteView", "Job")</h1>
                         </div>
 
                     </div>
@@ -82,12 +81,10 @@
                     <!-- Collect the nav links, forms, and other content for toggling -->
                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                         <ul class="nav navbar-nav link-effect-4">
-                            <li class="active first-list"><a href="index.html">Home</a> </li>
-                            <li><a href="#about" class="scroll">About </a> </li>
-                            <li><a href="#services" class="scroll">Services </a> </li>
-                            <li><a href="#gallery" class="scroll">Gallery</a></li>
-                            <li><a href="#team" class="scroll">Team</a></li>
-                            <li><a href="#contact" class="scroll">Contact</a></li>
+                            <li class="active first-list">@Html.ActionLink("回首頁", "Index", "Home") </li>
+                            <li><a href="##" class="scroll" id="serchjob">查詢職缺 </a> </li>
+                            <li>@Html.ActionLink("我的最愛", "toMyFavoriteView", "Job") </li>
+                            <li>@Html.ActionLink("歷史紀錄", "Index", "History")</li>
                         </ul>
                     </div><!-- /.navbar-collapse -->
                 </div>
@@ -108,11 +105,11 @@
     <div id="about" class="banner-bottom">
         <div class="container">
             <div class="wls_head_all">
-                <h3>About us</h3>
+                <h3>我的最愛</h3>
             </div>
             <div class="w3ls_banner_bottom_grid1">
                 <div class="col-md-6 w3l_banner_bottom_left">
-                    <img src="browser_components/browser_components/images/ab1.jpg" alt=" " class="img-responsive" />
+                    <img src="~/browser_components/browser_components/images/ab1.jpg" alt=" " class="img-responsive" />
                 </div>
                 <div class="col-md-6 w3l_banner_bottom_right">
                     <h3>Welcome to <span><i>Our</i> Designs</span></h3>
@@ -306,10 +303,10 @@
     </div>
     <!-- //bootstrap-modal-pop-up -->
     <!-- js -->
-    <script src="browser_components/js/jquery-2.2.3.min.js"></script>
+    <script src="~/browser_components/js/jquery-2.2.3.min.js"></script>
     <!-- //js-->
     <!-- banner-responsive-slider -->
-    <script src="browser_components/js/responsiveslides.min.js"></script>
+    <script src="~/browser_components/js/responsiveslides.min.js"></script>
     <script>
 		// You can also use "$(window).load(function() {"
 		$(function () {
@@ -332,13 +329,13 @@
     </script>
     <!-- //banner-responsive-slider -->
     <!-- light-case -->
-    <script src="browser_components/js/lightcase.js"></script>
+    <script src="~/browser_components/js/lightcase.js"></script>
     <script>
 		$('.showcase').lightcase();
     </script>
     <!-- //light-case -->
     <!-- for testimonials slider-js-file-->
-    <script src="browser_components/js/owl.carousel.js"></script>
+    <script src="~/browser_components/js/owl.carousel.js"></script>
     <!-- //for testimonials slider-js-file-->
     <script>
 		$(document).ready(function() {
@@ -350,12 +347,15 @@
 			itemsDesktop : [640,5],
 			itemsDesktopSmall : [414,4]
 		});
+		$("#home").click(function () {
+		    window.location = "\\Home";
+		});
 		});
     </script>
     <!-- for testimonials slider-js-script-->
     <!-- smooth-scrolling -->
-    <script src="browser_components/js/move-top.js"></script>
-    <script src="browser_components/js/easing.js"></script>
+    <script src="~/browser_components/js/move-top.js"></script>
+    <script src="~/browser_components/js/easing.js"></script>
     <script>
 		jQuery(document).ready(function ($) {
 			$(".scroll").click(function (event) {
@@ -367,7 +367,7 @@
 			});
 		});
     </script>
-    <script src="browser_components/js/SmoothScroll.min.js"></script>
+    <script src="~/browser_components/js/SmoothScroll.min.js"></script>
     <!-- //smooth-scrolling -->
     <script>
 		$(document).ready(function () {
@@ -390,7 +390,7 @@
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="browser_components/js/bootstrap.js"></script>
+    <script src="~/browser_components/js/bootstrap.js"></script>
 </body>
 
 </html>
