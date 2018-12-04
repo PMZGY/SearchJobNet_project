@@ -9,7 +9,7 @@ namespace SearchJobNet_project.Controllers.HistoryController
     public class HistoryController : Controller
     {
         // GET: History
-        public ActionResult toHistoryView()
+        public ActionResult Index()
         {
             return View("HistoryView");
         }

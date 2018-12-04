@@ -47,7 +47,6 @@
             <div class="container">
                 <div class="w3-header-top-grids">
                     <div class="w3-header-top-left">
-                        <p><i class="fa fa-volume-control-phone" aria-hidden="true"></i>你想加字在這嗎?</p>
                     </div>
                     <div class="w3-header-top-right">
                         <div class="agileinfo-social-grids">
@@ -84,10 +83,10 @@
                     <!-- Collect the nav links, forms, and other content for toggling -->
                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                         <ul class="nav navbar-nav link-effect-4">
-                            <li class="active first-list"><a href="##" id="home">回首頁</a> </li>
+                            <li class="active first-list">@Html.ActionLink("回首頁","Index","Home") </li>
                             <li><a href="##" class="scroll" id="serchjob">查詢職缺 </a> </li>
-                            <li><a href="##" class="scroll" id="myfavorite">我的最愛 </a> </li>
-                            <li><a href="##" class="scroll" id="history">歷史紀錄</a></li>
+                            <li>@Html.ActionLink("我的最愛","toMyFavoriteView","Job") </li>
+                            <li>@Html.ActionLink("歷史紀錄", "Index", "History")</li>
                              
                         </ul>
                     </div><!-- /.navbar-collapse -->

@@ -9,7 +9,7 @@ namespace SearchJobNet_project.Controllers.JobController
     public class JobController : Controller
     {
         // 到JobList頁面
-        public ActionResult toJobListView()
+        public ActionResult Index()
         {
             return View("JobListView");
         }

@@ -152,9 +152,9 @@
     </Content>
     <Content Include="Views\History\HistoryView.cshtml" />
     <Content Include="Views\Home\HomePageView.cshtml" />
-    <Content Include="Views\JobDetail\JobDetailView.cshtml" />
-    <Content Include="Views\JobLists\JobListView.cshtml" />
-    <Content Include="Views\MyFavorite\MyFavoriteView.cshtml" />
+    <Content Include="Views\Job\JobDetailView.cshtml" />
+    <Content Include="Views\Job\JobListView.cshtml" />
+    <Content Include="Views\Job\MyFavoriteView.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -169,7 +169,9 @@
     <Folder Include="browser_components\images\" />
     <Folder Include="Models\HistoryModel\" />
     <Folder Include="Models\SearchJobModel\" />
-    <Folder Include="Views\Job\" />
+    <Folder Include="Views\JobDetail\" />
+    <Folder Include="Views\JobLists\" />
+    <Folder Include="Views\MyFavorite\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
