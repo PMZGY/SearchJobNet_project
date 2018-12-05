@@ -1,5 +1,4 @@
-﻿
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace SearchJobNet_project.Models.CommentModel
 {
@@ -26,37 +25,40 @@ namespace SearchJobNet_project.Models.CommentModel
         ///<summary> 是否存在 </summary>
         public bool Is_Alive { get; set; }
 
-        // 建立假資料,總共有兩筆資料
-        public CommentModel()
+        // 取出假資料,總共有兩筆資料
+        public List<CommentModel> getAllComment()
         {
             // 建立list
-            List<CommentModel> cm = new List<CommentModel>();
-            
-            // 塞入第一筆假資料
-            CommentModel cms = new CommentModel();
-            cms.Comment_ID   = "A01";
-            cms.Job_ID       = "0";
-            cms.User_ID      = "Anna";
-            cms.Content      = "It is good !";
-            cms.Time         = "2018/12/04";
-            cms.Report_no    = 0;
-            cms.Is_Alive     = true;
-            cm.Add(cms);
+            List<CommentModel> result = new List<CommentModel>();
 
-            // 塞入第二筆假資料
-            cms = new CommentModel();
-            cms.Comment_ID   = "A02";
-            cms.Job_ID       = "1";
-            cms.User_ID      = "Ally";
-            cms.Content      = "It is excellent !";
-            cms.Time         = "2018/12/03";
-            cms.Report_no    = 0;
-            cms.Is_Alive     = true;
-            cm.Add(cms);
+            // 塞入 假資料
+            result.Add(new CommentModel
+            {
+                Comment_ID = "A01",
+                Job_ID     = "0",
+                User_ID    = "Anna",
+                Content    = "It is good !",
+                Time       = "2018/12/04",
+                Report_no  = 0,
+                Is_Alive   = true
 
+            });
+
+            result.Add(new CommentModel
+            {
+                Comment_ID = "A02",
+                Job_ID     = "1",
+                User_ID    = "Ally",
+                Content    = "It is excellent !",
+                Time       = "2018/12/03",
+                Report_no  = 0,
+                Is_Alive   = true
+
+            });
+
+            // 回傳 假資料
+            return result;
         }
-
-
       
     }
             
