@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using CM = SearchJobNet_project.Models.CommentModel;
 
 namespace SearchJobNet_project.Models.CommentModel
@@ -34,10 +35,34 @@ namespace SearchJobNet_project.Models.CommentModel
         }
 
         // 瀏覽評論
-        public Boolean browseComment(CM.CommentModel comment)
+        public List<CM.CommentModel> browseComment(string commentID)
         {
-            // do SQL browseComment
-            return true;
+            List<CM.CommentModel> bCommentModel = new List<CM.CommentModel>();
+            CM.CommentModel cmlist = new CM.CommentModel();
+           
+            // 取出 特定的評論 或是 全部的評論
+            if (commentID != "")
+            {
+                // 用for 取出特定資料
+                for (int i = 0; i < cmlist.getAllComment().Count; i++)
+                {
+                    if (cmlist.getAllComment()[i].Comment_ID == commentID)
+                    {
+                        bCommentModel.Add(cmlist.getAllComment()[i]);
+                        break;
+                    }
+                }
+            }
+            else
+            {
+                // 取出全部資料
+                for (int i = 0; i < cmlist.getAllComment().Count ; i++)
+                {
+                    bCommentModel.Add(cmlist.getAllComment()[i]);                    
+                }
+                
+            }
+            return bCommentModel;
         }
 
     }
