@@ -25,7 +25,7 @@ namespace SearchJobNet_project.Controllers.MemberController
             switch (actionPara)
             {
                 case "R":
-                    MM.MemberModel
+                  //  MM.MemberModel
                     return false;
                 
             }

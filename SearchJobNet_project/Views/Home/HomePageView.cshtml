@@ -36,8 +36,12 @@
     <link href="http://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
     <link href="http://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i" rel="stylesheet">
     <!-- //online fonts -->
-
-
+    <script src="~/scripts/jquery-1.9.1.min.js"></script>
+    <script src="~/scripts/kendo/2014.1.318/kendo.web.min.js"></script>
+    <link href="~/Content/kendo/2014.1.318/kendo.common.min.css" rel="stylesheet" />
+    <link href="~/Content/kendo/2014.1.318/kendo.default.min.css" rel="stylesheet" />
+    <link href="~/Content/kendo/2014.1.318/kendo.bootstrap.min.css" rel="stylesheet" />
+    <script src="~/scripts/HomePage.js"></script>
 </head>
 
 <body>
@@ -84,7 +88,7 @@
                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                         <ul class="nav navbar-nav link-effect-4">
                             <li class="active first-list">@Html.ActionLink("回首頁","Index","Home") </li>
-                            <li><a href="##" class="scroll" id="serchjob">查詢職缺 </a> </li>
+                            <li><a href="#" data-toggle="modal" data-target="#searchjob">職缺查詢</a> </li>
                             <li>@Html.ActionLink("我的最愛","toMyFavoriteView","Job") </li>
                             <li>@Html.ActionLink("歷史紀錄", "Index", "History")</li>
                              
@@ -193,19 +197,6 @@
                             </div>
                             <div class="clearfix"> </div>
                         </div>
-                        <div class="w3-address-grid">
-                            <div class="w3-address-left">
-                                <i class="fa fa-map-marker" aria-hidden="true"></i>
-                            </div>
-                            <div class="w3-address-right">
-                                <h6>Location</h6>
-                                <p>
-                                    Broome St, NY 10002, Canada.
-                                    <span>Telephone : +00 111 222 3333</span>
-                                </p>
-                            </div>
-                            <div class="clearfix"> </div>
-                        </div>
                     </div>
                 </div>
                 <div class="clearfix"> </div>
@@ -213,7 +204,7 @@
         </div>
         <div class="copyright">
             <div class="container">
-                <p>Copyright &copy; 2018.Company name All rights reserved.<a target="_blank" href="http://sc.chinaz.com/moban/">&#x7F51;&#x9875;&#x6A21;&#x677F;</a></p>
+                <p>第八組</p>
             </div>
         </div>
     </footer>
@@ -240,6 +231,45 @@
                             esse quam nihil molestiae consequatur.
                         </i>
                     </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- //bootstrap-modal-pop-up -->
+    <!-- bootstrap-modal-pop-up -->
+    <div class="modal video-modal fade" id="searchjob" tabindex="-1" role="dialog" aria-labelledby="searchjob">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                     搜尋職缺
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                </div>
+@using (Html.BeginForm("action", "controller", FormMethod.Post,new { id="searchJobTable"}))
+{
+                <div class="modal-body">
+                    <img src="browser_components/images/modal1.jpg" alt=" " class="img-responsive" />
+                    
+                        <ul class="fields">
+
+                            <li class="first-list">
+                                <div class="fields-label">
+                                    @Html.Label("公司名稱：")<input type="text">
+                                </div>
+                                <div class="fields-value">
+                                    @Html.Label("工作性質：")<input type="checkbox" value="fullwork"><label for="fullwork">全職</label><input type="checkbox" value="parttimework"><label for="parttimework">兼職</label>
+                                </div>
+                                <div class="fields-value">
+                                    @Html.Label("工作地點：") <input type="text">
+                                </div>
+                                <div class="fields-value">
+                                    @Html.Label("職務類別：") <input type="text">
+                                </div>
+                            </li>
+                        </ul>
+                </div>
+}
+                <div class="form-footer" style="text-align:right">
+                    <button type="submit" class="btn btn-primary" id="searchJobButton" data-url="@Url.Action("Index", "Job")">搜尋</button>
                 </div>
             </div>
         </div>
@@ -305,9 +335,6 @@
 					scrollTop: $(this.hash).offset().top
 				}, 1000);
 			});
-			//$("#home").click(function () {
-			//    window.location = "\\Home";
-			//});
 		});
     </script>
     <script src="browser_components/js/SmoothScroll.min.js"></script>
@@ -329,7 +356,6 @@
 
 		});
     </script>
-    <script src="~/scripts/HomePage.js"></script>
     <!-- smooth-scrolling-of-move-up -->
     <!-- Bootstrap core JavaScript
     ================================================== -->

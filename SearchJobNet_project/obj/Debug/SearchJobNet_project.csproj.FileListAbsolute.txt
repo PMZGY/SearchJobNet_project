@@ -44,6 +44,58 @@ C:\Users\miko\Desktop\SearchJobNet_project\SearchJobNet_project\bin\System.Web.M
 C:\Users\miko\Desktop\SearchJobNet_project\SearchJobNet_project\obj\Debug\SearchJobNet_project.csprojResolveAssemblyReference.cache
 C:\Users\miko\Desktop\SearchJobNet_project\SearchJobNet_project\obj\Debug\SearchJobNet_project.dll
 C:\Users\miko\Desktop\SearchJobNet_project\SearchJobNet_project\obj\Debug\SearchJobNet_project.pdb
+<<<<<<< HEAD
+=======
+C:\Users\user\Desktop\Project\SearchJobNet_project\SearchJobNet_project\bin\ApplicationInsights.config
+C:\Users\user\Desktop\Project\SearchJobNet_project\SearchJobNet_project\bin\roslyn\csc.exe
+C:\Users\user\Desktop\Project\SearchJobNet_project\SearchJobNet_project\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+C:\Users\user\Desktop\Project\SearchJobNet_project\SearchJobNet_project\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+C:\Users\user\Desktop\Project\SearchJobNet_project\SearchJobNet_project\bin\roslyn\Microsoft.CodeAnalysis.dll
+C:\Users\user\Desktop\Project\SearchJobNet_project\SearchJobNet_project\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+C:\Users\user\Desktop\Project\SearchJobNet_project\SearchJobNet_project\bin\roslyn\Microsoft.CSharp.Core.targets
+C:\Users\user\Desktop\Project\SearchJobNet_project\SearchJobNet_project\bin\roslyn\Microsoft.VisualBasic.Core.targets
+C:\Users\user\Desktop\Project\SearchJobNet_project\SearchJobNet_project\bin\roslyn\System.Collections.Immutable.dll
+C:\Users\user\Desktop\Project\SearchJobNet_project\SearchJobNet_project\bin\roslyn\System.Reflection.Metadata.dll
+C:\Users\user\Desktop\Project\SearchJobNet_project\SearchJobNet_project\bin\roslyn\vbc.exe
+C:\Users\user\Desktop\Project\SearchJobNet_project\SearchJobNet_project\bin\roslyn\VBCSCompiler.exe
+C:\Users\user\Desktop\Project\SearchJobNet_project\SearchJobNet_project\bin\roslyn\VBCSCompiler.exe.config
+C:\Users\user\Desktop\Project\SearchJobNet_project\SearchJobNet_project\bin\SearchJobNet_project.dll.config
+C:\Users\user\Desktop\Project\SearchJobNet_project\SearchJobNet_project\bin\SearchJobNet_project.dll
+C:\Users\user\Desktop\Project\SearchJobNet_project\SearchJobNet_project\bin\SearchJobNet_project.pdb
+C:\Users\user\Desktop\Project\SearchJobNet_project\SearchJobNet_project\bin\Microsoft.AI.Agent.Intercept.dll
+C:\Users\user\Desktop\Project\SearchJobNet_project\SearchJobNet_project\bin\Microsoft.AI.DependencyCollector.dll
+C:\Users\user\Desktop\Project\SearchJobNet_project\SearchJobNet_project\bin\Microsoft.AI.PerfCounterCollector.dll
+C:\Users\user\Desktop\Project\SearchJobNet_project\SearchJobNet_project\bin\Microsoft.AI.ServerTelemetryChannel.dll
+C:\Users\user\Desktop\Project\SearchJobNet_project\SearchJobNet_project\bin\Microsoft.AI.Web.dll
+C:\Users\user\Desktop\Project\SearchJobNet_project\SearchJobNet_project\bin\Microsoft.AI.WindowsServer.dll
+C:\Users\user\Desktop\Project\SearchJobNet_project\SearchJobNet_project\bin\Microsoft.ApplicationInsights.dll
+C:\Users\user\Desktop\Project\SearchJobNet_project\SearchJobNet_project\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+C:\Users\user\Desktop\Project\SearchJobNet_project\SearchJobNet_project\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\user\Desktop\Project\SearchJobNet_project\SearchJobNet_project\bin\System.Web.Helpers.dll
+C:\Users\user\Desktop\Project\SearchJobNet_project\SearchJobNet_project\bin\System.Web.Mvc.dll
+C:\Users\user\Desktop\Project\SearchJobNet_project\SearchJobNet_project\bin\System.Web.Razor.dll
+C:\Users\user\Desktop\Project\SearchJobNet_project\SearchJobNet_project\bin\System.Web.Webpages.Deployment.dll
+C:\Users\user\Desktop\Project\SearchJobNet_project\SearchJobNet_project\bin\System.Web.Webpages.dll
+C:\Users\user\Desktop\Project\SearchJobNet_project\SearchJobNet_project\bin\System.Web.Webpages.Razor.dll
+C:\Users\user\Desktop\Project\SearchJobNet_project\SearchJobNet_project\bin\Microsoft.AI.DependencyCollector.xml
+C:\Users\user\Desktop\Project\SearchJobNet_project\SearchJobNet_project\bin\Microsoft.AI.ServerTelemetryChannel.xml
+C:\Users\user\Desktop\Project\SearchJobNet_project\SearchJobNet_project\bin\Microsoft.AI.Web.xml
+C:\Users\user\Desktop\Project\SearchJobNet_project\SearchJobNet_project\bin\Microsoft.AI.WindowsServer.xml
+C:\Users\user\Desktop\Project\SearchJobNet_project\SearchJobNet_project\bin\Microsoft.ApplicationInsights.xml
+C:\Users\user\Desktop\Project\SearchJobNet_project\SearchJobNet_project\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Users\user\Desktop\Project\SearchJobNet_project\SearchJobNet_project\bin\System.Web.Razor.xml
+C:\Users\user\Desktop\Project\SearchJobNet_project\SearchJobNet_project\bin\System.Web.Webpages.xml
+C:\Users\user\Desktop\Project\SearchJobNet_project\SearchJobNet_project\bin\System.Web.Webpages.Deployment.xml
+C:\Users\user\Desktop\Project\SearchJobNet_project\SearchJobNet_project\bin\System.Web.Webpages.Razor.xml
+C:\Users\user\Desktop\Project\SearchJobNet_project\SearchJobNet_project\bin\System.Web.Helpers.xml
+C:\Users\user\Desktop\Project\SearchJobNet_project\SearchJobNet_project\bin\System.Web.Mvc.xml
+C:\Users\user\Desktop\Project\SearchJobNet_project\SearchJobNet_project\obj\Debug\SearchJobNet_project.csprojResolveAssemblyReference.cache
+C:\Users\user\Desktop\Project\SearchJobNet_project\SearchJobNet_project\obj\Debug\SearchJobNet_project.dll
+C:\Users\user\Desktop\Project\SearchJobNet_project\SearchJobNet_project\obj\Debug\SearchJobNet_project.pdb
+D:\Program\Software Engineering\SearchJobNet_project\obj\Debug\SearchJobNet_project.csprojResolveAssemblyReference.cache
+D:\Program\Software Engineering\SearchJobNet_project\obj\Debug\SearchJobNet_project.dll
+D:\Program\Software Engineering\SearchJobNet_project\obj\Debug\SearchJobNet_project.pdb
+>>>>>>> 47462c40ff339a8f607c8f2a11a4422b9ac1f462
 D:\SearchJob\SearchJobNet_project\bin\ApplicationInsights.config
 D:\SearchJob\SearchJobNet_project\bin\roslyn\csc.exe
 D:\SearchJob\SearchJobNet_project\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
@@ -90,7 +142,10 @@ D:\SearchJob\SearchJobNet_project\bin\System.Web.Mvc.xml
 D:\SearchJob\SearchJobNet_project\obj\Debug\SearchJobNet_project.dll
 D:\SearchJob\SearchJobNet_project\obj\Debug\SearchJobNet_project.pdb
 D:\SearchJob\SearchJobNet_project\obj\Debug\SearchJobNet_project.csprojResolveAssemblyReference.cache
+<<<<<<< HEAD
 D:\Program\Software Engineering\SearchJobNet_project\obj\Debug\SearchJobNet_project.csprojResolveAssemblyReference.cache
 D:\Program\Software Engineering\SearchJobNet_project\obj\Debug\SearchJobNet_project.dll
 D:\Program\Software Engineering\SearchJobNet_project\obj\Debug\SearchJobNet_project.pdb
 C:\Users\user\Desktop\Project\SearchJobNet_project\SearchJobNet_project\obj\Debug\SearchJobNet_project.csprojResolveAssemblyReference.cache
+=======
+>>>>>>> 47462c40ff339a8f607c8f2a11a4422b9ac1f462
