@@ -142,10 +142,3 @@ D:\SearchJob\SearchJobNet_project\bin\System.Web.Mvc.xml
 D:\SearchJob\SearchJobNet_project\obj\Debug\SearchJobNet_project.dll
 D:\SearchJob\SearchJobNet_project\obj\Debug\SearchJobNet_project.pdb
 D:\SearchJob\SearchJobNet_project\obj\Debug\SearchJobNet_project.csprojResolveAssemblyReference.cache
-<<<<<<< HEAD
-D:\Program\Software Engineering\SearchJobNet_project\obj\Debug\SearchJobNet_project.csprojResolveAssemblyReference.cache
-D:\Program\Software Engineering\SearchJobNet_project\obj\Debug\SearchJobNet_project.dll
-D:\Program\Software Engineering\SearchJobNet_project\obj\Debug\SearchJobNet_project.pdb
-C:\Users\user\Desktop\Project\SearchJobNet_project\SearchJobNet_project\obj\Debug\SearchJobNet_project.csprojResolveAssemblyReference.cache
-=======
->>>>>>> 47462c40ff339a8f607c8f2a11a4422b9ac1f462

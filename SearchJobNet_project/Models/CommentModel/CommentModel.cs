@@ -1,28 +1,37 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace SearchJobNet_project.Models.CommentModel
 {
     public class CommentModel
     {
         ///<summary> 評論PK </summary>
+        [Required]
+        [Display(Name = "評論PK")]
         public string Comment_ID { get; set; }
 
         ///<summary> 職缺 </summary>
+        [Display(Name = "職缺")]
         public string Job_ID { get; set; }
 
         ///<summary> 發表者 </summary>
+        [Display(Name = "發表者")]
         public string User_ID { get; set; }
 
         ///<summary> 內容 </summary>
+        [Display(Name = "內容")]
         public string Content { get; set; }
 
         ///<summary> 發表時間 </summary>
+        [Display(Name = "發表時間")]
         public string Time { get; set; }
 
         ///<summary> 檢舉數 </summary>
+        [Display(Name = "檢舉數")]
         public int Report_no { get; set; }
 
         ///<summary> 是否存在 </summary>
+        [Display(Name = "是否存在")]
         public bool Is_Alive { get; set; }
 
         // 取出假資料,總共有兩筆資料

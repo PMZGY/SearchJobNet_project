@@ -7,31 +7,41 @@ namespace SearchJobNet_project.Models.CommentModel
     public class Comment
     {
         // 新增評論
-        public Boolean insertComment(CM.CommentModel iComment)
+        public string insertComment(CM.CommentModel iComment)
         {
             // do SQL insertComment
-            return true;
+            return "insert data success";
         }
 
         // 修改評論
-        public Boolean modifyComment(CM.CommentModel mComment)
+        public string modifyComment(CM.CommentModel mComment)
         {
             // do SQL modifyComment
-            return true;
+            return "modify data success";
         }
 
         // 刪除評論
-        public Boolean delComment(CM.CommentModel comment)
+        public string delComment(string commentID)
         {
             // do SQL delComment
-            return true;
+            return "delete data success";
         }
 
         // 檢舉評論
-        public Boolean reportComment(CM.CommentModel comment)
+        public string reportComment(CM.CommentModel rComment)
         {
+            // 檢查 評論檢舉次數是否到達五次
+            rComment.Report_no = rComment.Report_no + 1;
+            if (rComment.Report_no != 5)
+            {
+                return "report data success";
+            }
+            else
+            {
+                rComment.Is_Alive = false;
+                return "report data success ,and it was deleted!";
+            }
             // do SQL reportComment
-            return true;
         }
 
         // 瀏覽評論
