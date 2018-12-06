@@ -58,8 +58,8 @@ namespace SearchJobNet_project.Controllers.CommentController
             List<CM.CommentModel> cmModel = new List<CM.CommentModel>();
             cmModel = comment.browseComment(commentID);
             return cmModel;
-
         }
+
         #endregion
 
     }
