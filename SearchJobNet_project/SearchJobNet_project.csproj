@@ -742,6 +742,8 @@
     <Compile Include="Models\HistoryModel\HistoryModel.cs" />
     <Compile Include="Models\MemberModel\Member.cs" />
     <Compile Include="Models\MemberModel\MemberModel.cs" />
+    <Compile Include="Models\SearchJobModel\JobModel.cs" />
+    <Compile Include="Models\SearchJobModel\SearchJobModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -833,7 +835,6 @@
     <Folder Include="App_Data\" />
     <Folder Include="browser_components\css\" />
     <Folder Include="browser_components\fonts\" />
-    <Folder Include="Models\SearchJobModel\" />
     <Folder Include="Views\JobDetail\" />
     <Folder Include="Views\JobLists\" />
     <Folder Include="Views\MyFavorite\" />
