@@ -739,6 +739,7 @@
     </Compile>
     <Compile Include="Models\CommentModel\Comment.cs" />
     <Compile Include="Models\CommentModel\CommentModel.cs" />
+    <Compile Include="Models\HistoryModel\History.cs" />
     <Compile Include="Models\HistoryModel\HistoryModel.cs" />
     <Compile Include="Models\MemberModel\Member.cs" />
     <Compile Include="Models\MemberModel\MemberModel.cs" />
