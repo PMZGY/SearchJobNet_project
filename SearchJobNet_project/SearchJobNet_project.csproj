@@ -835,9 +835,6 @@
     <Folder Include="App_Data\" />
     <Folder Include="browser_components\css\" />
     <Folder Include="browser_components\fonts\" />
-    <Folder Include="Views\JobDetail\" />
-    <Folder Include="Views\JobLists\" />
-    <Folder Include="Views\MyFavorite\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
