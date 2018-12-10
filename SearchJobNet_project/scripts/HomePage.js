@@ -2,28 +2,29 @@
 $(function () {
  
     var formSelector = "form#searchJobTable",
-          formModel = //$(formSelector).toJSON();
+        formModel = //$(formSelector).toJSON();
         JSON.stringify($(formSelector)[0]);
     var model = new kendo.observable(formModel);
-    $("#home").click(function () {
-        console.log("AAAA");
-        //window.location("View/Home/HomePageView.cshtml");
-    });
 
     $("#searchJobButton").click(function (e) {
-        //取資料
-        //var $form = $(formSelector),
-        //    action = $(e.target).attr('data-url'),
-        //    searchModel = this,
-        //    data = JSON.stringify(formModel);
+
+        //取要傳到的action url
         var action = $(e.target).attr('data-url')
+        //取form資料
         var formData = $('form#searchJobTable').serializeArray();
-        debugger;
+
         //傳資料給後端
         $.post(action, formData)
-            .done(function (formData) {
-                //重整畫面
-                // $form.find('[data-role=grid]').data('kendoGrid').dataSource.read();             
+            .done(function (Data) {
+                
+                //接到職缺的值，傳回JobListView
+                $.post("Job/Index")
+                .done(function () {
+                   // Url.Action("Index", "Job");
+                })
+                .fail(function () {
+
+                });
             })
             .fail(function (data) {
                 

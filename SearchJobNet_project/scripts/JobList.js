@@ -1,15 +1,13 @@
 ﻿$(function () {
     $("#grid").kendoGrid({
         dataSource: {
-            data: products,
+            data: Job,
             schema: {
                 model: {
                     fields: {
-                        ProductID: { type: "number" },
-                        ProductName: { type: "string" },
-                        UnitPrice: { type: "number" },
-                        UnitsInStock: { type: "number" },
-                        Discontinued: { type: "boolean" }
+                        CompName: { type: "string" },
+                        Occu_Desc: { type: "string" },
+                        CityName: { type: "string" }
                     }
                 }
             },
@@ -24,14 +22,10 @@
             numeric: false
         },
         columns: [
-            { field: "ProductID", title: "產品編號", width: "300px" },
-            { field: "ProductName", title: "產品名稱", width: "300px" },
-            { field: "UnitPrice", title: "價錢", format: "{0:c}", width: "130px" },
-            { field: "UnitsInStock", title: "數量", width: "130px" },
-            { field: "Discontinued", title: "交易方式", width: "130px" }
+            { field: "CompName", title: "公司名稱", width: "300px" },
+            { field: "Occu_Desc", title: "職務名稱", width: "300px" },
+            { field: "CityName", title: "地點", width: "130px" }
         ]
     });
-
-
 
 })

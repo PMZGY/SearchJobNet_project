@@ -250,12 +250,12 @@
                 <div class="modal-body">
                     <img src="browser_components/images/modal1.jpg" alt=" " class="img-responsive" />
                     
-                        <ul class="fields">
+                        <ul class="fields" vailgn="center">
 
                             <li class="first-list">
                                 <div class="fields-label">
-                                    @Html.Label("公司名稱：")
-                                    @Html.EditorFor(model => model.CompName)
+                                    @Html.Label("公司名稱：",new { style = "width: 100px" })
+                                    @Html.EditorFor(model => model.CompName,new { @class="col-sm-4;"})
                                 </div>
                                 <div class="fields-value">
                                     @Html.Label("工作性質：")
