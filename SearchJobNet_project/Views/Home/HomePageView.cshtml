@@ -1,6 +1,7 @@
 ﻿@{
     Layout = null;
 }
+@model SearchJobNet_project.Models.SearchJobModel.SearchJobModel
 
 <!DOCTYPE html>
 <html lang="zxx">
@@ -253,114 +254,125 @@
 
                             <li class="first-list">
                                 <div class="fields-label">
-                                    @Html.Label("公司名稱：")<input type="text">
+                                    @Html.Label("公司名稱：")
+                                    @Html.EditorFor(model => model.CompName)
                                 </div>
                                 <div class="fields-value">
-                                    @Html.Label("工作性質：")<input type="checkbox" value="fullwork"><label for="fullwork">全職</label><input type="checkbox" value="parttimework"><label for="parttimework">兼職</label>
+                                    @Html.Label("工作性質：")
+                                   
+                                    @*全職*@
+                                    @Html.CheckBoxFor(model => model.Wk_Type_All)
+                                    @Html.Label("全職")
+                                    @*兼職*@
+                                    @Html.CheckBoxFor(model => model.Wk_Type_Part)
+                                    @Html.Label("兼職")
+
                                 </div>
                                 <div class="fields-value">
-                                    @Html.Label("工作地點：") <input type="text">
+                                    @Html.Label("工作地點：")
+                                   @* @Html.DropDownListFor(model => model.CityName, (IEnumerable<SelectListItem>)ViewBag.CityName,new { data_role = "dropdownlist" })*@
                                 </div>
                                 <div class="fields-value">
-                                    @Html.Label("職務類別：") <input type="text">
-                                </div>
-                            </li>
-                        </ul>
-                </div>
-}
-                <div class="form-footer" style="text-align:right">
-                    <button type="submit" class="btn btn-primary" id="searchJobButton" data-url="@Url.Action("Index", "Job")">搜尋</button>
+                                    @Html.Label("職務類別：")
+                                   @* @Html.DropDownListFor(model => model.Cjob_ID, (IEnumerable<SelectListItem>)ViewBag.Cjob_Name1, new { data_role = "dropdownlist" }) *@
+                                    </div>
+                                </li>
+                            </ul>
+                    </div>
+    }
+                    <div class="form-footer" style="text-align:right">
+                        <button type="submit" class="btn btn-primary" id="searchJobButton" data-url="@Url.Action("Index", "Job")">搜尋</button>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    <!-- //bootstrap-modal-pop-up -->
-    <!-- js -->
-    <script src="browser_components/js/jquery-2.2.3.min.js"></script>
-    <!-- //js-->
-    <!-- banner-responsive-slider -->
-    <script src="browser_components/js/responsiveslides.min.js"></script>
-    <script>
-		// You can also use "$(window).load(function() {"
-		$(function () {
-			// Slideshow 4
-			$("#slider4").responsiveSlides({
-				auto: true,
-				pager: true,
-				nav: false,
-				speed: 500,
-				namespace: "callbacks",
-				before: function () {
-					$('.events').append("<li>before event fired.</li>");
-				},
-				after: function () {
-					$('.events').append("<li>after event fired.</li>");
-				}
-			});
+        <!-- //bootstrap-modal-pop-up -->
+        <!-- js -->
+        <script src="browser_components/js/jquery-2.2.3.min.js"></script>
+        <!-- //js-->
+        <!-- banner-responsive-slider -->
+        <script src="browser_components/js/responsiveslides.min.js"></script>
+        <script>
+            // You can also use "$(window).load(function() {"
+            $(function () {
+                // Slideshow 4
+                $("#slider4").responsiveSlides({
+                    auto: true,
+                    pager: true,
+                    nav: false,
+                    speed: 500,
+                    namespace: "callbacks",
+                    before: function () {
+                        $('.events').append("<li>before event fired.</li>");
+                    },
+                    after: function () {
+                        $('.events').append("<li>after event fired.</li>");
+                    }
+                });
 
-		});
-    </script>
-    <!-- //banner-responsive-slider -->
-    <!-- light-case -->
-    <script src="browser_components/js/lightcase.js"></script>
-    <script>
-		$('.showcase').lightcase();
-    </script>
-    <!-- //light-case -->
-    <!-- for testimonials slider-js-file-->
-    <script src="browser_components/js/owl.carousel.js"></script>
-    <!-- //for testimonials slider-js-file-->
-    <script>
-		$(document).ready(function() {
-		$("#owl-demo").owlCarousel({
+            });
+        </script>
+        <!-- //banner-responsive-slider -->
+        <!-- light-case -->
+        <script src="browser_components/js/lightcase.js"></script>
+        <script>
+            $('.showcase').lightcase();
+        </script>
+        <!-- //light-case -->
+        <!-- for testimonials slider-js-file-->
+        <script src="browser_components/js/owl.carousel.js"></script>
+        <!-- //for testimonials slider-js-file-->
+        <script>
+            $(document).ready(function() {
+            $("#owl-demo").owlCarousel({
 
-			autoPlay: 3000, //Set AutoPlay to 3 seconds
-			autoPlay:true,
-			items : 3,
-			itemsDesktop : [640,5],
-			itemsDesktopSmall : [414,4]
-		});
-		});
-    </script>
-    <!-- for testimonials slider-js-script-->
-    <!-- smooth-scrolling -->
-    <script src="browser_components/js/move-top.js"></script>
-    <script src="browser_components/js/easing.js"></script>
-    <script>
-		jQuery(document).ready(function ($) {
-			$(".scroll").click(function (event) {
-				event.preventDefault();
+                autoPlay: 3000, //Set AutoPlay to 3 seconds
+                autoPlay:true,
+                items : 3,
+                itemsDesktop : [640,5],
+                itemsDesktopSmall : [414,4]
+            });
+            });
+        </script>
+        <!-- for testimonials slider-js-script-->
+        <!-- smooth-scrolling -->
+        <script src="browser_components/js/move-top.js"></script>
+        <script src="browser_components/js/easing.js"></script>
+        <script>
+            jQuery(document).ready(function ($) {
+                $(".scroll").click(function (event) {
+                    event.preventDefault();
 
-				$('html,body').animate({
-					scrollTop: $(this.hash).offset().top
-				}, 1000);
-			});
-		});
-    </script>
-    <script src="browser_components/js/SmoothScroll.min.js"></script>
-    <!-- //smooth-scrolling -->
-    <script>
-		$(document).ready(function () {
-			/*
-			var defaults = {
-				containerID: 'toTop', // fading element id
-				containerHoverID: 'toTopHover', // fading element hover id
-				scrollSpeed: 1200,
-				easingType: 'linear'
-			};
-			*/
+                    $('html,body').animate({
+                        scrollTop: $(this.hash).offset().top
+                    }, 1000);
+                });
+            });
+        </script>
+        <script src="browser_components/js/SmoothScroll.min.js"></script>
+        <!-- //smooth-scrolling -->
+        <script>
+            $(document).ready(function () {
+                /*
+                var defaults = {
+                    containerID: 'toTop', // fading element id
+                    containerHoverID: 'toTopHover', // fading element hover id
+                    scrollSpeed: 1200,
+                    easingType: 'linear'
+                };
+                */
 
-			$().UItoTop({
-				easingType: 'easeOutQuart'
-			});
+                $().UItoTop({
+                    easingType: 'easeOutQuart'
+                });
 
-		});
-    </script>
-    <!-- smooth-scrolling-of-move-up -->
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="browser_components/js/bootstrap.js"></script>
-</body>
+            });
+        </script>
+        <!-- smooth-scrolling-of-move-up -->
+        <!-- Bootstrap core JavaScript
+        ================================================== -->
+        <!-- Placed at the end of the document so the pages load faster -->
+        <script src="browser_components/js/bootstrap.js"></script>
+    </body>
 
-</html>
+    </html>

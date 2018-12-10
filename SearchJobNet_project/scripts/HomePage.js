@@ -12,14 +12,16 @@ $(function () {
 
     $("#searchJobButton").click(function (e) {
         //取資料
-        var $form = $(formSelector),
-            action = $(e.target).attr('data-url'),
-            searchModel = this,
-            data = JSON.stringify(this);
-
+        //var $form = $(formSelector),
+        //    action = $(e.target).attr('data-url'),
+        //    searchModel = this,
+        //    data = JSON.stringify(formModel);
+        var action = $(e.target).attr('data-url')
+        var formData = $('form#searchJobTable').serializeArray();
+        debugger;
         //傳資料給後端
-        $.post(action, data)
-            .done(function (data) {
+        $.post(action, formData)
+            .done(function (formData) {
                 //重整畫面
                 // $form.find('[data-role=grid]').data('kendoGrid').dataSource.read();             
             })
