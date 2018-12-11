@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Linq;
 using CM = SearchJobNet_project.Models.CommentModel;
+using Tools = SearchJobNet_project.Tools;
 
 namespace SearchJobNet_project.Models.CommentModel
 {
@@ -48,27 +51,65 @@ namespace SearchJobNet_project.Models.CommentModel
         public List<CM.CommentModel> browseComment(string commentID)
         {
             List<CM.CommentModel> bCommentModel = new List<CM.CommentModel>();
-            CM.CommentModel cmlist = new CM.CommentModel();
-           
+
+            // 建立DB連線
+            Tools.DBConnection bsc = new Tools.DBConnection();
+
             // 取出 特定的評論 或是 全部的評論
             if (commentID != "")
-            {
-                // 用for 取出特定資料
-                for (int i = 0; i < cmlist.getAllComment().Count; i++)
+            {               
+                // 取出特定 commentID的資料
+                DataTable dt = bsc.ReadDB(
+                string.Format(
+                @"SELECT *
+                  FROM [Comment] AS C
+                  WHERE 1=1
+                  C.commentID = {0}",commentID)
+                );
+
+                // 從DataTble 取出 資料欄位名稱
+                string[] columnNames = dt.Columns.Cast<DataColumn>().Select(x => x.ColumnName).ToArray();
+
+                // 將DataTable的資料轉換為model
+                for (int i = 0; i < dt.Rows.Count; i++)
                 {
-                    if (cmlist.getAllComment()[i].Comment_ID == commentID)
+                    bCommentModel.Add(new CM.CommentModel
                     {
-                        bCommentModel.Add(cmlist.getAllComment()[i]);
-                        break;
-                    }
+                        Comment_ID = Convert.ToInt16(dt.Rows[i][columnNames[0]].ToString()),
+                        Job_ID = Convert.ToInt16(dt.Rows[i][1]),
+                        User_ID = Convert.ToInt16(dt.Rows[i][2]),
+                        Content_Text = dt.Rows[i][3].ToString(),
+                        Time = dt.Rows[i][4].ToString(),
+                        Report_no = Convert.ToInt16(dt.Rows[i][5]),
+                        Is_Alive = dt.Rows[i][6].ToString()
+                    });
                 }
             }
             else
             {
                 // 取出全部資料
-                for (int i = 0; i < cmlist.getAllComment().Count ; i++)
+                
+                // 從DB取出SQL下的指令的資料
+                DataTable dt = bsc.ReadDB(
+                @"SELECT * 
+                  FROM [Comment]"
+                );
+
+                // 從DataTable 取出 資料欄位名稱
+                string[] columnNames = dt.Columns.Cast<DataColumn>().Select(x => x.ColumnName).ToArray();
+
+                // 將DataTable的資料轉換為model
+                for (int i = 0; i < dt.Rows.Count; i++)
                 {
-                    bCommentModel.Add(cmlist.getAllComment()[i]);                    
+                    bCommentModel.Add(new CM.CommentModel {
+                        Comment_ID   = Convert.ToInt16(dt.Rows[i][columnNames[0]].ToString()),
+                        Job_ID       = Convert.ToInt16(dt.Rows[i][1]),
+                        User_ID      = Convert.ToInt16(dt.Rows[i][2]),
+                        Content_Text = dt.Rows[i][3].ToString(),
+                        Time         = dt.Rows[i][4].ToString(),
+                        Report_no    = Convert.ToInt16(dt.Rows[i][5]),
+                        Is_Alive     = dt.Rows[i][6].ToString()
+                    } );
                 }
                 
             }
