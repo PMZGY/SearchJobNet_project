@@ -1,4 +1,37 @@
 ﻿$(function () {
+
+    var dataSource = new kendo.data.DataSource({
+        transport: {
+            read: {
+                type: "POST",
+                url: "/PeopleData/PeopleList",
+                dataType: "json",
+                contentType: "application/json"
+        },
+        //batch: true,
+        schema: {
+            //取出資料陣列
+            data: function (d) { return d.PeopleDataList; },
+            //取出資料總筆數(計算頁數用)
+            total: function (d) { return d.Count; },
+            model: {
+                id: "PeopleID",
+                fields: {
+                    PeopleID: { editable: false, nullable: true },
+                    CN: { validation: { required: true } },
+                    Depart: { defaultValue: { DepartID: 0, DepartName: "Please wait" } },
+                    Pasd: { validation: { required: true } },
+                    Name: { validation: { required: true } },
+                    Mail: { type: "email", validation: { required: true } },
+                }
+            }
+        },
+        pageSize: 10,
+        serverPaging: true,
+        serverSorting: true
+    });
+
+
     $("#grid").kendoGrid({
         dataSource: {
             data: Job,

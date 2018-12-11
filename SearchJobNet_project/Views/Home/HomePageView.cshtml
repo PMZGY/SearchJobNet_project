@@ -77,7 +77,7 @@
                             <span class="icon-bar"></span>
                         </button>
                         <div class="navbar-brand logo ">
-                            <h1><a href="index.html">求職網</a></h1>
+                            <h1>@Html.ActionLink("求職網", "Index", "Home")</h1>
                         </div>
 
                     </div>
@@ -259,12 +259,13 @@
                                 <div class="fields-value">
                                     @Html.Label("工作性質：")
                                    
+                                    @* @Html.DropDownListFor(model => model.Wk_Type, (IEnumerable<SelectListItem>)ViewBag.WorkType,new { data_role = "dropdownlist" })*@
+                                    
                                     @*全職*@
-                                  @*  @Html.CheckBoxFor(model => model.Wk_Type_All)*@
-                                    @Html.Label("全職")
-                                    @*兼職*@
-                                  @*  @Html.CheckBoxFor(model => model.Wk_Type_Part)*@
-                                    @Html.Label("兼職")
+                                    @* @Html.CheckBoxFor(model => model.Wk_Type_All)
+                                    @Html.Label("全職")                                 
+                                    @Html.CheckBoxFor(model => model.Wk_Type_Part)
+                                    @Html.Label("兼職")*@
 
                                 </div>
                                 <div class="fields-value">
@@ -296,7 +297,7 @@
                     會員登入
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 </div>
-                @using (Html.BeginForm("action", "controller", FormMethod.Post, new { id = "memberTable" }))
+                @using (Html.BeginForm("loginMember", "Member", FormMethod.Post, new { id = "memberTable" }))
                 {
                     <div class="modal-body">
                         <img src="browser_components/images/modal1.jpg" alt=" " class="img-responsive" />
@@ -313,8 +314,8 @@
                                     <input type="password" id="password" class="k-textbox k-input" style="width:160px;" minlength="8" required validationMessage="請輸入密碼" />
                                 </div>                
                                 <div class="form-footer" style="margin-left:20px;margin-bottom:20px">
-                                    <button style="margin-right:20px"type="submit"data-toggle="modal" data-target="#memberRegister" class="btn btn-primary" id="searchJobButton" data-url="@Url.Action("Index", "Job")">註冊</button>
-                                    <button type="submit" class="btn btn-primary" id="searchJobButton" data-url="@Url.Action("Index", "Job")">登入</button>
+                                    <button style="margin-right:20px"type="submit"data-toggle="modal" data-target="#memberRegister" class="btn btn-primary" data-url="@Url.Action("Index", "Job")">註冊</button>
+                                    <button type="submit" class="btn btn-primary" id="login" data-url="@Url.Action("loginMember", "Member")">登入</button>
                                 </div>
                             </li>
                             
@@ -337,7 +338,7 @@
                     會員註冊
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 </div>
-                @using (Html.BeginForm("action", "controller", FormMethod.Post, new { id = "memberRegisterTable" }))
+                @using (Html.BeginForm("registerMember", "Member", FormMethod.Post, new { id = "memberRegisterTable" }))
                 {
                     <div class="modal-body">
                         <img src="browser_components/images/modal1.jpg" alt=" " class="img-responsive" />
@@ -362,7 +363,7 @@
                                     @Html.EditorFor(model => model.CompName, new { htmlAttributes = new { @class = "k-textbox k-input", style = "width:160px;", minlength = "8" } })
                                 </div>
                                 <div class="form-footer" style="margin-left:20px;margin-bottom:20px">
-                                    <button style="margin-right:20px" type="submit" class="btn btn-primary" id="searchJobButton" data-url="@Url.Action("Index", "Job")">確認</button>
+                                    <button style="margin-right:20px" type="submit" class="btn btn-primary" id="register" data-url="@Url.Action("registerMember", "Member")">確認</button>
                                 </div>
                             </li>
 
