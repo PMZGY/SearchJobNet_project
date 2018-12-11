@@ -56,10 +56,7 @@
                     <div class="w3-header-top-right">
                         <div class="agileinfo-social-grids">
                             <ul>
-                                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                <li><a href="#"><i class="fa fa-rss"></i></a></li>
-                                <li><a href="#"><i class="fa fa-vk"></i></a></li>
+                                <img src="browser_components/images/login.png" class="img-responsive" width="40" height="40" data-toggle="modal" data-target="#member"  />          
                             </ul>
                         </div>
                         <div class="clearfix"> </div>
@@ -237,6 +234,8 @@
         </div>
     </div>
     <!-- //bootstrap-modal-pop-up -->
+
+    <!--搜尋職缺popup-->
     <!-- bootstrap-modal-pop-up -->
     <div class="modal video-modal fade" id="searchjob" tabindex="-1" role="dialog" aria-labelledby="searchjob">
         <div class="modal-dialog" role="document">
@@ -287,6 +286,95 @@
             </div>
         </div>
         <!-- //bootstrap-modal-pop-up -->
+
+    <!--會員popup-->
+    <!-- bootstrap-modal-pop-up -->
+    <div class="modal video-modal fade" id="member" tabindex="-1" role="dialog" aria-labelledby="member">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    會員登入
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                </div>
+                @using (Html.BeginForm("action", "controller", FormMethod.Post, new { id = "memberTable" }))
+                {
+                    <div class="modal-body">
+                        <img src="browser_components/images/modal1.jpg" alt=" " class="img-responsive" />
+
+                        <ul class="fields" vailgn="center">
+
+                            <li class="first-list">
+                                <div class="fields-label fields-label-50" style="margin-top:20px;margin-left:20px">
+                                    @Html.Label("帳號：", new { style = "width: 50px" })
+                                    <input id="account" class="k-textbox k-input" style="width:160px;" minlength="8" required validationMessage="請輸入帳號" />
+                                </div>
+                                <div class="fields-label fields-label-50" style="margin-top:20px;margin-left:20px;margin-bottom:20px">
+                                    @Html.Label("密碼：", new { style = "width: 50px" })
+                                    <input type="password" id="password" class="k-textbox k-input" style="width:160px;" minlength="8" required validationMessage="請輸入密碼" />
+                                </div>                
+                                <div class="form-footer" style="margin-left:20px;margin-bottom:20px">
+                                    <button style="margin-right:20px"type="submit"data-toggle="modal" data-target="#memberRegister" class="btn btn-primary" id="searchJobButton" data-url="@Url.Action("Index", "Job")">註冊</button>
+                                    <button type="submit" class="btn btn-primary" id="searchJobButton" data-url="@Url.Action("Index", "Job")">登入</button>
+                                </div>
+                            </li>
+                            
+                        </ul>
+                    </div>
+                }
+
+            </div>
+        </div>
+    </div>
+    <!-- //bootstrap-modal-pop-up -->
+
+
+    <!--註冊popup-->
+    <!-- bootstrap-modal-pop-up -->
+    <div class="modal video-modal fade" id="memberRegister" tabindex="-1" role="dialog" aria-labelledby="memberRegister">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    會員註冊
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                </div>
+                @using (Html.BeginForm("action", "controller", FormMethod.Post, new { id = "memberRegisterTable" }))
+                {
+                    <div class="modal-body">
+                        <img src="browser_components/images/modal1.jpg" alt=" " class="img-responsive" />
+
+                        <ul class="fields" vailgn="center">
+
+                            <li class="first-list">
+                                <div class="fields-label fields-label-50" style="margin-top:20px;margin-left:20px">
+                                    @Html.Label("帳號：", new { style = "width: 50px" })
+                                    <input id="account" class="k-textbox k-input" style="width:160px;" minlength="8" required validationMessage="請輸入帳號" />
+                                </div>
+                                <div class="fields-label fields-label-50" style="margin-top:20px;margin-left:20px;margin-bottom:20px">
+                                    @Html.Label("密碼：", new { style = "width: 50px" })
+                                    <input type="password" id="password" class="k-textbox k-input" style="width:160px;" minlength="8" required validationMessage="請輸入密碼" />
+                                </div>
+                                <div class="fields-label fields-label-50" style="margin-top:20px;margin-left:20px;margin-bottom:20px">
+                                    @Html.Label("確認密碼：", new { style = "width: 100px" })
+                                    <input type="password" id="confirmpassword" class="k-textbox k-input" style="width:160px;" minlength="8" required validationMessage="請輸入密碼" />
+                                </div>
+                                <div class="fields-label fields-label-50" style="margin-top:20px;margin-left:20px;margin-bottom:20px">
+                                    @Html.Label("身分證字號：", new { style = "width: 100px" })
+                                    @Html.EditorFor(model => model.CompName, new { htmlAttributes = new { @class = "k-textbox k-input", style = "width:160px;", minlength = "8" } })
+                                </div>
+                                <div class="form-footer" style="margin-left:20px;margin-bottom:20px">
+                                    <button style="margin-right:20px" type="submit" class="btn btn-primary" id="searchJobButton" data-url="@Url.Action("Index", "Job")">確認</button>
+                                </div>
+                            </li>
+
+                        </ul>
+                    </div>
+                }
+
+            </div>
+        </div>
+    </div>
+    <!-- //bootstrap-modal-pop-up -->
+
         <!-- js -->
         <script src="browser_components/js/jquery-2.2.3.min.js"></script>
         <!-- //js-->
