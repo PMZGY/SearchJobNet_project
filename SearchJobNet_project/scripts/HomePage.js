@@ -53,7 +53,7 @@ $(function () {
         var action = $(e.target).attr('data-url')
         //取form資料
         //var formData = $('form#memberRegisterTable').serializeArray();
-        if ($('#confirmpassword').val() == $('#password').val()) {
+        if ($('#confirmpassword').val() === $('#password').val()) {
             var formData = {
                 UserName: $('#account').val(),
                 PassWord: $('#password').val(),
