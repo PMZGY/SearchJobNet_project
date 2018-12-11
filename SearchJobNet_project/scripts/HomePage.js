@@ -28,10 +28,14 @@ $(function () {
     //點擊登入
     $("#login").click(function (e) {
         //取要傳到的action url
-        var action = $(e.target).attr('data-url')
+        var action = 'Member/loginMember'
+
         //取form資料
-        var formData = $('form#memberTable').serializeArray();
-        debugger;
+        var formData = {
+            UserName: $('#UserName').val(),
+            PassWord: $('#PassWord').val()
+        };
+
         //傳資料給後端
         $.post(action, formData)
             .done(function (Data) {
@@ -48,16 +52,26 @@ $(function () {
         //取要傳到的action url
         var action = $(e.target).attr('data-url')
         //取form資料
-        var formData = $('form#memberRegisterTable').serializeArray();
-        debugger;
-        //傳資料給後端
-        $.post(action, formData)
-            .done(function (Data) {
+        //var formData = $('form#memberRegisterTable').serializeArray();
+        if ($('#confirmpassword').val() == $('#password').val()) {
+            var formData = {
+                UserName: $('#account').val(),
+                PassWord: $('#password').val(),
+                User_ID: $('#personid').val()
+            };
+            debugger;
+            //傳資料給後端
+            $.post(action, formData)
+                .done(function (Data) {
 
 
-            })
-            .fail(function (data) {
+                })
+                .fail(function (data) {
 
-            });
+                });
+        } else {
+            alert("密碼輸入不同");
+        }
+        
     })
 })
