@@ -19,11 +19,8 @@ namespace SearchJobNet_project.Models.SearchJobModel
         ///<summary> 職缺名稱 </summary>
         public string Occu_Desc { get; set; }
 
-        ///<summary> 職缺性質_全職 </summary>
-        public bool Wk_Type_All { get; set; }
-
-        ///<summary> 職缺性質_兼職 </summary>
-        public bool Wk_Type_Part { get; set; }
+        ///<summary> 職缺性質 </summary>
+        public string Wk_Type { get; set; }
 
         ///<summary> 職缺大類別代碼 </summary>
         public string Cjob_ID { get; set; }
