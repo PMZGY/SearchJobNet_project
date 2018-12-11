@@ -27,11 +27,8 @@ namespace SearchJobNet_project.Models.SearchJobModel
         [Display(Name = "職缺名稱")]
         public string Occu_Desc { get; set; }
 
-        ///<summary> 職缺性質_全職 </summary>
-        public bool Wk_Type_All { get; set; }
-
-        ///<summary> 職缺性質_兼職 </summary>
-        public bool Wk_Type_Part { get; set; }
+        ///<summary> 職缺性質 </summary>
+        public string Wk_Type { get; set; }
 
         ///<summary> 職缺大類別代碼 </summary>
         [Display(Name = "職缺大類別編號")]
