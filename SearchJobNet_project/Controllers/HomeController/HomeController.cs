@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using SJ = SearchJobNet_project.Models.JobModel;
+using SJM = SearchJobNet_project.Models.SearchJobModel;
 
 namespace SearchJobNet_project.Controllers.HomeController
 {
@@ -13,8 +13,8 @@ namespace SearchJobNet_project.Controllers.HomeController
         public ActionResult Index()
         {   
             // 搜尋職缺欄位內容種類
-            //SJ.SearchJob searchJob = new SJ.SearchJob();
-            //searchJob.getJobKind();
+            SJM.SearchJob sjm = new SJM.SearchJob();
+            ViewBag.jobKind = sjm.getJobKind();
             return View("HomePageView");
         }
 
