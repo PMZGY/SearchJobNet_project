@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using SJM = SearchJobNet_project.Models.SearchJobModel;
 using SJ = SearchJobNet_project.Models.SearchJob;
 using JM = SearchJobNet_project.Models.JobModel;
 
@@ -15,7 +16,7 @@ namespace SearchJobNet_project.Controllers.JobController
         // 回傳 職缺清單
         public ActionResult Index(SJM.SearchJobModel searchModel)
         {
-            SJ.SearchJob sm = new SJ.SearchJob();
+            SearchJob sm = new SearchJob();
             List<SJM.SearchJobModel> sjModel = new List<SJM.SearchJobModel>();
             sjModel = sm.jobList(searchModel);
             //return sjModel;
@@ -27,7 +28,7 @@ namespace SearchJobNet_project.Controllers.JobController
         // 回傳 整筆資料或部分資料(list的JobModel型態)
         public ActionResult toJobDetailView(int JobID)
         {
-            SJ.SearchJob sm = new SJ.SearchJob();
+            SearchJob sm = new SearchJob();
             List<JM.JobModel> jmModel = new List<JM.JobModel>();
             jmModel = sm.jobDetail(JobID);
             //return jmModel;
