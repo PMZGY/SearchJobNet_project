@@ -6,9 +6,9 @@ namespace SearchJobNet_project.Models.SearchJobModel
     public class SearchJobModel
     {
         ///<summary> 公司PK </summary>
-        [Required]
-        [Display(Name = "公司編號")]
-        public string Comp_ID { get; set; }
+        //[Required]
+        //[Display(Name = "公司編號")]
+        public int Comp_ID { get; set; }
 
         ///<summary> 公司名稱 </summary>
         [Display(Name = "公司名稱")]
@@ -19,9 +19,9 @@ namespace SearchJobNet_project.Models.SearchJobModel
         public string CityName { get; set; }
 
         ///<summary> 職缺Pk </summary>
-        [Required]
-        [Display(Name = "職缺編號")]
-        public string Job_ID { get; set; }
+        //[Required]
+        //[Display(Name = "職缺編號")]
+        public int Job_ID { get; set; }
        
         ///<summary> 職缺名稱 </summary>
         [Display(Name = "職缺名稱")]
@@ -31,8 +31,8 @@ namespace SearchJobNet_project.Models.SearchJobModel
         public string Wk_Type { get; set; }
 
         ///<summary> 職缺大類別代碼 </summary>
-        [Display(Name = "職缺大類別編號")]
-        public string Cjob_ID { get; set; }
+        //[Display(Name = "職缺大類別編號")]
+        public int Cjob_ID { get; set; }
 
         ///<summary> 職缺大類別名稱 </summary>
         [Display(Name = "職缺大類別名稱")]
@@ -44,9 +44,6 @@ namespace SearchJobNet_project.Models.SearchJobModel
         ///<summary> 工作時間 </summary>
         ///public string WkTime { get; set; }
 
-        //建立假資料,總共有兩筆資料
-        //public SearchJobModel()
-        //{
-        //}
+
     }
 }

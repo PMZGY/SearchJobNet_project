@@ -19,7 +19,7 @@ namespace SearchJobNet_project.Models.HistoryModel
 
             return bHistoryModel;
         }
-        public List<HM.HistoryModel> browseHistorycomment(string userID)
+        public List<HM.HistoryModel> browseHistorycomment(int userID)
         {
             List<HM.HistoryModel> bHistoryModelc = new List<HM.HistoryModel>();
             HM.HistoryModel hmlist = new HM.HistoryModel();
