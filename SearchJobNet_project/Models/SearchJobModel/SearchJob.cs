@@ -26,9 +26,7 @@ namespace SearchJobNet_project.Models.SearchJobModel
                 Wk_Type  = Wk_TypeTest
 
             });
-
-            ViewBag.jobKind = jobKind;
-            return ViewBag;
+            return jobKind;
         }
 
         // 搜尋職缺清單
