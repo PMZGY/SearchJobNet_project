@@ -1,4 +1,8 @@
-﻿using MM = SearchJobNet_project.Models.MemberModel;
+﻿using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Linq;
+using MM = SearchJobNet_project.Models.MemberModel;
 
 namespace SearchJobNet_project.Models.MemberModel
 {
@@ -6,28 +10,109 @@ namespace SearchJobNet_project.Models.MemberModel
     {
         #region 會員功能(註冊/登入/忘記密碼)
 
-        // 會員功能 註冊
+        // 新增會員 [ 會員model的attr. 皆為填入項目 ]
         public string registerMember(MM.MemberModel rMember)
         {
-            // 判斷 rMember的User_ID 是否在DB已重複
-            // 重複 return "Account has been registered" ;
+            #region [做DB連線 以及 執行DB處理]
 
-            // else 
-            // SQL指令 塞入rMember
-            return "insert data success";
+            // 建立DB連線
+            Tools.DBConnection bsc = new Tools.DBConnection();
+
+            // 放入 UserID的資料
+            string doDB = bsc.ActionDB(
+                            string.Format(
+                            @"INSERT INTO [Account] (USER_ID,USERNAME,PASSWORD,RE_TIME)
+                              VALUES({0},{1},{2},{3});"
+                              , rMember.User_ID, rMember.UserName, rMember.PassWord
+                              , rMember.Re_Time)
+                            );
+
+            // 如果 doDB為"success" ,代表DB連線成功 ,反之失敗
+            if (doDB != "success")
+            {
+                return "DB處理錯誤";
+            }
+
+            #endregion
+
+            #region[檢查DB內容]
+
+            // 查看是否新增成功
+            MemberModel cm = this.memberData(rMember.User_ID);
+
+            // 檢查MemberModel
+            if ((rMember.User_ID  == cm.User_ID)&&
+                (rMember.UserName == cm.UserName)&&
+                (rMember.PassWord == cm.PassWord)&&
+                (rMember.Re_Time  == cm.Re_Time)
+               )
+            {
+                return "insert success!";
+            }
+            else
+            {
+                return "insert error!";
+            }
+
+            #endregion
+
         }
 
-        // 會員功能 登入
+        // 會員功能 登入 [ 會員model的attr. 皆為填入項目 ]
         public string loginMember(MM.MemberModel lMember)
         {
-            // SQL指令 撈出lMember的帳密
-            // 比對密碼是不是一樣
-            // 不一樣狀況 return "password is not correct!";
+            MemberModel mm = this.memberData(lMember.User_ID);
 
-            // else
-            return "login success";
+            // 檢查MemberModel
+            if ((lMember.User_ID  == mm.User_ID) &&
+                (lMember.UserName == mm.UserName) &&
+                (lMember.PassWord == mm.PassWord)
+               )
+            {
+                return "login success!";
+            }
+            else
+            {
+                return "login error!";
+            }
         }
 
+        // 瀏覽會員DB資料
+        public MM.MemberModel memberData(int user_ID)
+        {
+            MM.MemberModel bMemberModel = new MM.MemberModel();
+
+            #region [做DB連線 以及 取出DB資料]
+
+            // 建立DB連線
+            Tools.DBConnection bsc = new Tools.DBConnection();
+
+            // 取出 會員資料
+            DataTable dt = bsc.ReadDB(
+                            string.Format(
+                            @"SELECT *
+                              FROM [Account] AS A
+                              WHERE 1=1
+                              AND A.USER_ID = {0}"
+                              , user_ID)
+                            );
+
+            // 從DataTble 取出 資料欄位名稱
+            string[] columnNames = dt.Columns.Cast<DataColumn>().Select(x => x.ColumnName).ToArray();
+
+            // 將DataTable的資料轉換為model
+            bMemberModel.User_ID  = Convert.ToInt16(dt.Rows[0][0]);
+            bMemberModel.UserName = dt.Rows[0][1].ToString();
+            bMemberModel.PassWord = dt.Rows[0][2].ToString();
+            bMemberModel.Re_Time  = dt.Rows[0][3].ToString();
+
+            return bMemberModel;
+
+            #endregion
+
+        }
+
+        #region[暫時先沒有忘記密碼功能]
         // 會員功能 忘記密碼
         public string forgetMember(int step, string memberID, string answer)
         {
@@ -52,7 +137,8 @@ namespace SearchJobNet_project.Models.MemberModel
             }
 
         }
-
+        #endregion
+        
         #endregion
     }
 }
