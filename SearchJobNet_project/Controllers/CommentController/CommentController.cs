@@ -32,11 +32,11 @@ namespace SearchJobNet_project.Controllers.CommentController
 
         // 傳入 評論PK,執行 [刪除評論] 功能
         // 回傳 成功修改資料與否
-        public string deleteComment(string commentID)
+        public string deleteComment(int commentID ,string time)
         {
             string msg = "";
             CM.Comment cm = new CM.Comment();
-            msg = cm.delComment(commentID);
+            msg = cm.delComment(commentID ,time);
             return msg;
         }
 
@@ -52,7 +52,7 @@ namespace SearchJobNet_project.Controllers.CommentController
 
         // 傳入 評論PK,執行 [瀏覽評論] 功能
         // 回傳 整筆資料或部分資料(list的CommentModel型態)
-        public List<CM.CommentModel> browseComment(string commentID)
+        public List<CM.CommentModel> browseComment(int commentID)
         {
             CM.Comment comment = new CM.Comment();
             List<CM.CommentModel> cmModel = new List<CM.CommentModel>();

@@ -9,37 +9,44 @@ using System.Data;
 
 namespace SearchJobNet_project.Tools
 {
+    // 有四項功能 [新增,刪除,修改,瀏覽]功能 , [新增,刪除,修改]功能 為同一支
     public class DBConnection
     {
-        // 處理 新增資料至
-        public void InsertDB()
+        // [新增] 資料至DB
+        // 若DB程序錯誤 ,則回傳"DB wrong!!+錯誤點" ,反之,回傳"success"
+        public string ActionDB(string SQLComment)
         {
-            // 設定連線資料[DB_IP / 資料庫名字 / 使用者帳號 / 密碼](這行是固定的，不用改)
-            string ConStr = "data source=140.115.87.142,1433; initial catalog=JobDB; User ID = searchjob; Password = searchjob";
+            try
+            {
+                // 設定連線資料[DB_IP / 資料庫名字 / 使用者帳號 / 密碼](這行是固定的，不用改)
+                string ConStr = "data source=140.115.87.142,1433; initial catalog=JobDB; User ID = searchjob; Password = searchjob";
 
-            // 建立連線
-            SqlConnection conn = new SqlConnection(ConStr);
+                // 建立連線
+                SqlConnection conn = new SqlConnection(ConStr);
 
-            //開始連線
-            conn.Open();
+                //開始連線
+                conn.Open();
 
-            // 編輯 insert 指令              [table_name] (col1, col2)     (@變數)
-            string insert_query = "INSERT INTO [Company] (COMPNAME) VALUES (@COMPNAME)";
+                // 編輯 動作[新增,刪除,修改] 指令        
+                string action_query = SQLComment;
 
-            // new 一個 SqlCommand
-            SqlCommand cmd = new SqlCommand(insert_query, conn);
+                // new 一個 SqlCommand
+                SqlCommand cmd = new SqlCommand(action_query, conn);
 
-            // 用cmd給值，cmd.Parameters.AddWithValue(變數 , 值) 
-            cmd.Parameters.AddWithValue("@COMPNAME", "TEST_COMPNAME");
+                //關閉連線
+                conn.Close();
 
-            //結束cmd
-            cmd.ExecuteNonQuery();
+                // 回傳 執行完畢
+                return "success";
 
-            //關閉連線
-            conn.Close();
-
+            }
+            catch (Exception e)
+            {
+                return "DB wrong!!"+e;
+            }
         }
 
+        // [瀏覽] DB資料
         public DataTable ReadDB(string SQLComment)
         {
             
@@ -55,8 +62,6 @@ namespace SearchJobNet_project.Tools
             // 編輯 query 指令                      
             string sql_query_string = SQLComment;
 
-            //select * from [Company]
-
             // new 一個 SqlCommand
             SqlCommand cmd = new SqlCommand(sql_query_string, conn);
 
@@ -69,15 +74,9 @@ namespace SearchJobNet_project.Tools
             //把 da  接到的table 存到 ds 裡，並命名為"GETTABLE"
             da.Fill(ds, "GETTABLE");
 
-            //                              DataSet /   Tabl  /  Row  /  Column
-            //印出ds裡的值                        ds / Company / 第1行 / "COMPNAME"欄   
-
             // 把table的欄位回傳至expert
             return ds.Tables["GETTABLE"];
-                
-            // Console.WriteLine("Company name= " + ds.Tables["Company"].Rows[0]["COMPNAME"].ToString());
-            
-            
+                          
         }
        
     }
