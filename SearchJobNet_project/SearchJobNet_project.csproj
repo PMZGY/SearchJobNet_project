@@ -746,6 +746,7 @@
     <Compile Include="Models\MemberModel\Member.cs" />
     <Compile Include="Models\MemberModel\MemberModel.cs" />
     <Compile Include="Models\SearchJobModel\JobModel.cs" />
+    <Compile Include="Models\SearchJobModel\SearchJob.cs" />
     <Compile Include="Models\SearchJobModel\SearchJobModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Tools\DBConnection.cs" />

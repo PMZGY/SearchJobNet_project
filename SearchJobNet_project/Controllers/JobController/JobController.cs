@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using SJ = SearchJobNet_project.Models.SearchJob;
+using SJM = SearchJobNet_project.Models.SearchJobModel;
 using JM = SearchJobNet_project.Models.JobModel;
 
 namespace SearchJobNet_project.Controllers.JobController
@@ -32,9 +32,9 @@ namespace SearchJobNet_project.Controllers.JobController
         // 回傳 職缺清單
         public List<SJM.SearchJobModel> jobList(SJM.SearchJobModel searchModel)
         {
-            SJ.SearchJob sm = new SJ.SearchJob();
+            //SJ.SearchJob sm = new SJ.SearchJob();
             List<SJM.SearchJobModel> sjModel = new List<SJM.SearchJobModel>();
-            sjModel = sm.jobList(searchModel);
+            //sjModel = sm.jobList(searchModel);
             return sjModel;
             //toJSON
         }
@@ -46,7 +46,7 @@ namespace SearchJobNet_project.Controllers.JobController
         {
             JM.JobModel searchJob = new JM.JobModel();
             List<JM.JobModel> jmModel = new List<JM.JobModel>();
-            jmModel = searchJob.jobDetail(JobID);
+            //jmModel = searchJob.jobDetail(JobID);
             return jmModel;
         }
     }

@@ -12,24 +12,24 @@ namespace SearchJobNet_project.Models.SearchJobModel
         
         //建立假資料
         // 取出假資料
-        public List<SJM.SearchJobModel> getJobKind()
-        {
-            // 建立list
-            List<SJM.SearchJobModel> jobKind = new List<SJM.SearchJobModel>();
-            // 塞入 假資料
+        //public List<SJM.SearchJobModel> getJobKind()
+        //{
+        //    // 建立list
+        //    List<SJM.SearchJobModel> jobKind = new List<SJM.SearchJobModel>();
+        //    // 塞入 假資料
             
-            string[] CityNameTest = { "新北市", "台北市" };
-            string[] Wk_TypeTest = { "全職", "兼職" };
-            jobKind.Add(new SearchJobModel
-            {
-                CityName = CityNameTest,
-                Wk_Type  = Wk_TypeTest
+        //    string[] CityNameTest = { "新北市", "台北市" };
+        //    string[] Wk_TypeTest = { "全職", "兼職" };
+        //    jobKind.Add(new SearchJobModel
+        //    {
+        //        //CityName = CityNameTest,
+        //        //Wk_Type  = Wk_TypeTest
 
-            });
+        //    });
 
-            ViewBag.jobKind = jobKind;
-            return ViewBag;
-        }
+        //    //ViewBag.jobKind = jobKind;
+        //    //return ViewBag;
+        //}
 
         // 搜尋職缺清單
         public string jobList(SJM.SearchJobModel sjm)

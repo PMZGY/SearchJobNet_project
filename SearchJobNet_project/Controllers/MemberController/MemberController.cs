@@ -4,7 +4,7 @@ using MM = SearchJobNet_project.Models.MemberModel;
 
 namespace SearchJobNet_project.Controllers.MemberController
 {
-    public class MemberController : Controller
+    public class MemberController
     {
         // 建立建構子
         public MemberController(){ }
@@ -31,36 +31,39 @@ namespace SearchJobNet_project.Controllers.MemberController
             return msg;
         }
 
-        // 傳入 會員帳號,執行 [忘記密碼] 功能
-        // 回傳 會員密碼
-        public string forgetMember(int step ,string memberID ,string answer)
-        {
-            // step == 0 , 進行 傳入memberID 回傳問題 階段. (此時answer = "")
-            // step == 1 , 進行 驗證答案是否正確 回傳密碼或驗證錯誤 階段
+        #region[暫時先沒有忘記密碼功能]
 
-            // 產生member 物件
-            MM.Member mb = new MM.Member();
+            // 傳入 會員帳號,執行 [忘記密碼] 功能
+            // 回傳 會員密碼
+            public string forgetMember(int step ,string memberID ,string answer)
+            {
+                // step == 0 , 進行 傳入memberID 回傳問題 階段. (此時answer = "")
+                // step == 1 , 進行 驗證答案是否正確 回傳密碼或驗證錯誤 階段
 
-            if (step == 0)
-            {
-                // 回傳 忘記密碼的問題
-                string question = "";
-                question = mb.forgetMember(0,memberID,"");
-                return question;
-            }
-            else if (step == 1)
-            {
-                // 驗證 問題的答案 正確與否
-                string result = "";
-                result = mb.forgetMember(1,memberID,answer);
-                return result;
-            }
-            else
-            {
-                return "input wrong parameter";
-            }
-        }
+                // 產生member 物件
+                MM.Member mb = new MM.Member();
 
+                if (step == 0)
+                {
+                    // 回傳 忘記密碼的問題
+                    string question = "";
+                    question = mb.forgetMember(0,memberID,"");
+                    return question;
+                }
+                else if (step == 1)
+                {
+                    // 驗證 問題的答案 正確與否
+                    string result = "";
+                    result = mb.forgetMember(1,memberID,answer);
+                    return result;
+                }
+                else
+                {
+                    return "input wrong parameter";
+                }
+            }
+        #endregion
+
+        #endregion
     }
-    #endregion
 }

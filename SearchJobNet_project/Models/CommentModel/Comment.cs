@@ -276,15 +276,12 @@ namespace SearchJobNet_project.Models.CommentModel
                                   ,commentID)
                                 );
 
-                // 從DataTble 取出 資料欄位名稱
-                string[] columnNames = dt.Columns.Cast<DataColumn>().Select(x => x.ColumnName).ToArray();
-
                 // 將DataTable的資料轉換為model
                 for (int i = 0; i < dt.Rows.Count; i++)
                 {
                     bCommentModel.Add(new CM.CommentModel
                     {
-                        Comment_ID   = Convert.ToInt16(dt.Rows[i][columnNames[0]].ToString()),
+                        Comment_ID   = Convert.ToInt16(dt.Rows[i][0].ToString()),
                         Job_ID       = Convert.ToInt16(dt.Rows[i][1]),
                         User_ID      = Convert.ToInt16(dt.Rows[i][2]),
                         Content_Text = dt.Rows[i][3].ToString(),
