@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Web.Mvc;
 using HM = SearchJobNet_project.Models.HistoryModel;
+using CC = SearchJobNet_project.Controllers.CommentController;
+using CM = SearchJobNet_project.Models.CommentModel;
 
 namespace SearchJobNet_project.Controllers.HistoryController
 {
@@ -36,14 +38,30 @@ namespace SearchJobNet_project.Controllers.HistoryController
             return hmModel;
         }
 
-        
+
         // 傳入 使用者PK 執行 [瀏覽評論紀錄] 功能
         // 回傳 整筆資料或部分資料(list的HistoryModel型態)
-        public List<HM.HistoryModel> browseHistorycomment(string userID)
+        //public List<HM.HistoryModel> browseHistorycomment(string userID)
+        //{
+        //    HM.History hm = new HM.History();
+        //    List<HM.HistoryModel> hmModel = new List<HM.HistoryModel>();
+        //    hmModel = hm.browseHistorycomment(userID);
+        //    return hmModel;
+        //}
+
+        // 串聯 歷史model與評論model
+        public List<HM.HistoryModel> browseHistoryComment(int userID)
         {
             HM.History hm = new HM.History();
             List<HM.HistoryModel> hmModel = new List<HM.HistoryModel>();
             hmModel = hm.browseHistorycomment(userID);
+
+            CM.Comment comment = new CM.Comment();
+            List<CM.CommentModel> commentModel = comment.browseComment(userID);
+
+            // 將評論model放在歷史model最後一筆
+            hmModel[hmModel.Count-1].commentModel = commentModel;
+
             return hmModel;
         }
 
