@@ -297,31 +297,30 @@
                     會員登入
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 </div>
-                @using (Html.BeginForm("loginMember", "Member", FormMethod.Post, new { id = "memberTable" }))
-                {
+
                     <div class="modal-body">
-                        <img src="browser_components/images/modal1.jpg" alt=" " class="img-responsive" />
+                        <img src="browser_components/images/welcome.png" class="img-responsive"/>
 
                         <ul class="fields" vailgn="center">
 
                             <li class="first-list">
-                                <div class="fields-label fields-label-50" style="margin-top:20px;margin-left:20px">
+                                <div class="fields-label fields-label-50" style="margin-top:20px;margin-left:180px">
                                     @Html.Label("帳號：", new { style = "width: 50px" })
-                                    <input id="account" class="k-textbox k-input" style="width:160px;" minlength="8" required validationMessage="請輸入帳號" />
+                                    <input id="UserName" class="k-textbox k-input" style="width:160px;" minlength="8" required validationMessage="請輸入帳號" />
                                 </div>
-                                <div class="fields-label fields-label-50" style="margin-top:20px;margin-left:20px;margin-bottom:20px">
+                                <div class="fields-label fields-label-50" style="margin-top:20px;margin-left:180px;margin-bottom:20px">
                                     @Html.Label("密碼：", new { style = "width: 50px" })
-                                    <input type="password" id="password" class="k-textbox k-input" style="width:160px;" minlength="8" required validationMessage="請輸入密碼" />
+                                    <input type="password" id="PassWord" class="k-textbox k-input" style="width:160px;" minlength="8" required validationMessage="請輸入密碼" />
                                 </div>                
-                                <div class="form-footer" style="margin-left:20px;margin-bottom:20px">
+                                <div class="form-footer" style="margin-left:230px;margin-bottom:20px">
                                     <button style="margin-right:20px"type="submit"data-toggle="modal" data-target="#memberRegister" class="btn btn-primary" data-url="@Url.Action("Index", "Job")">註冊</button>
-                                    <button type="submit" class="btn btn-primary" id="login" data-url="@Url.Action("loginMember", "Member")">登入</button>
+                                    <button type="submit" class="btn btn-primary" id="login">登入</button>
                                 </div>
                             </li>
                             
                         </ul>
                     </div>
-                }
+                
 
             </div>
         </div>
@@ -360,7 +359,7 @@
                                 </div>
                                 <div class="fields-label fields-label-50" style="margin-top:20px;margin-left:20px;margin-bottom:20px">
                                     @Html.Label("身分證字號：", new { style = "width: 100px" })
-                                    @Html.EditorFor(model => model.CompName, new { htmlAttributes = new { @class = "k-textbox k-input", style = "width:160px;", minlength = "8" } })
+                                    <input id="personid" class="k-textbox k-input" style="width:160px;" minlength="8" required validationMessage="請輸入身分證字號" />
                                 </div>
                                 <div class="form-footer" style="margin-left:20px;margin-bottom:20px">
                                     <button style="margin-right:20px" type="submit" class="btn btn-primary" id="register" data-url="@Url.Action("registerMember", "Member")">確認</button>

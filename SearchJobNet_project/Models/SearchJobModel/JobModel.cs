@@ -8,7 +8,7 @@ namespace SearchJobNet_project.Models.JobModel
         ///<summary> 公司PK </summary>
         [Required]
         [Display(Name = "公司編號")]
-        public string Comp_ID { get; set; }
+        public int Comp_ID { get; set; }
 
         ///<summary> 公司名稱 </summary>
         [Display(Name = "公司名稱")]
@@ -16,7 +16,7 @@ namespace SearchJobNet_project.Models.JobModel
 
         ///<summary> 職缺Pk </summary>
         [Display(Name = "職缺編號")]
-        public string Job_ID { get; set; }
+        public int Job_ID { get; set; }
 
         ///<summary> 職缺名稱 </summary>
         [Display(Name = "職缺名稱")]
@@ -28,7 +28,7 @@ namespace SearchJobNet_project.Models.JobModel
 
         ///<summary> 職缺大類別代碼 </summary>
         [Display(Name = "職缺大類別編號")]
-        public string Cjob_ID { get; set; }
+        public int Cjob_ID { get; set; }
 
         ///<summary> 職缺大類別名稱 </summary>
         [Display(Name = "職缺大類別名稱")]
