@@ -39,11 +39,13 @@ $(function () {
         //傳資料給後端
         $.post(action, formData)
             .done(function (Data) {
-
+                if (Data == "login success")
+                alert("登入成功!");
+                $('.close').click();
 
             })
             .fail(function (data) {
-
+                alert("登入失敗!");
             });
     })
     
@@ -63,11 +65,12 @@ $(function () {
             //傳資料給後端
             $.post(action, formData)
                 .done(function (Data) {
-
-
+                    if(Data=="insert data success")
+                    alert("註冊成功!");
+                    $('.close').click();
                 })
                 .fail(function (data) {
-
+                    alert("註冊失敗!");
                 });
         } else {
             alert("密碼輸入不同");
