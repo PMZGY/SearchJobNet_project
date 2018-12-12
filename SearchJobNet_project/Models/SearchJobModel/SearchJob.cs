@@ -25,11 +25,17 @@ namespace SearchJobNet_project.Models.SearchJobModel
         //        //CityName = CityNameTest,
         //        //Wk_Type  = Wk_TypeTest
 
+<<<<<<< HEAD
         //    });
 
         //    //ViewBag.jobKind = jobKind;
         //    //return ViewBag;
         //}
+=======
+            });
+            return jobKind;
+        }
+>>>>>>> 558dfd82b539c9aaab03cfb1490c8af1354bef49
 
         // 搜尋職缺清單
         public string jobList(SJM.SearchJobModel sjm)
