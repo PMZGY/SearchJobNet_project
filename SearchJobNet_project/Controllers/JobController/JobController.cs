@@ -31,7 +31,7 @@ namespace SearchJobNet_project.Controllers.JobController
             List<JM.JobModel> jmModel = new List<JM.JobModel>();
             jmModel = sjm.jobDetail(JobID);
             //return jmModel;
-            return View("JobDetailView");
+            return View("JobDetailView", jmModel);
         }
 
         //到我的最愛頁面

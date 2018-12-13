@@ -68,17 +68,12 @@ namespace SearchJobNet_project.Models.JobModel
 
         ///<summary> 雇用人數 </summary>
         [Display(Name = "雇用人數")]
-        public string AvailReqNum { get; set; }
+        public int AvailReqNum { get; set; }
 
         ///<summary> 應徵截止日期 </summary>
         [Display(Name = "應徵截止日期")]
         public string Stop_Date { get; set; }
 
         
-
-        //建立假資料,總共有兩筆資料
-        //public JobModel()
-        //{
-        //}
     }
 }
