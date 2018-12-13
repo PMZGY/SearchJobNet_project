@@ -14,44 +14,82 @@ namespace SearchJobNet_project.Models.SearchJobModel
         
         public String[] getJobKind()
         {
-            String[] jobKindd = new String[] { };
-            
-            // 建立list
-            List<SJM.SearchJobModel> jobKind = new List<SJM.SearchJobModel>();
-            // 塞入 假資料
-
-            List<JM.JobModel> jmModel = new List<JM.JobModel>();
-            // SQL指令 撈出職缺清單
-
+            String[] worktype = new String[] { };
             #region [做DB連線 以及 執行DB處理]
 
             // 建立DB連線
             Tools.DBConnection bsc = new Tools.DBConnection();
             #endregion
-            // 取出 特定的評論 或是 全部的評論
+            // 取出職缺性質種類
 
-            #region[ 取出特定 commentID的資料 ]
+            #region[ 取出職缺性質種類 ]
 
             DataTable dt = bsc.ReadDB(
                             string.Format(
-                            @"SELECT CityName
+                            @"SELECT WK_TYPE
                                   FROM [Job] AS J
-                                  GROUP BY CityName"
+                                  GROUP BY WK_TYPE"
                               )
                             );
 
             // 將DataTable的資料轉換為model
             for (int i = 0; i < dt.Rows.Count; i++)
             {
-                jobKindd[0] = dt.Rows[i].ToString();
+                worktype[0] = dt.Rows[i].ToString();
             }
-            
+
 
 
             #endregion
             
+            // 取出職缺性質種類
+
+            #region[ 取出地點 ]
+
+            DataTable dt1 = bsc.ReadDB(
+                            string.Format(
+                            @"SELECT CITYNAME
+                                  FROM [Job] AS J
+                                  GROUP BY CITYNAME"
+                              )
+                            );
+            String[] cityname = new String[] { };
+            // 將DataTable的資料轉換為model
+            for (int i = 0; i < dt1.Rows.Count; i++)
+            {
+                cityname[0] = dt1.Rows[i].ToString();
+            }
+
+
+
+            #endregion
+
+
+            String[] cjobname = new String[] { };
             
-            return jobKindd;
+
+            #region[ 取出職務大類別種類 ]
+
+            DataTable dt2 = bsc.ReadDB(
+                            string.Format(
+                            @"SELECT CJOB_NAME1
+                                  FROM [Job] AS J
+                                  GROUP BY CJOB_NAME1"
+                              )
+                            );
+
+            // 將DataTable的資料轉換為model
+            for (int i = 0; i < dt2.Rows.Count; i++)
+            {
+                cjobname[0] = dt2.Rows[i].ToString();
+            }
+
+
+
+            #endregion
+
+
+            return cjobname;
         }
 
         // 搜尋職缺清單
