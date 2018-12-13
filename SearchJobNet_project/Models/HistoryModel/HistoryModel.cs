@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using CM = SearchJobNet_project.Models.CommentModel;
-
+using SJM = SearchJobNet_project.Models.SearchJobModel;
 namespace SearchJobNet_project.Models.HistoryModel
 {
 	public class HistoryModel
@@ -16,7 +16,7 @@ namespace SearchJobNet_project.Models.HistoryModel
         ///<summary> 職缺 </summary>
         [Required]
         [Display(Name = "職缺")]
-        public string Job_ID { get; set; }
+        public int Job_ID { get; set; }
 
 
         ///<summary> 瀏覽時間 </summary>
@@ -26,5 +26,7 @@ namespace SearchJobNet_project.Models.HistoryModel
         ///<summary> 評論model </summary>
         public List<CM.CommentModel> commentModel { get; set; }
 
+        ///<summary> search job model </summary>
+        public List<SJM.SearchJobModel> searchjobModel { get; set; }
     }
 }
