@@ -65,7 +65,7 @@ $(function () {
             //傳資料給後端
             $.post(action, formData)
                 .done(function (Data) {
-                    if(Data=="insert data success")
+                    if (Data == "insert success!")
                     alert("註冊成功!");
                     $('.close').click();
                 })
