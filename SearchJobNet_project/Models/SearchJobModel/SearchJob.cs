@@ -40,8 +40,8 @@ namespace SearchJobNet_project.Models.SearchJobModel
             {
                 worktype.Add(new SelectListItem()
                 {
-                    Text = dt.Rows[i].ToString(),
-                    Value = Convert.ToString(i)
+                    Text = dt.Rows[i][0].ToString(),
+                   // Value = dt.Rows[i][1].ToString()
                 });
             }
 
