@@ -6,22 +6,24 @@ using SearchJobNet_project.Models.JobModel;
 using SJM = SearchJobNet_project.Models.SearchJobModel;
 using JM = SearchJobNet_project.Models.JobModel;
 using Tools = SearchJobNet_project.Tools;
+using System.Web.Mvc;
 
 namespace SearchJobNet_project.Models.SearchJobModel
 {
     public class SearchJob
     {
         
-        public String[] getJobKind()
+        public List<SelectListItem> getWorkType()
         {
-            String[] worktype = new String[] { };
+            
             #region [做DB連線 以及 執行DB處理]
 
             // 建立DB連線
             Tools.DBConnection bsc = new Tools.DBConnection();
+
+
             #endregion
             // 取出職缺性質種類
-
             #region[ 取出職缺性質種類 ]
 
             DataTable dt = bsc.ReadDB(
@@ -32,45 +34,71 @@ namespace SearchJobNet_project.Models.SearchJobModel
                               )
                             );
 
-            // 將DataTable的資料轉換為model
+            // 將DataTable的資料轉換為list
+            List<SelectListItem> worktype = new List<SelectListItem>();
             for (int i = 0; i < dt.Rows.Count; i++)
             {
-                worktype[0] = dt.Rows[i].ToString();
+                worktype.Add(new SelectListItem()
+                {
+                    Text = dt.Rows[i].ToString(),
+                    Value = Convert.ToString(i)
+                });
             }
 
 
 
             #endregion
             
-            // 取出職缺性質種類
+            
 
-            #region[ 取出地點 ]
+            return worktype;
+        }
 
-            DataTable dt1 = bsc.ReadDB(
+        public List<SelectListItem> getCityName()
+        {
+
+            #region [做DB連線 以及 執行DB處理]
+
+            // 建立DB連線
+            Tools.DBConnection bsc = new Tools.DBConnection();
+            #endregion
+            // 取出地點種類
+            #region[ 取出地點種類 ]
+
+            DataTable dt = bsc.ReadDB(
                             string.Format(
                             @"SELECT CITYNAME
                                   FROM [Job] AS J
                                   GROUP BY CITYNAME"
                               )
                             );
-            String[] cityname = new String[] { };
-            // 將DataTable的資料轉換為model
-            for (int i = 0; i < dt1.Rows.Count; i++)
+            // 將DataTable的資料轉換為list
+            List<SelectListItem> cityname = new List<SelectListItem>();
+            for (int i = 0; i < dt.Rows.Count; i++)
             {
-                cityname[0] = dt1.Rows[i].ToString();
+                cityname.Add(new SelectListItem()
+                {
+                    Text = dt.Rows[i].ToString(),
+                    Value = Convert.ToString(i)
+                });
             }
-
-
-
             #endregion
-
-
-            String[] cjobname = new String[] { };
+            return cityname;
             
+        }
 
+        public List<SelectListItem> getCjob_Name1()
+        {
+
+            #region [做DB連線 以及 執行DB處理]
+
+            // 建立DB連線
+            Tools.DBConnection bsc = new Tools.DBConnection();
+            #endregion
+            // 取出職務大類別種類
             #region[ 取出職務大類別種類 ]
 
-            DataTable dt2 = bsc.ReadDB(
+            DataTable dt = bsc.ReadDB(
                             string.Format(
                             @"SELECT CJOB_NAME1
                                   FROM [Job] AS J
@@ -78,12 +106,16 @@ namespace SearchJobNet_project.Models.SearchJobModel
                               )
                             );
 
-            // 將DataTable的資料轉換為model
-            for (int i = 0; i < dt2.Rows.Count; i++)
+            // 將DataTable的資料轉換為list
+            List<SelectListItem> cjobname = new List<SelectListItem>();
+            for (int i = 0; i < dt.Rows.Count; i++)
             {
-                cjobname[0] = dt2.Rows[i].ToString();
+                cjobname.Add(new SelectListItem()
+                {
+                    Text = dt.Rows[i].ToString(),
+                    Value = Convert.ToString(i)
+                });
             }
-
 
 
             #endregion
@@ -95,6 +127,42 @@ namespace SearchJobNet_project.Models.SearchJobModel
         // 搜尋職缺清單
         public List<SJM.SearchJobModel> jobList(SJM.SearchJobModel sjm)
         {
+            #region [做DB連線 以及 執行DB處理]
+
+            // 建立DB連線
+            Tools.DBConnection bsc = new Tools.DBConnection();
+            #endregion
+            // 取出職務大類別種類
+            #region[ 取出職缺清單 ]
+
+            DataTable dt = bsc.ReadDB(
+                            string.Format(
+                            @"SELECT *
+                                  FROM [Job] AS J , [JobType] AS JT 
+                                  WHERE 1=1
+                                  AND J.CJOB_NAME1 = {0}"
+                                  , sjm.CityName , sjm.Cjob_Name1)
+                                );
+
+            // 將DataTable的資料轉換為list
+            List<SelectListItem> cjobname = new List<SelectListItem>();
+            for (int i = 0; i < dt.Rows.Count; i++)
+            {
+                cjobname.Add(new SelectListItem()
+                {
+                    Text = dt.Rows[i].ToString(),
+                    Value = Convert.ToString(i)
+                });
+            }
+
+
+            #endregion
+
+
+            return cjobname;
+
+
+
             //List<SJM.SearchJobModel> sjmModel = new List<SJM.SearchJobModel>();
             // SQL指令 撈出職缺清單
             List<SJM.SearchJobModel> sjmModel = new List<SJM.SearchJobModel>()
