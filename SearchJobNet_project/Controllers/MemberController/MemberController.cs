@@ -13,6 +13,7 @@ namespace SearchJobNet_project.Controllers.MemberController
 
         // 傳入 會員model,執行 [新增會員] 功能
         // 回傳 成功新增資料與否
+        [HttpPost]
         public string registerMember(MM.MemberModel memberModel)
         {
             string msg = "";
@@ -23,6 +24,7 @@ namespace SearchJobNet_project.Controllers.MemberController
 
         // 傳入 會員model,執行 [登入會員] 功能
         // 回傳 成功登入與否
+        [HttpPost]
         public string loginMember(MM.MemberModel memberModel)
         {
             string msg = "";
