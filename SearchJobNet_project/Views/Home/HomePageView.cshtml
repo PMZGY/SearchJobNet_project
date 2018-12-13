@@ -258,7 +258,7 @@
                                 </div>
                                 <div class="fields-value">
                                     @Html.Label("工作性質：")
-                                   
+                                    @Html.DropDownList("工作性質", (IEnumerable<SelectListItem>)ViewBag.WorkType)
                                     @* @Html.DropDownListFor(model => model.Wk_Type, (IEnumerable<SelectListItem>)ViewBag.WorkType,new { data_role = "dropdownlist" })*@
                                     
                                     @*全職*@
@@ -270,11 +270,12 @@
                                 </div>
                                 <div class="fields-value">
                                     @Html.Label("工作地點：")
-                                   @* @Html.DropDownListFor(model => model.CityName, (IEnumerable<SelectListItem>)ViewBag.CityName,new { data_role = "dropdownlist" })*@
+                                    @Html.DropDownList( "工作地點",(IEnumerable<SelectListItem>)ViewBag.CityName)
                                 </div>
                                 <div class="fields-value">
                                     @Html.Label("職務類別：")
-                                   @* @Html.DropDownListFor(model => model.Cjob_ID, (IEnumerable<SelectListItem>)ViewBag.Cjob_Name1, new { data_role = "dropdownlist" }) *@
+                                    @Html.DropDownList("請選擇職務類別", (IEnumerable<SelectListItem>)ViewBag.Cjob_Name1)
+                                   @* @Html.DropDownListFor(model => model.Cjob_ID, (IEnumerable<SelectListItem>)ViewBag.Cjob_Name1, new { data_role = "dropdownlist" })*@
                                     </div>
                                 </li>
                             </ul>
