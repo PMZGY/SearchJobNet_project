@@ -29,7 +29,7 @@ namespace SearchJobNet_project.Models.SearchJobModel
             DataTable dt = bsc.ReadDB(
                             string.Format(
                             @"SELECT WK_TYPE
-                                  FROM [Job] AS J
+                                  FROM [Job]
                                   GROUP BY WK_TYPE"
                               )
                             );
@@ -68,7 +68,7 @@ namespace SearchJobNet_project.Models.SearchJobModel
             DataTable dt = bsc.ReadDB(
                             string.Format(
                             @"SELECT CITYNAME
-                                  FROM [Job] AS J
+                                  FROM [Job]
                                   GROUP BY CITYNAME"
                               )
                             );
@@ -101,7 +101,7 @@ namespace SearchJobNet_project.Models.SearchJobModel
             DataTable dt = bsc.ReadDB(
                             string.Format(
                             @"SELECT CJOB_NAME1
-                                  FROM [Job] AS J
+                                  FROM [Job]
                                   GROUP BY CJOB_NAME1"
                               )
                             );
@@ -132,54 +132,49 @@ namespace SearchJobNet_project.Models.SearchJobModel
             // 建立DB連線
             Tools.DBConnection bsc = new Tools.DBConnection();
             #endregion
-            // 取出職務大類別種類
+            // 取出職缺清單
             #region[ 取出職缺清單 ]
 
             DataTable dt = bsc.ReadDB(
                             string.Format(
-                            @"SELECT *
-                                  FROM [Job] AS J , [JobType] AS JT 
+                            @"SELECT J.COMP_ID,C.COMPNAME,J.CITYNAME,J.JOB_ID,J.OCCU_DESC,J.WK_TYPE,J.CJOB_ID,JT.CJOB_NAME1
+                                  FROM [Job] AS J , [JobType] AS JT ,[Company] AS C
                                   WHERE 1=1
-                                  AND J.CJOB_NAME1 = {0}"
-                                  , sjm.CityName , sjm.Cjob_Name1)
+                                  AND J.CJOB_ID = JT.CJOB_ID
+                                  AND C.COMP_ID = J.COMP_ID
+                                  AND J.CJOB_NAME1 = {0}
+                                  AND J.CITYNAME = {1}
+                                  AND J.WK_TYPE = {2}"
+                                  , sjm.Cjob_Name1, sjm.CityName , sjm.Wk_Type)
                                 );
 
-            // 將DataTable的資料轉換為list
-            List<SelectListItem> cjobname = new List<SelectListItem>();
+            // 將DataTable的資料轉換為model
+            List<SJM.SearchJobModel> joblist = new List<SJM.SearchJobModel>();
             for (int i = 0; i < dt.Rows.Count; i++)
             {
-                cjobname.Add(new SelectListItem()
+                joblist.Add(new SJM.SearchJobModel()
                 {
-                    Text = dt.Rows[i].ToString(),
-                    Value = Convert.ToString(i)
+                    Comp_ID = Convert.ToInt16(dt.Rows[i][0]),
+                    CompName = dt.Rows[i][1].ToString(),
+                    CityName = dt.Rows[i][2].ToString(),
+                    Job_ID = Convert.ToInt16(dt.Rows[i][3]),
+                    Occu_Desc = dt.Rows[i][4].ToString(),
+                    Wk_Type = dt.Rows[i][5].ToString(),
+                    Cjob_ID = Convert.ToInt16(dt.Rows[i][6]),
+                    Cjob_Name1 = dt.Rows[i][7].ToString()
                 });
             }
 
-
             #endregion
-
-
-            return cjobname;
-
-
-
-            //List<SJM.SearchJobModel> sjmModel = new List<SJM.SearchJobModel>();
-            // SQL指令 撈出職缺清單
-            List<SJM.SearchJobModel> sjmModel = new List<SJM.SearchJobModel>()
-            {
-                new SearchJobModel(){Comp_ID=1,CompName="台積電",Job_ID=250,CityName="新北市",Occu_Desc="前端工程師",Wk_Type="全職",Cjob_ID=1,Cjob_Name1="程式設計師"},
-                new SearchJobModel(){Comp_ID=2,CompName="鴻海",Job_ID=300,CityName="台北市",Occu_Desc="後端工程師",Wk_Type="兼職",Cjob_ID=1,Cjob_Name1="程式設計師"}
-            };
-            return sjmModel;
-           
-
+            return joblist;
+            
         }
 
 
         // 搜尋職缺細項
         public List<JM.JobModel> jobDetail(int jobID)
         {
-            List<JM.JobModel> jmModel = new List<JM.JobModel>();
+            
             // SQL指令 撈出職缺細項
 
             #region [做DB連線 以及 執行DB處理]
@@ -194,35 +189,36 @@ namespace SearchJobNet_project.Models.SearchJobModel
             DataTable dt = bsc.ReadDB(
                                 string.Format(
                                 @"SELECT *
-                                  FROM [Job] AS J , [Company] AS C , [JobType] AS JT , [Comment] AS C
+                                  FROM [Job] AS J , [Company] AS C , [JobType] AS JT 
                                   WHERE 1=1
                                   AND J.JOB_ID = {0}
                                   AND J.COMP_ID = C.COMP_ID
                                   AND J.CJOB_ID = JT.CJOB_ID"
                                   , jobID)
                                 );
-
-                // 將DataTable的資料轉換為model 將職缺細項列出 評論要迴圈
-                    jmModel.Add(new JM.JobModel
-                    {
-                        //JOB_ID = Convert.ToInt16(dt.Rows[0][0].ToString()),
-                        //Occu_Desc = Convert.ToInt16(dt.Rows[0][1]),
-                        //Wk_Type = Convert.ToInt16(dt.Rows[0][2]),
-                        //Cjob_ID = dt.Rows[0][3].ToString(),
-                        //AvailReqNum = dt.Rows[0][4].ToString(),
-                        //Stop_Date = Convert.ToInt16(dt.Rows[0][5]),
-                        //Job_Detail = dt.Rows[0][6].ToString()
-                        //CityName = dt.Rows[0][6].ToString()
-                        //Experience = dt.Rows[0][6].ToString()
-                        //WkTime = dt.Rows[0][6].ToString()
-                        //SalaryCd = dt.Rows[0][6].ToString()
-                        //EdGrDesc = dt.Rows[0][6].ToString()
-                        //Url_Query = dt.Rows[0][6].ToString()
-                        //Comp_ID = dt.Rows[0][6].ToString()
-                        //TranDate = dt.Rows[0][6].ToString()
-                        //Cjob_Name1 = dt.Rows[0][6].ToString()
-                        //CompName = dt.Rows[0][6].ToString()
-                    });
+            List<JM.JobModel> jmModel = new List<JM.JobModel>();
+            // 將DataTable的資料轉換為model 將職缺細項列出
+            jmModel.Add(new JM.JobModel
+            {
+                Job_ID = Convert.ToInt16(dt.Rows[0]),
+                Occu_Desc = dt.Rows[1].ToString(),
+                Wk_Type = dt.Rows[2].ToString(),
+                Cjob_ID = Convert.ToInt16(dt.Rows[3]),
+                Cjob_Name1 = dt.Rows[4].ToString(),
+                AvailReqNum = Convert.ToInt16(dt.Rows[5]),
+                Stop_Date = dt.Rows[6].ToString(),
+                Job_Detail = dt.Rows[7].ToString(),
+                CityName = dt.Rows[8].ToString(),
+                Experience = dt.Rows[9].ToString(),
+                WkTime = dt.Rows[10].ToString(),
+                SalaryCd = dt.Rows[11].ToString(),
+                EdGrDesc = dt.Rows[12].ToString(),
+                Url_Query = dt.Rows[13].ToString(),
+                Comp_ID = Convert.ToInt16(dt.Rows[14]),
+                CompName = dt.Rows[15].ToString(),
+                TranDate = dt.Rows[0][6].ToString()
+                        
+            });
                 
 
                 #endregion

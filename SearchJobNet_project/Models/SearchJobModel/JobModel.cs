@@ -15,6 +15,7 @@ namespace SearchJobNet_project.Models.JobModel
         public string CompName { get; set; }
 
         ///<summary> 職缺Pk </summary>
+        [Required]
         [Display(Name = "職缺編號")]
         public int Job_ID { get; set; }
 
@@ -27,6 +28,7 @@ namespace SearchJobNet_project.Models.JobModel
         public string Wk_Type { get; set; }
 
         ///<summary> 職缺大類別代碼 </summary>
+        [Required]
         [Display(Name = "職缺大類別編號")]
         public int Cjob_ID { get; set; }
 
