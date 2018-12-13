@@ -41,7 +41,7 @@ namespace SearchJobNet_project.Models.SearchJobModel
                 worktype.Add(new SelectListItem()
                 {
                     Text = dt.Rows[i][0].ToString(),
-                   // Value = dt.Rows[i][1].ToString()
+                    Value =i.ToString()
                 });
             }
 
