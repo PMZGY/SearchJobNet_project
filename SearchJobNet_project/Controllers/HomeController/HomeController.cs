@@ -14,9 +14,9 @@ namespace SearchJobNet_project.Controllers.HomeController
         {   
             // 搜尋職缺欄位內容種類
             SJM.SearchJob sjm = new SJM.SearchJob();
-            string[] worktype = new string[]{};
-            string[] cityname = new string[]{};
-            string[] cjobname = new string[]{};
+            string[] worktype = new string[2];
+            string[] cityname = new string[2];
+            string[] cjobname = new string[4];
             worktype[0] = "全職";
             worktype[1] = "兼職";
             cityname[0] = "新北市";
@@ -26,8 +26,8 @@ namespace SearchJobNet_project.Controllers.HomeController
             cjobname[2] = "金融投顧及保險";
             cjobname[3] = "大眾傳播";
             ViewBag.WorkType = worktype; 
-            ViewBag.CityName = worktype;
-            ViewBag.Cjob_Name1 = worktype;
+            ViewBag.CityName = cityname;
+            ViewBag.Cjob_Name1 = cjobname;
             return View("HomePageView");
         }
 

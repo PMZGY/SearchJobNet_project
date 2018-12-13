@@ -19,7 +19,12 @@ namespace SearchJobNet_project.Controllers.JobController
             List<SJM.SearchJobModel> sjModel = new List<SJM.SearchJobModel>();
             sjModel = sjm.jobList(searchModel);
             //return sjModel;
-            return View("JobListView");
+            List<SJM.SearchJobModel> list = new List<SJM.SearchJobModel>() {
+                new SJM.SearchJobModel() {Comp_ID=1,CompName="台積電",Job_ID=250,CityName="新北市",Occu_Desc="前端工程師",Wk_Type="全職",Cjob_ID=1,Cjob_Name1="程式設計師"},
+                new SJM.SearchJobModel() {Comp_ID=2,CompName="鴻海",Job_ID=300,CityName="台北市",Occu_Desc="後端工程師",Wk_Type="兼職",Cjob_ID=1,Cjob_Name1="程式設計師"}
+            };
+
+            return View("JobListView", this.Json(list));
         }
 
         //到職缺細項頁面

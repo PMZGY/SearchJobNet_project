@@ -326,5 +326,53 @@ namespace SearchJobNet_project.Models.CommentModel
 
             #endregion
         }
+
+        // 瀏覽[會員= 0/職缺= 1]評論
+        public List<CM.CommentModel> browseMemberOrJobComment(int ID,int phase)
+        {
+            List<CM.CommentModel> bCommentModel = new List<CM.CommentModel>();
+
+            #region [做DB連線 以及 執行DB處理]
+
+            // 建立DB連線
+            Tools.DBConnection bsc = new Tools.DBConnection();
+
+            // 取出 會員的評論
+            #region[ 取出特定 commentID的資料 ]
+
+            // 判斷是 會員功能呼叫 或是 職缺功能呼叫
+            string SQLComment = (phase == 0) ? "AND C.USERID =" : "AND C.JOB_ID =";
+
+            DataTable dt = bsc.ReadDB(
+                            string.Format(
+                            @"SELECT *
+                             FROM [Comment] AS C
+                             WHERE 1=1
+                             {0} {1}"
+                             , SQLComment ,ID)
+                            );
+
+            // 將DataTable的資料轉換為model
+            for (int i = 0; i < dt.Rows.Count; i++)
+            {
+                bCommentModel.Add(new CM.CommentModel
+                {
+                    Comment_ID   = Convert.ToInt16(dt.Rows[i][0].ToString()),
+                    Job_ID       = Convert.ToInt16(dt.Rows[i][1]),
+                    User_ID      = Convert.ToInt16(dt.Rows[i][2]),
+                    Content_Text = dt.Rows[i][3].ToString(),
+                    Time         = dt.Rows[i][4].ToString(),
+                    Report_no    = Convert.ToInt16(dt.Rows[i][5]),
+                    Is_Alive     = dt.Rows[i][6].ToString()
+                });
+            }
+
+            #endregion
+            
+            return bCommentModel;
+
+            #endregion
+        }
+
     }
 }
