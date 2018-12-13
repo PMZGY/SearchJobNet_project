@@ -60,6 +60,18 @@ namespace SearchJobNet_project.Controllers.CommentController
             return cmModel;
         }
 
+
+        // 傳入 USERPK,執行 [瀏覽會員評論 / 職缺評論] 功能
+        // 回傳 整筆資料或部分資料(list的CommentModel型態)
+        public List<CM.CommentModel> browseMemberComment(int ID, int phase)
+        {
+            CM.Comment comment = new CM.Comment();
+            List<CM.CommentModel> cmMemberModel = new List<CM.CommentModel>();
+            cmMemberModel = comment.browseMemberOrJobComment(ID, phase);
+            return cmMemberModel;
+        }
+
+
         #endregion
 
     }
