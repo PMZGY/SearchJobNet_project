@@ -1,19 +1,27 @@
 ﻿$(function () {
 
 
+
     $("#grid").kendoGrid({
         dataSource: {
             transport: {
-                type: "POST",
-                url: "/Job/JobList",
-                dataType: "json"
+                read:{
+                    url: "/Job/SendJobListData",
+                    dataType: "json"
+                }
+                
             },
             schema: {
                 model: {
                     fields: {
+                        Comp_ID:{type:"number"},
                         CompName: { type: "string" },
+                        Job_ID:{type:"string"},
+                        CityName: { type: "string" },
                         Occu_Desc: { type: "string" },
-                        CityName: { type: "string" }
+                        Wk_Type:{type:"string"},
+                        Cjob_ID:{type:"number"},
+                        Cjob_Name1:{type:"string"}
                     }
                 }
             },
