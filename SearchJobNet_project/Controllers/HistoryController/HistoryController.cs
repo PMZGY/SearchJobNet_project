@@ -30,13 +30,11 @@ namespace SearchJobNet_project.Controllers.HistoryController
         }
         // 傳入 使用者PK,職缺PK 執行 [瀏覽瀏覽職缺紀錄] 功能
         // 回傳 整筆資料或部分資料(list的HistoryModel型態)
-        public List<HM.HistoryModel> browseHistoryjob(int userID)
+        public List<HM.HistoryModel> browseHistoryjob(string jobID,string userID)
         {
             HM.History hm = new HM.History();
             List<HM.HistoryModel> hmModel = new List<HM.HistoryModel>();
-            hmModel = hm.browseHistoryjob(userID);
-
-
+            hmModel = hm.browseHistoryjob(jobID,userID);
             return hmModel;
         }
 
@@ -52,16 +50,19 @@ namespace SearchJobNet_project.Controllers.HistoryController
         //}
 
         // 串聯 歷史model與評論model
-        public List<CM.CommentModel> browseHistoryComment(int userID)
+        public List<HM.HistoryModel> browseHistoryComment(int userID)
         {
-          
-            CM.Comment comment = new CM.Comment();
-            List<CM.CommentModel> hcommentModel = new List<CM.CommentModel>();
-            hcommentModel = comment.browseMemberOrJobComment(userID, 0);
-            // 將評論model放在歷史model最後一筆 將欄位放在後面
-            //hmModel[hmModel.Count-1].commentModel = commentModel;
+            HM.History hm = new HM.History();
+            List<HM.HistoryModel> hmModel = new List<HM.HistoryModel>();
+            hmModel = hm.browseHistorycomment(userID);
 
-            return hcommentModel;
+            CM.Comment comment = new CM.Comment();
+            List<CM.CommentModel> commentModel = comment.browseComment(userID);
+
+            // 將評論model放在歷史model最後一筆
+            hmModel[hmModel.Count-1].commentModel = commentModel;
+
+            return hmModel;
         }
 
 

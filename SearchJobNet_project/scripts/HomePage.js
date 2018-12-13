@@ -39,13 +39,6 @@ $(function () {
         //傳資料給後端
         $.post(action, formData)
             .done(function (Data) {
-<<<<<<< HEAD
-
-
-            })
-            .fail(function (data) {
-
-=======
                 if (Data == "login success")
                 alert("登入成功!");
                 $('.close').click();
@@ -53,7 +46,6 @@ $(function () {
             })
             .fail(function (data) {
                 alert("登入失敗!");
->>>>>>> 94c983568f3764592f4f00c04b485068bee02818
             });
     })
     
@@ -73,20 +65,12 @@ $(function () {
             //傳資料給後端
             $.post(action, formData)
                 .done(function (Data) {
-<<<<<<< HEAD
-
-
-                })
-                .fail(function (data) {
-
-=======
                     if (Data == "insert success!")
                     alert("註冊成功!");
                     $('.close').click();
                 })
                 .fail(function (data) {
                     alert("註冊失敗!");
->>>>>>> 94c983568f3764592f4f00c04b485068bee02818
                 });
         } else {
             alert("密碼輸入不同");
