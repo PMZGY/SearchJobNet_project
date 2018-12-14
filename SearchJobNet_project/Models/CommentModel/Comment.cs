@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Linq;
 using CM = SearchJobNet_project.Models.CommentModel;
-using Tools = SearchJobNet_project.Tools;
 
 namespace SearchJobNet_project.Models.CommentModel
 {
@@ -21,7 +19,7 @@ namespace SearchJobNet_project.Models.CommentModel
             string doDB = bsc.ActionDB(
                             string.Format(
                             @"INSERT INTO [Comment] (COMMENT_ID,JOB_ID,USER_ID,CONTENT_TEXT,TIME,REPORT_NO,IS_ALIVE)
-                              VALUES({0},{1},{2},{3},{4},{5},{6});"
+                              VALUES({0},{1},'{2}','{3}','{4}',{5},'{6}');"
                               ,iComment.Comment_ID ,iComment.Job_ID ,iComment.User_ID
                               ,iComment.Content_Text ,iComment.Time ,iComment.Report_no ,iComment.Is_Alive)
                             );
@@ -81,10 +79,10 @@ namespace SearchJobNet_project.Models.CommentModel
             String doDB = bsc.ActionDB(
                             string.Format(
                             @"UPDATE [Comment]
-                              SET CONTENT_TEXT = {0}
+                              SET CONTENT_TEXT = '{0}'
                               WHERE 1=1
                               AND COMMENT_ID = {1}
-                              AND TIME = {2} ;"
+                              AND TIME = '{2}' ;"
                               , mComment.Content_Text, mComment.Comment_ID, mComment.Time)
                             );
 
@@ -144,7 +142,7 @@ namespace SearchJobNet_project.Models.CommentModel
                             @"DELETE FROM [Comment]
                               WHERE 1=1
                               AND COMMENTID = {0}
-                              AND TIME = {1};"
+                              AND TIME = '{1}';"
                             , commentID ,time)
                            );
 
@@ -214,10 +212,10 @@ namespace SearchJobNet_project.Models.CommentModel
                             string.Format(
                             @"UPDATE [Comment]
                               SET REPORT_NO = {0}
-                                  {1}
+                                  '{1}'
                               WHERE 1=1
                               AND COMMENT_ID = {2}
-                              AND TIME = {3} ;"
+                              AND TIME = '{3}' ;"
                                 , rComment.Report_no, SQLComment, rComment.Comment_ID, rComment.Time)
                             );
 
@@ -252,18 +250,79 @@ namespace SearchJobNet_project.Models.CommentModel
             #endregion
         }
 
+        // 瀏覽[會員= 0/職缺= 1]評論
+        public List<CM.CommentModel> browseMemberOrJobComment(object ID,int phase)
+        {
+            List<CM.CommentModel> bCommentModel = new List<CM.CommentModel>();
+
+            #region [做DB連線 以及 執行DB處理]
+
+            // 建立DB連線
+            Tools.DBConnection bsc = new Tools.DBConnection();
+
+            #region[ 取出特定 commentID的資料 ]
+
+            // 判斷 會員的ID(string) 或是 職缺的ID(int)
+            string memberID = "";
+            int jobID = 0;
+
+            if (phase == 0)
+            {
+                // 是會員
+                memberID = ID.ToString();
+            }
+            else
+            {
+                //是職缺
+                jobID = Convert.ToInt32(jobID);
+            }
+
+            // 判斷是 會員功能呼叫 或是 職缺功能呼叫
+            string SQLComment = (phase == 0) ? string.Format("AND C.USERID = '{0}'",memberID) : string.Format("AND C.JOB_ID = {0}",jobID);
+
+            DataTable dt = bsc.ReadDB(
+                            string.Format(
+                            @"SELECT *
+                             FROM [Comment] AS C
+                             WHERE 1=1
+                             {0}"
+                             , SQLComment)
+                            );
+
+            // 將DataTable的資料轉換為model
+            for (int i = 0; i < dt.Rows.Count; i++)
+            {
+                bCommentModel.Add(new CM.CommentModel
+                {
+                    Comment_ID   = Convert.ToInt16(dt.Rows[i][0].ToString()),
+                    Job_ID       = Convert.ToInt16(dt.Rows[i][1]),
+                    User_ID      = dt.Rows[i][2].ToString(),
+                    Content_Text = dt.Rows[i][3].ToString(),
+                    Time         = dt.Rows[i][4].ToString(),
+                    Report_no    = Convert.ToInt16(dt.Rows[i][5]),
+                    Is_Alive     = dt.Rows[i][6].ToString()
+                });
+            }
+
+            #endregion
+            
+            return bCommentModel;
+
+            #endregion
+        }
+
         // 瀏覽評論
         public List<CM.CommentModel> browseComment(int commentID)
         {
             List<CM.CommentModel> bCommentModel = new List<CM.CommentModel>();
-            
+
             #region [做DB連線 以及 執行DB處理]
-            
+
             // 建立DB連線
             Tools.DBConnection bsc = new Tools.DBConnection();
 
             // 取出 特定的評論 或是 全部的評論
-            if ( commentID > 0 )
+            if (commentID > 0)
             {
                 #region[ 取出特定 commentID的資料 ]
 
@@ -273,7 +332,7 @@ namespace SearchJobNet_project.Models.CommentModel
                                   FROM [Comment] AS C
                                   WHERE 1=1
                                   AND C.COMMENT_ID = {0}"
-                                  ,commentID)
+                                  , commentID)
                                 );
 
                 // 將DataTable的資料轉換為model
@@ -283,7 +342,7 @@ namespace SearchJobNet_project.Models.CommentModel
                     {
                         Comment_ID   = Convert.ToInt16(dt.Rows[i][0].ToString()),
                         Job_ID       = Convert.ToInt16(dt.Rows[i][1]),
-                        User_ID      = Convert.ToInt16(dt.Rows[i][2]),
+                        User_ID      = dt.Rows[i][2].ToString(),
                         Content_Text = dt.Rows[i][3].ToString(),
                         Time         = dt.Rows[i][4].ToString(),
                         Report_no    = Convert.ToInt16(dt.Rows[i][5]),
@@ -303,72 +362,23 @@ namespace SearchJobNet_project.Models.CommentModel
                                   FROM [Comment]"
                                 );
 
-                // 從DataTable 取出 資料欄位名稱
-                string[] columnNames = dt.Columns.Cast<DataColumn>().Select(x => x.ColumnName).ToArray();
-
                 // 將DataTable的資料轉換為model
                 for (int i = 0; i < dt.Rows.Count; i++)
                 {
-                    bCommentModel.Add(new CM.CommentModel {
-                        Comment_ID   = Convert.ToInt16(dt.Rows[i][columnNames[0]].ToString()),
+                    bCommentModel.Add(new CM.CommentModel
+                    {
+                        Comment_ID   = Convert.ToInt16(dt.Rows[i][0].ToString()),
                         Job_ID       = Convert.ToInt16(dt.Rows[i][1]),
-                        User_ID      = Convert.ToInt16(dt.Rows[i][2]),
+                        User_ID      = dt.Rows[i][2].ToString(),
                         Content_Text = dt.Rows[i][3].ToString(),
                         Time         = dt.Rows[i][4].ToString(),
                         Report_no    = Convert.ToInt16(dt.Rows[i][5]),
                         Is_Alive     = dt.Rows[i][6].ToString()
-                    } );
+                    });
                 }
 
                 #endregion
             }
-            return bCommentModel;
-
-            #endregion
-        }
-
-        // 瀏覽[會員= 0/職缺= 1]評論
-        public List<CM.CommentModel> browseMemberOrJobComment(int ID,int phase)
-        {
-            List<CM.CommentModel> bCommentModel = new List<CM.CommentModel>();
-
-            #region [做DB連線 以及 執行DB處理]
-
-            // 建立DB連線
-            Tools.DBConnection bsc = new Tools.DBConnection();
-
-            // 取出 會員的評論
-            #region[ 取出特定 commentID的資料 ]
-
-            // 判斷是 會員功能呼叫 或是 職缺功能呼叫
-            string SQLComment = (phase == 0) ? "AND C.USERID =" : "AND C.JOB_ID =";
-
-            DataTable dt = bsc.ReadDB(
-                            string.Format(
-                            @"SELECT *
-                             FROM [Comment] AS C
-                             WHERE 1=1
-                             {0} {1}"
-                             , SQLComment ,ID)
-                            );
-
-            // 將DataTable的資料轉換為model
-            for (int i = 0; i < dt.Rows.Count; i++)
-            {
-                bCommentModel.Add(new CM.CommentModel
-                {
-                    Comment_ID   = Convert.ToInt16(dt.Rows[i][0].ToString()),
-                    Job_ID       = Convert.ToInt16(dt.Rows[i][1]),
-                    User_ID      = Convert.ToInt16(dt.Rows[i][2]),
-                    Content_Text = dt.Rows[i][3].ToString(),
-                    Time         = dt.Rows[i][4].ToString(),
-                    Report_no    = Convert.ToInt16(dt.Rows[i][5]),
-                    Is_Alive     = dt.Rows[i][6].ToString()
-                });
-            }
-
-            #endregion
-            
             return bCommentModel;
 
             #endregion
