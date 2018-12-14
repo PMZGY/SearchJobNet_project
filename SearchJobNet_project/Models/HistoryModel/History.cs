@@ -12,8 +12,33 @@ namespace SearchJobNet_project.Models.HistoryModel
     {
         public string insertHistory(HM.HistoryModel iHistory)
         {
-            // do SQL insertHistory
-            return "insert data success";
+            #region [做DB連線 以及 執行DB處理]
+
+            // 建立DB連線
+            Tools.DBConnection bsc = new Tools.DBConnection();
+
+            // 放入 commentID的資料
+            string doDB = bsc.ActionDB(
+                            string.Format(
+                            @"INSERT INTO [History] (USER_ID,JOB_ID,TIME)
+                              VALUES({0},{1},{2});"
+                              ,iHistory.User_ID, iHistory.Job_ID, iHistory.Time)
+                            );  
+                            
+
+            // 如果 doDB為"success" ,代表DB連線成功 ,反之失敗
+            if (doDB != "success")
+            {
+                return "DB處理錯誤";
+            }
+            else
+            {
+                return "DB處理成功";
+            }
+            #endregion
+
+            
+            
         }
         public List<HM.HistoryModel> browseHistoryjob(int userID)
         {
