@@ -37,11 +37,13 @@
     <link href="http://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
     <link href="http://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i" rel="stylesheet">
     <!-- //online fonts -->
-    <script src="~/scripts/jquery-1.9.1.min.js"></script>
-    <script src="~/scripts/kendo/2014.1.318/kendo.web.min.js"></script>
-    <link href="~/Content/kendo/2014.1.318/kendo.common.min.css" rel="stylesheet" />
-    <link href="~/Content/kendo/2014.1.318/kendo.default.min.css" rel="stylesheet" />
-    <link href="~/Content/kendo/2014.1.318/kendo.bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/kendo/kendo.default.min.css" rel="stylesheet" />
+    <link href="~/Content/kendo/kendo.common.min.css" rel="stylesheet" />
+    <!-- js -->
+    <script src="browser_components/js/jquery-2.2.3.min.js"></script>
+    <!-- //js-->
+    <script src="~/scripts/kendo/kendo.all.min.js"></script>
+
     <script src="~/scripts/HomePage.js"></script>
 </head>
 
@@ -252,37 +254,34 @@
                         <ul class="fields" vailgn="center">
 
                             <li class="first-list">
-                                <div class="fields-label">
-                                    @Html.Label("公司名稱：",new { style = "width: 100px" })
-                                    @Html.EditorFor(model => model.CompName,new { @class="col-sm-4;"})
+                                <div class="fields-label" style="margin-top:20px;margin-left:180px">
+                                    @Html.Label("公司名稱：",new { style = "width: 80px;" })
+                                    <input id="CompName" class="k-textbox k-input" style="width:160px;" />
                                 </div>
-                                <div class="fields-value">
-                                    @Html.Label("工作性質：")
-                                   
-                                    @* @Html.DropDownListFor(model => model.Wk_Type, (IEnumerable<SelectListItem>)ViewBag.WorkType,new { data_role = "dropdownlist" })*@
-                                    
-                                    @*全職*@
-                                    @* @Html.CheckBoxFor(model => model.Wk_Type_All)
-                                    @Html.Label("全職")                                 
-                                    @Html.CheckBoxFor(model => model.Wk_Type_Part)
-                                    @Html.Label("兼職")*@
-
+                                <div class="fields-value" style="margin-top:20px;margin-left:180px">
+                                    @Html.Label("工作性質：", new { style = "width: 80px;" })
+                                    @Html.DropDownList("工作性質", (IEnumerable<SelectListItem>)ViewBag.WorkType,"不拘",new { @class = "k-textbox k-input" ,style = "width:160px;", id="WorkType"})
+ 
                                 </div>
-                                <div class="fields-value">
-                                    @Html.Label("工作地點：")
-                                   @* @Html.DropDownListFor(model => model.CityName, (IEnumerable<SelectListItem>)ViewBag.CityName,new { data_role = "dropdownlist" })*@
+                                <div class="fields-value" style="margin-top:20px;margin-left:180px">
+                                    @Html.Label("工作地點：", new { style = "width: 80px;" })
+                                    @Html.DropDownList("工作地點", (IEnumerable<SelectListItem>)ViewBag.CityName, "不拘", new { @class = "k-textbox k-input", style = "width:160px;", id = "CityName" })
+                                 
                                 </div>
-                                <div class="fields-value">
-                                    @Html.Label("職務類別：")
-                                   @* @Html.DropDownListFor(model => model.Cjob_ID, (IEnumerable<SelectListItem>)ViewBag.Cjob_Name1, new { data_role = "dropdownlist" }) *@
+                                <div class="fields-value" style="margin-top:20px;margin-left:180px">
+                                    @Html.Label("職務類別：", new { style = "width: 80px;" })
+                                    @Html.DropDownList("請選擇職務類別", (IEnumerable<SelectListItem>)ViewBag.Cjob_Name1, "不拘", new { @class = "k-textbox k-input", style = "width:160px;", id = "Cjob_Name1"})
+                     
                                     </div>
                                 </li>
+
                             </ul>
+                    <div class="form-footer" style="text-align:right;margin-left:20px;margin-bottom:20px">
+                        <button type="submit" class="btn btn-primary" id="searchJobButton">搜尋</button>
+                    </div>
                     </div>
     }
-                    <div class="form-footer" style="text-align:right">
-                        <button type="submit" class="btn btn-primary" id="searchJobButton" data-url="@Url.Action("Index", "Job")">搜尋</button>
-                    </div>
+                   
                 </div>
             </div>
         </div>
@@ -337,8 +336,7 @@
                     會員註冊
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 </div>
-                @using (Html.BeginForm("registerMember", "Member", FormMethod.Post, new { id = "memberRegisterTable" }))
-                {
+
                     <div class="modal-body">
                         <img src="browser_components/images/modal1.jpg" alt=" " class="img-responsive" />
 
@@ -347,37 +345,34 @@
                             <li class="first-list">
                                 <div class="fields-label fields-label-50" style="margin-top:20px;margin-left:20px">
                                     @Html.Label("帳號：", new { style = "width: 50px" })
-                                    <input id="account" class="k-textbox k-input" style="width:160px;" minlength="8" required validationMessage="請輸入帳號" />
+                                    <input id="account" value="ponpon111" class="k-textbox k-input" style="width:160px;" minlength="8" required validationMessage="請輸入帳號" />
                                 </div>
                                 <div class="fields-label fields-label-50" style="margin-top:20px;margin-left:20px;margin-bottom:20px">
                                     @Html.Label("密碼：", new { style = "width: 50px" })
-                                    <input type="password" id="password" class="k-textbox k-input" style="width:160px;" minlength="8" required validationMessage="請輸入密碼" />
+                                    <input type="password" value="12345678911" id="password" class="k-textbox k-input" style="width:160px;" minlength="8" required validationMessage="請輸入密碼" />
                                 </div>
                                 <div class="fields-label fields-label-50" style="margin-top:20px;margin-left:20px;margin-bottom:20px">
                                     @Html.Label("確認密碼：", new { style = "width: 100px" })
-                                    <input type="password" id="confirmpassword" class="k-textbox k-input" style="width:160px;" minlength="8" required validationMessage="請輸入密碼" />
+                                    <input type="password" value="12345678911" id="confirmpassword" class="k-textbox k-input" style="width:160px;" minlength="8" required validationMessage="請輸入密碼" />
                                 </div>
                                 <div class="fields-label fields-label-50" style="margin-top:20px;margin-left:20px;margin-bottom:20px">
                                     @Html.Label("身分證字號：", new { style = "width: 100px" })
-                                    <input id="personid" class="k-textbox k-input" style="width:160px;" minlength="8" required validationMessage="請輸入身分證字號" />
+                                    <input id="personid" value="F111111111" class="k-textbox k-input" style="width:160px;" minlength="8" required validationMessage="請輸入身分證字號" />
                                 </div>
                                 <div class="form-footer" style="margin-left:20px;margin-bottom:20px">
-                                    <button style="margin-right:20px" type="submit" class="btn btn-primary" id="register" data-url="@Url.Action("registerMember", "Member")">確認</button>
+                                    <button style="margin-right:20px" type="submit" class="btn btn-primary" id="register" >確認</button>
                                 </div>
                             </li>
 
                         </ul>
                     </div>
-                }
+                
 
             </div>
         </div>
     </div>
     <!-- //bootstrap-modal-pop-up -->
 
-        <!-- js -->
-        <script src="browser_components/js/jquery-2.2.3.min.js"></script>
-        <!-- //js-->
         <!-- banner-responsive-slider -->
         <script src="browser_components/js/responsiveslides.min.js"></script>
         <script>

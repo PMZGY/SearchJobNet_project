@@ -1,11 +1,10 @@
 ﻿$(function () {
-
-
-
+    console.log($("#searchjobcol").val())
     $("#grid").kendoGrid({
         dataSource: {
             transport: {
-                read:{
+                read: {
+                    type: "POST",
                     url: "/Job/SendJobListData",
                     dataType: "json"
                 }
