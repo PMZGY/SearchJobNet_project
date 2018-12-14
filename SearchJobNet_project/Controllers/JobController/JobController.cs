@@ -20,10 +20,14 @@ namespace SearchJobNet_project.Controllers.JobController
             //sjModel = sjm.jobList(searchModel);
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             ViewBag.CityName = searchModel.CityName;
             ViewBag.Wk_Type = searchModel.Wk_Type;
             ViewBag.CompName = searchModel.CompName;
             ViewBag.Cjob_Name1 = searchModel.Cjob_Name1;
+=======
+            ViewBag.SearchJobCol = searchModel;
+>>>>>>> parent of 622b4ca... SearchJob v.5
 =======
             ViewBag.SearchJobCol = searchModel;
 >>>>>>> parent of 622b4ca... SearchJob v.5
