@@ -1,7 +1,5 @@
 ﻿$(function () {
 
-
-
     $("#grid").kendoGrid({
         dataSource: {
             transport: {
