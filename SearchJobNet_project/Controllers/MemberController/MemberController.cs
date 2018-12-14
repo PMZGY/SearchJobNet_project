@@ -1,10 +1,11 @@
 ﻿using System;
+using System.Web.Helpers;
 using System.Web.Mvc;
 using MM = SearchJobNet_project.Models.MemberModel;
 
 namespace SearchJobNet_project.Controllers.MemberController
 {
-    public class MemberController
+    public class MemberController : Controller
     {
         // 建立建構子
         public MemberController(){ }
@@ -14,12 +15,12 @@ namespace SearchJobNet_project.Controllers.MemberController
         // 傳入 會員model,執行 [新增會員] 功能
         // 回傳 成功新增資料與否
         [HttpPost]
-        public string registerMember(MM.MemberModel memberModel)
+        public ActionResult registerMember(MM.MemberModel memberModel)
         {
             string msg = "";
             MM.Member mb = new MM.Member();
             msg = mb.registerMember(memberModel);
-            return msg;
+            return Content(msg);
         }
 
         // 傳入 會員model,執行 [登入會員] 功能

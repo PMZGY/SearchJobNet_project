@@ -4,7 +4,6 @@ $(function () {
     var formSelector = "form#searchJobTable",
         formModel = //$(formSelector).toJSON();
         JSON.stringify($(formSelector)[0]);
-    var model = new kendo.observable(formModel);
 
     //點擊搜索職缺
     $("#searchJobButton").click(function (e) {
@@ -56,15 +55,17 @@ $(function () {
         //取form資料
         //var formData = $('form#memberRegisterTable').serializeArray();
         if ($('#confirmpassword').val() === $('#password').val()) {
-            var formData = {
+            var formData = {                
+                User_ID: $('#personid').val(),
                 UserName: $('#account').val(),
                 PassWord: $('#password').val(),
-                User_ID: $('#personid').val()
+                Re_Time: null
             };
             debugger;
             //傳資料給後端
             $.post(action, formData)
                 .done(function (Data) {
+                    debugger;
                     if (Data == "insert success!")
                     alert("註冊成功!");
                     $('.close').click();
