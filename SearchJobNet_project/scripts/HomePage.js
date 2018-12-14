@@ -4,7 +4,6 @@ $(function () {
     var formSelector = "form#searchJobTable",
         formModel = //$(formSelector).toJSON();
         JSON.stringify($(formSelector)[0]);
-    //var model = new kendo.observable(formModel);
 
     //點擊搜索職缺
     $("#searchJobButton").click(function (e) {
