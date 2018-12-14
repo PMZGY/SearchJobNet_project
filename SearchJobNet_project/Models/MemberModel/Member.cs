@@ -19,7 +19,7 @@ namespace SearchJobNet_project.Models.MemberModel
             string doDB = bsc.ActionDB(
                             string.Format(
                             @"INSERT INTO [Account] (USER_ID,USERNAME,PASSWORD,RE_TIME)
-                              VALUES('{0}','{1}','{2}','{3}');"
+                              VALUES({0},{1},{2},{3});"
                               , rMember.User_ID, rMember.UserName, rMember.PassWord
                               , rMember.Re_Time)
                             );
@@ -74,7 +74,11 @@ namespace SearchJobNet_project.Models.MemberModel
         }
 
         // 瀏覽會員DB資料
+<<<<<<< HEAD
         public MM.MemberModel memberData(string UserName)
+=======
+        public MM.MemberModel memberData(int user_ID)
+>>>>>>> 4cb1f6ef507d4eb697561c4b504f7bd7c002967d
         {
             MM.MemberModel bMemberModel = new MM.MemberModel();
 
@@ -89,12 +93,24 @@ namespace SearchJobNet_project.Models.MemberModel
                             @"SELECT *
                               FROM [Account] AS A
                               WHERE 1=1
+<<<<<<< HEAD
                               AND A.USERNAME = '{0}'"
                               , UserName)
+=======
+                              AND A.USER_ID = {0}"
+                              , user_ID)
+>>>>>>> 4cb1f6ef507d4eb697561c4b504f7bd7c002967d
                             );
 
+            // 從DataTble 取出 資料欄位名稱
+            string[] columnNames = dt.Columns.Cast<DataColumn>().Select(x => x.ColumnName).ToArray();
+
             // 將DataTable的資料轉換為model
+<<<<<<< HEAD
             bMemberModel.User_ID  = null;
+=======
+            bMemberModel.User_ID  = Convert.ToInt16(dt.Rows[0][0]);
+>>>>>>> 4cb1f6ef507d4eb697561c4b504f7bd7c002967d
             bMemberModel.UserName = dt.Rows[0][1].ToString();
             bMemberModel.PassWord = dt.Rows[0][2].ToString();
             bMemberModel.Re_Time  = null; 

@@ -17,11 +17,6 @@ namespace SearchJobNet_project.Controllers.MemberController
         public ActionResult registerMember(MM.MemberModel memberModel)
         {
             string msg = "";
-
-            // 取得時間
-            DateTime dt = DateTime.Now;
-            memberModel.Re_Time = dt.ToString();
-
             MM.Member mb = new MM.Member();
             msg = mb.registerMember(memberModel);
             return Content(msg);

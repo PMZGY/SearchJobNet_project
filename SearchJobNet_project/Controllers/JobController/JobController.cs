@@ -22,7 +22,6 @@ namespace SearchJobNet_project.Controllers.JobController
             ViewBag.Wk_Type = searchModel.Wk_Type;
             ViewBag.CompName = searchModel.CompName;
             ViewBag.Cjob_Name1 = searchModel.Cjob_Name1;
-
             return View("JobListView");
         }
 
@@ -41,7 +40,7 @@ namespace SearchJobNet_project.Controllers.JobController
         public ActionResult toJobDetailView(int JobID)
         {
             SJM.SearchJob sjm = new SJM.SearchJob();
-            List<JM.JobModel> jmModel = new List<JM.JobModel>();
+            JM.JobModel jmModel = new JM.JobModel();
             jmModel = sjm.jobDetail(JobID);
             
             return View("JobDetailView", jmModel);

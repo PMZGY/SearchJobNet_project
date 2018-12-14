@@ -167,10 +167,8 @@
         </div>
     </footer>
     <!-- //footer -->
-    <input id="CityName" type="hidden" value="@ViewBag.CityName" />
-    <input id="Wk_Type" type="hidden" value="@ViewBag.Wk_Type" />
-    <input id="CompName" type="hidden" value="@ViewBag.CompName" />
-    <input id="Cjob_Name1" type="hidden" value="@ViewBag.Cjob_Name1" />
+    <input id="searchjobcol" type="hidden" value="@ViewBag.SearchJobCol" />
+
     <!-- banner-responsive-slider -->
     <script src="~/browser_components/js/responsiveslides.min.js"></script>
     <script>
@@ -212,6 +210,9 @@
 			items : 3,
 			itemsDesktop : [640,5],
 			itemsDesktopSmall : [414,4]
+		});
+		$("#home").click(function () {
+		    window.location = "\\Home";
 		});
 		});
     </script>
