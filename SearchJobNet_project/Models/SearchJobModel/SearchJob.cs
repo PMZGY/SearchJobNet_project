@@ -78,8 +78,8 @@ namespace SearchJobNet_project.Models.SearchJobModel
             {
                 cityname.Add(new SelectListItem()
                 {
-                    Text = dt.Rows[i].ToString(),
-                    Value = Convert.ToString(i)
+                    Text = dt.Rows[i][0].ToString(),
+                    Value = i.ToString()
                 });
             }
             #endregion
@@ -101,7 +101,7 @@ namespace SearchJobNet_project.Models.SearchJobModel
             DataTable dt = bsc.ReadDB(
                             string.Format(
                             @"SELECT CJOB_NAME1
-                                  FROM [Job]
+                                  FROM [JobType]
                                   GROUP BY CJOB_NAME1"
                               )
                             );
@@ -112,8 +112,8 @@ namespace SearchJobNet_project.Models.SearchJobModel
             {
                 cjobname.Add(new SelectListItem()
                 {
-                    Text = dt.Rows[i].ToString(),
-                    Value = Convert.ToString(i)
+                    Text = dt.Rows[i][0].ToString(),
+                    Value = i.ToString()
                 });
             }
 
