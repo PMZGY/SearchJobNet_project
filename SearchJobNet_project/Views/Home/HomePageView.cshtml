@@ -347,22 +347,22 @@
                             <li class="first-list">
                                 <div class="fields-label fields-label-50" style="margin-top:20px;margin-left:20px">
                                     @Html.Label("帳號：", new { style = "width: 50px" })
-                                    <input id="account" class="k-textbox k-input" style="width:160px;" minlength="8" required validationMessage="請輸入帳號" />
+                                    <input id="account" value="ponpon111" class="k-textbox k-input" style="width:160px;" minlength="8" required validationMessage="請輸入帳號" />
                                 </div>
                                 <div class="fields-label fields-label-50" style="margin-top:20px;margin-left:20px;margin-bottom:20px">
                                     @Html.Label("密碼：", new { style = "width: 50px" })
-                                    <input type="password" id="password" class="k-textbox k-input" style="width:160px;" minlength="8" required validationMessage="請輸入密碼" />
+                                    <input type="password" value="12345678911" id="password" class="k-textbox k-input" style="width:160px;" minlength="8" required validationMessage="請輸入密碼" />
                                 </div>
                                 <div class="fields-label fields-label-50" style="margin-top:20px;margin-left:20px;margin-bottom:20px">
                                     @Html.Label("確認密碼：", new { style = "width: 100px" })
-                                    <input type="password" id="confirmpassword" class="k-textbox k-input" style="width:160px;" minlength="8" required validationMessage="請輸入密碼" />
+                                    <input type="password" value="12345678911" id="confirmpassword" class="k-textbox k-input" style="width:160px;" minlength="8" required validationMessage="請輸入密碼" />
                                 </div>
                                 <div class="fields-label fields-label-50" style="margin-top:20px;margin-left:20px;margin-bottom:20px">
                                     @Html.Label("身分證字號：", new { style = "width: 100px" })
-                                    <input id="personid" class="k-textbox k-input" style="width:160px;" minlength="8" required validationMessage="請輸入身分證字號" />
+                                    <input id="personid" value="F111111111" class="k-textbox k-input" style="width:160px;" minlength="8" required validationMessage="請輸入身分證字號" />
                                 </div>
                                 <div class="form-footer" style="margin-left:20px;margin-bottom:20px">
-                                    <button style="margin-right:20px" type="submit" class="btn btn-primary" id="register" data-url="@Url.Action("registerMember", "Member")">確認</button>
+                                    <button style="margin-right:20px" type="submit" class="btn btn-primary" id="register" data-url="@Url.Action("registerMember", "MemberController")">確認</button>
                                 </div>
                             </li>
 
