@@ -120,7 +120,7 @@
             <div class="container detail_table">
                 <div class="row">
                     <div class="column">
-                        <h2>@Html.DisplayFor(model => model.Occu_Desc, new { style = "width: 100%" }) </h2>
+                        <h2>@Html.DisplayFor(model => model.Occu_Desc, new { style = "color : #2E5C6E" }) </h2>
                     </div>
                 </div>
                 <div class="row">
@@ -131,8 +131,8 @@
                 </div>
                 <div class="row">
                     <div class="column">
-                        <h4>職缺URL</h4>
-                        <p name="model_content">@Html.DisplayFor(model => model.Url_Query)</p>
+                        <h4>職缺URL</h4>                 
+                        <p name="model_content">@Html.DisplayFor(model => model.Url_Query,new { id="Url_Query"})</p>
                     </div>
                 </div>
                 <div class="row">

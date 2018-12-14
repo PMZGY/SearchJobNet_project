@@ -30,7 +30,7 @@
     }*/
 
     $("p[name='model_content']").css({
-        "background-color": "#81C7d4"
+        "background-color": "#A5DEE4"
     });
 
     $(".detail_table").css({
@@ -44,10 +44,11 @@
     })*/
 
     /* 以下function */
-    console.log('有沒有ready');
+    
     $("Document").ready(function (jobID) {
-        console.log('READY!!!!');
-           //取要傳到的action url
+        console.log(jobID);
+            
+            /*用jobID去撈comment*/
            var action = 'Comment/browseMenberComment'   
 
            var formData = {
@@ -59,14 +60,15 @@
                 .done(function (Data) {
                     console.log(Data);
                     /*傳一個List<CommentModel> 進來  each 建一個 container 來放資料*/
-                    $(Data).each(function () {
+                    $.each(Data,function (commentModel) {
                         //建一個model來接值
+
                         // var commentModel
 
                         var comment_container = '<div class="container">' +
                                                     '<div class="row">' +
                                                         '<div class="column">' +
-                                                            //commentModel.jobid
+                                                            commentModel.Job_ID
                                                         '</div>' +
                                                     '</div>' +
                                                     '<div class="row">' +
@@ -88,7 +90,7 @@
                     })
                 })
             .fail(function () {
-                $(".comment_table").append('<div style="color:#AAA; text-align:center;">沒有評論...</div>')
+                $(".comment_table").append('<div style="color:#AAA; text-align:center;">沒有評論...</div>' + jobID.toString())
             });
        })   
 })
