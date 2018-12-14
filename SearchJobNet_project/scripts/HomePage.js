@@ -51,7 +51,7 @@ $(function () {
     //點擊註冊
     $("#register").click(function (e) {
         //取要傳到的action url
-        var action = $(e.target).attr('data-url')
+        var action = 'Member/registerMember'
         //取form資料
         //var formData = $('form#memberRegisterTable').serializeArray();
         if ($('#confirmpassword').val() === $('#password').val()) {
