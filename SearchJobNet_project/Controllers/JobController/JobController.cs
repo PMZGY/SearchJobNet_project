@@ -18,7 +18,7 @@ namespace SearchJobNet_project.Controllers.JobController
             //SJM.SearchJob sjm = new SJM.SearchJob();
             //List<SJM.SearchJobModel> sjModel = new List<SJM.SearchJobModel>();
             //sjModel = sjm.jobList(searchModel);
-            ViewBag.SearchJobCol = searchModel;
+            
             return View("JobListView");
         }
         public ActionResult SendJobListData(SJM.SearchJobModel searchModel)
@@ -36,7 +36,7 @@ namespace SearchJobNet_project.Controllers.JobController
         public ActionResult toJobDetailView(int JobID)
         {
             SJM.SearchJob sjm = new SJM.SearchJob();
-            List<JM.JobModel> jmModel = new List<JM.JobModel>();
+            JM.JobModel jmModel = new JM.JobModel();
             jmModel = sjm.jobDetail(JobID);
             
             return View("JobDetailView", jmModel);
