@@ -18,7 +18,7 @@ namespace SearchJobNet_project.Controllers.JobController
             //SJM.SearchJob sjm = new SJM.SearchJob();
             //List<SJM.SearchJobModel> sjModel = new List<SJM.SearchJobModel>();
             //sjModel = sjm.jobList(searchModel);
-            
+            ViewBag.SearchJobCol = searchModel;
             return View("JobListView");
         }
         public ActionResult SendJobListData(SJM.SearchJobModel searchModel)
