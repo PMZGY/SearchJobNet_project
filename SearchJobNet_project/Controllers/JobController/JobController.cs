@@ -18,9 +18,14 @@ namespace SearchJobNet_project.Controllers.JobController
             //SJM.SearchJob sjm = new SJM.SearchJob();
             //List<SJM.SearchJobModel> sjModel = new List<SJM.SearchJobModel>();
             //sjModel = sjm.jobList(searchModel);
-            ViewBag.SearchJobCol = searchModel;
+            ViewBag.CityName = searchModel.CityName;
+            ViewBag.Wk_Type = searchModel.Wk_Type;
+            ViewBag.CompName = searchModel.CompName;
+            ViewBag.Cjob_Name1 = searchModel.Cjob_Name1;
+
             return View("JobListView");
         }
+
         public ActionResult SendJobListData(SJM.SearchJobModel searchModel)
         {
             SJM.SearchJob sjm = new SJM.SearchJob();
@@ -38,7 +43,7 @@ namespace SearchJobNet_project.Controllers.JobController
             SJM.SearchJob sjm = new SJM.SearchJob();
             List<JM.JobModel> jmModel = new List<JM.JobModel>();
             jmModel = sjm.jobDetail(JobID);
-            //return jmModel;
+            
             return View("JobDetailView", jmModel);
         }
 
