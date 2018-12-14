@@ -22,7 +22,7 @@ namespace SearchJobNet_project.Models.MemberModel
             string doDB = bsc.ActionDB(
                             string.Format(
                             @"INSERT INTO [Account] (USER_ID,USERNAME,PASSWORD,RE_TIME)
-                              VALUES({0},{1},{2},{3});"
+                              VALUES('{0}','{1}','{2}','{3}');"
                               , rMember.User_ID, rMember.UserName, rMember.PassWord
                               , rMember.Re_Time)
                             );
@@ -78,7 +78,7 @@ namespace SearchJobNet_project.Models.MemberModel
         }
 
         // 瀏覽會員DB資料
-        public MM.MemberModel memberData(int user_ID)
+        public MM.MemberModel memberData(string user_ID)
         {
             MM.MemberModel bMemberModel = new MM.MemberModel();
 
@@ -93,15 +93,12 @@ namespace SearchJobNet_project.Models.MemberModel
                             @"SELECT *
                               FROM [Account] AS A
                               WHERE 1=1
-                              AND A.USER_ID = {0}"
+                              AND A.USER_ID = '{0}'"
                               , user_ID)
                             );
 
-            // 從DataTble 取出 資料欄位名稱
-            string[] columnNames = dt.Columns.Cast<DataColumn>().Select(x => x.ColumnName).ToArray();
-
             // 將DataTable的資料轉換為model
-            bMemberModel.User_ID  = Convert.ToInt16(dt.Rows[0][0]);
+            bMemberModel.User_ID  = dt.Rows[0][0].ToString();
             bMemberModel.UserName = dt.Rows[0][1].ToString();
             bMemberModel.PassWord = dt.Rows[0][2].ToString();
             bMemberModel.Re_Time  = dt.Rows[0][3].ToString();

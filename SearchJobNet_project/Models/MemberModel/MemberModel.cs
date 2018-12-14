@@ -4,10 +4,10 @@ namespace SearchJobNet_project.Models.MemberModel
 {
     public class MemberModel
     {
-        ///<summary> 使用者PK </summary>
+        ///<summary> 使用者ID </summary>
         [Required]
-        [Display(Name = "使用者PK")]
-        public int User_ID { get; set; }
+        [Display(Name = "使用者ID")]
+        public string User_ID { get; set; }
 
         ///<summary> 使用者名稱 </summary>
         [Display(Name = "使用者名稱")]

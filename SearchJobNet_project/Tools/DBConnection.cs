@@ -18,6 +18,9 @@ namespace SearchJobNet_project.Tools
         {
             try
             {
+                //處理狀態
+                string state = "";
+
                 // 設定連線資料[DB_IP / 資料庫名字 / 使用者帳號 / 密碼](這行是固定的，不用改)
                 string ConStr = "data source=140.115.87.142,1433; initial catalog=JobDB; User ID = searchjob; Password = searchjob";
 
@@ -33,11 +36,16 @@ namespace SearchJobNet_project.Tools
                 // new 一個 SqlCommand
                 SqlCommand cmd = new SqlCommand(action_query, conn);
 
+                // 執行處理db,並回傳影響筆數
+
+                int count = cmd.ExecuteNonQuery();
+                if (count > 0)  state = "success";
+
                 //關閉連線
                 conn.Close();
 
                 // 回傳 執行完畢
-                return "success";
+                return state;
 
             }
             catch (Exception e)
@@ -63,10 +71,10 @@ namespace SearchJobNet_project.Tools
             string sql_query_string = SQLComment;
 
             // new 一個 SqlCommand
-            SqlCommand cmd = new SqlCommand(sql_query_string, conn);
+            //SqlCommand cmd = new SqlCommand(sql_query_string, conn);
 
             //new 一個 SqlDataAdapter 接資料
-            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            SqlDataAdapter da = new SqlDataAdapter(sql_query_string,conn);
 
             //new 一個 DataSet 存資料(一個DataSet裡可以有很多table)
             DataSet ds = new DataSet();
