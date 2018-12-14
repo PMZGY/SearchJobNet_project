@@ -9,14 +9,18 @@ $(function () {
     $("#searchJobButton").click(function (e) {
 
         //取要傳到的action url
-        var action = $(e.target).attr('data-url')
+        var action = "../Job/Index"
         //取form資料
-        var formData = $('form#searchJobTable').serializeArray();
+        var formData = {
+            CompyName: $('#CompName').val(),
+            Wk_Type: $('#WorkType').val(),
+            CityName: $('#CityName').val(),
+            Cjob_Name1: $('#Cjob_Name1').val()
+        };
         debugger;
         //傳資料給後端
-        $.post(action, formData)
+        $.post(action,formData)
             .done(function (Data) {
-                
 
             })
             .fail(function (data) {
@@ -27,7 +31,7 @@ $(function () {
     //點擊登入
     $("#login").click(function (e) {
         //取要傳到的action url
-        var action = 'Member/loginMember'
+        var action = '../Member/loginMember'
 
         //取form資料
         var formData = {
@@ -51,7 +55,7 @@ $(function () {
     //點擊註冊
     $("#register").click(function (e) {
         //取要傳到的action url
-        var action = $(e.target).attr('data-url')
+        var action = '../Member/registerMember'
         //取form資料
         //var formData = $('form#memberRegisterTable').serializeArray();
         if ($('#confirmpassword').val() === $('#password').val()) {

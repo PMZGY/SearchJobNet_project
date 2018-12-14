@@ -254,32 +254,34 @@
                         <ul class="fields" vailgn="center">
 
                             <li class="first-list">
-                                <div class="fields-label">
-                                    @Html.Label("公司名稱：",new { style = "width: 100px" })
-                                    @Html.EditorFor(model => model.CompName,new { @class="col-sm-4;"})
+                                <div class="fields-label" style="margin-top:20px;margin-left:180px">
+                                    @Html.Label("公司名稱：",new { style = "width: 80px;" })
+                                    <input id="CompName" class="k-textbox k-input" style="width:160px;" />
                                 </div>
-                                <div class="fields-value">
-                                    @Html.Label("工作性質：")
-                                    @Html.DropDownList("工作性質", (IEnumerable<SelectListItem>)ViewBag.WorkType)
+                                <div class="fields-value" style="margin-top:20px;margin-left:180px">
+                                    @Html.Label("工作性質：", new { style = "width: 80px;" })
+                                    @Html.DropDownList("工作性質", (IEnumerable<SelectListItem>)ViewBag.WorkType,"不拘",new { @class = "k-textbox k-input" ,style = "width:160px;", id="WorkType"})
  
                                 </div>
-                                <div class="fields-value">
-                                    @Html.Label("工作地點：")
-                                    @Html.DropDownList("工作地點", (IEnumerable<SelectListItem>)ViewBag.CityName)
+                                <div class="fields-value" style="margin-top:20px;margin-left:180px">
+                                    @Html.Label("工作地點：", new { style = "width: 80px;" })
+                                    @Html.DropDownList("工作地點", (IEnumerable<SelectListItem>)ViewBag.CityName, "不拘", new { @class = "k-textbox k-input", style = "width:160px;", id = "CityName" })
                                  
                                 </div>
-                                <div class="fields-value">
-                                    @Html.Label("職務類別：")
-                                    @Html.DropDownList("請選擇職務類別", (IEnumerable<SelectListItem>)ViewBag.Cjob_Name1)
+                                <div class="fields-value" style="margin-top:20px;margin-left:180px">
+                                    @Html.Label("職務類別：", new { style = "width: 80px;" })
+                                    @Html.DropDownList("請選擇職務類別", (IEnumerable<SelectListItem>)ViewBag.Cjob_Name1, "不拘", new { @class = "k-textbox k-input", style = "width:160px;", id = "Cjob_Name1"})
                      
                                     </div>
                                 </li>
+
                             </ul>
+                    <div class="form-footer" style="text-align:right;margin-left:20px;margin-bottom:20px">
+                        <button type="submit" class="btn btn-primary" id="searchJobButton">搜尋</button>
+                    </div>
                     </div>
     }
-                    <div class="form-footer" style="text-align:right">
-                        <button type="submit" class="btn btn-primary" id="searchJobButton" data-url="@Url.Action("Index", "Job")">搜尋</button>
-                    </div>
+                   
                 </div>
             </div>
         </div>
@@ -334,8 +336,7 @@
                     會員註冊
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 </div>
-                @using (Html.BeginForm("registerMember", "Member", FormMethod.Post, new { id = "memberRegisterTable" }))
-                {
+
                     <div class="modal-body">
                         <img src="browser_components/images/modal1.jpg" alt=" " class="img-responsive" />
 
@@ -359,13 +360,13 @@
                                     <input id="personid" value="F111111111" class="k-textbox k-input" style="width:160px;" minlength="8" required validationMessage="請輸入身分證字號" />
                                 </div>
                                 <div class="form-footer" style="margin-left:20px;margin-bottom:20px">
-                                    <button style="margin-right:20px" type="submit" class="btn btn-primary" id="register" data-url="@Url.Action("registerMember", "MemberController")">確認</button>
+                                    <button style="margin-right:20px" type="submit" class="btn btn-primary" id="register" >確認</button>
                                 </div>
                             </li>
 
                         </ul>
                     </div>
-                }
+                
 
             </div>
         </div>
