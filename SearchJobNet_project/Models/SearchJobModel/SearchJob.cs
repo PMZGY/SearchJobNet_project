@@ -134,8 +134,8 @@ namespace SearchJobNet_project.Models.SearchJobModel
             #endregion
             // 取出職缺清單
             #region[ 取出職缺清單 ]
-
-            DataTable dt = bsc.ReadDB(
+            if (sjm.Occu_Desc===null) {
+                DataTable dt = bsc.ReadDB(
                             string.Format(
                             @"SELECT J.COMP_ID,C.COMPNAME,J.CITYNAME,J.JOB_ID,J.OCCU_DESC,J.WK_TYPE,J.CJOB_ID,JT.CJOB_NAME1
                                   FROM [Job] AS J , [JobType] AS JT ,[Company] AS C
@@ -145,8 +145,25 @@ namespace SearchJobNet_project.Models.SearchJobModel
                                   AND J.CJOB_NAME1 = {0}
                                   AND J.CITYNAME = {1}
                                   AND J.WK_TYPE = {2}"
-                                  , sjm.Cjob_Name1, sjm.CityName , sjm.Wk_Type)
+                                  , sjm.Cjob_Name1, sjm.CityName, sjm.Wk_Type)
                                 );
+            }
+            else (){
+                DataTable dt = bsc.ReadDB(
+                            string.Format(
+                            @"SELECT J.COMP_ID,C.COMPNAME,J.CITYNAME,J.JOB_ID,J.OCCU_DESC,J.WK_TYPE,J.CJOB_ID,JT.CJOB_NAME1
+                                  FROM [Job] AS J , [JobType] AS JT ,[Company] AS C
+                                  WHERE 1=1
+                                  AND J.CJOB_ID = JT.CJOB_ID
+                                  AND C.COMP_ID = J.COMP_ID
+                                  AND J.CJOB_NAME1 = {0}
+                                  AND J.CITYNAME = {1}
+                                  AND J.WK_TYPE = {2}
+                                  AND J.OCCU_DESC = {3}"
+                                  , sjm.Cjob_Name1, sjm.CityName, sjm.Wk_Type, sjm.Occu_Desc)
+                                );
+            }
+            
 
             // 將DataTable的資料轉換為model
             List<SJM.SearchJobModel> joblist = new List<SJM.SearchJobModel>();
