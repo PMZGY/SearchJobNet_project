@@ -44,39 +44,51 @@
     })*/
 
     /* 以下function */
-
-    /*   $("Document").ready(function (jobID) {
+    console.log('有沒有ready');
+    $("Document").ready(function (jobID) {
+        console.log('READY!!!!');
            //取要傳到的action url
-           var action = 'Comment/browseComment( jobid )'
-   
-   
-       })   */
+           var action = 'Comment/browseMenberComment'   
 
-    /*傳一個List<CommentModel> 進來  each 建一個 caotainer 來放資料*/
-    /*
-    Array.each(function (commentID) {
-        var comment_container = '<div class="container">' +
-                                    '<div class="row">'   +
-                                        '<div class="column">' +
-                                            //model.jobid
-                                        '</div>' +
-                                    '</div>' +
-                                    '<div class="row">' +
-                                        '<div class="column">' +
-                                            //model.userid
-                                        '</div>' +
-                                        '<div class="column">' +
-                                            //model.time
-                                        '</div>' +
-                                    '</div>' +
-                                    '<div class="row">' +
-                                        '<div class="column">' +
-                                            //model.contentTEXT
-                                        '</div>' +
-                                    '</div>' +
-                                '</div>'
+           var formData = {
+               Job_ID: jobID,
+               phase: 1
+           };
 
-        $(".comment_table").append(comment_container)
-    })
-    */
+           $.post(action,formData)
+                .done(function (Data) {
+                    console.log(Data);
+                    /*傳一個List<CommentModel> 進來  each 建一個 container 來放資料*/
+                    $(Data).each(function () {
+                        //建一個model來接值
+                        // var commentModel
+
+                        var comment_container = '<div class="container">' +
+                                                    '<div class="row">' +
+                                                        '<div class="column">' +
+                                                            //commentModel.jobid
+                                                        '</div>' +
+                                                    '</div>' +
+                                                    '<div class="row">' +
+                                                        '<div class="column">' +
+                                                            //commentModel.userid
+                                                        '</div>' +
+                                                        '<div class="column">' +
+                                                            //commentModel.time
+                                                        '</div>' +
+                                                    '</div>' +
+                                                    '<div class="row">' +
+                                                        '<div class="column">' +
+                                                            //commentModel.contentTEXT
+                                                        '</div>' +
+                                                    '</div>' +
+                                                '</div>'
+
+                        $(".comment_table").append(comment_container)
+                    })
+                })
+            .fail(function () {
+                $(".comment_table").append('<div style="color:#AAA; text-align:center;">沒有評論...</div>')
+            });
+       })   
 })
