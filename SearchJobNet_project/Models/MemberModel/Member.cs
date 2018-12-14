@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Linq;
+﻿using System.Data;
 using MM = SearchJobNet_project.Models.MemberModel;
 
 namespace SearchJobNet_project.Models.MemberModel
@@ -61,11 +58,10 @@ namespace SearchJobNet_project.Models.MemberModel
         // 會員功能 登入 [ 會員model的attr. 皆為填入項目 ]
         public string loginMember(MM.MemberModel lMember)
         {
-            MemberModel mm = this.memberData(lMember.User_ID);
+            MemberModel mm = this.memberData(lMember.UserName);
 
             // 檢查MemberModel
-            if ((lMember.User_ID  == mm.User_ID) &&
-                (lMember.UserName == mm.UserName) &&
+            if ((lMember.UserName == mm.UserName) &&
                 (lMember.PassWord == mm.PassWord)
                )
             {
@@ -78,7 +74,7 @@ namespace SearchJobNet_project.Models.MemberModel
         }
 
         // 瀏覽會員DB資料
-        public MM.MemberModel memberData(string user_ID)
+        public MM.MemberModel memberData(string UserName)
         {
             MM.MemberModel bMemberModel = new MM.MemberModel();
 
@@ -93,15 +89,15 @@ namespace SearchJobNet_project.Models.MemberModel
                             @"SELECT *
                               FROM [Account] AS A
                               WHERE 1=1
-                              AND A.USER_ID = '{0}'"
-                              , user_ID)
+                              AND A.USERNAME = '{0}'"
+                              , UserName)
                             );
 
             // 將DataTable的資料轉換為model
-            bMemberModel.User_ID  = dt.Rows[0][0].ToString();
+            bMemberModel.User_ID  = null;
             bMemberModel.UserName = dt.Rows[0][1].ToString();
             bMemberModel.PassWord = dt.Rows[0][2].ToString();
-            bMemberModel.Re_Time  = dt.Rows[0][3].ToString();
+            bMemberModel.Re_Time  = null; 
 
             return bMemberModel;
 
