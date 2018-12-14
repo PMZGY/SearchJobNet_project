@@ -136,9 +136,9 @@ namespace SearchJobNet_project.Models.SearchJobModel
             // 取出職缺清單
             #region[ 取出職缺清單 ]
             string SQLComment = (sjm.CompName == null) ? "" : "AND C.COMPNAME LIKE '%" + sjm.CompName + "%' ";
-            string SQLComment1 = (sjm.Cjob_Name1 == "不拘") ? "" : "AND JT.CJOB_NAME1 = " + sjm.Cjob_Name1;
-            string SQLComment2 = (sjm.CityName == "不拘") ? "" : " AND J.CITYNAME = " + sjm.CityName;
-            string SQLComment3 = (sjm.Wk_Type == "不拘") ? "" : "AND J.WK_TYPE = " + sjm.Wk_Type;
+            string SQLComment1 = (sjm.Cjob_Name1 == "不拘") ? "" : "AND JT.CJOB_NAME1 = '" + sjm.Cjob_Name1 + "'";
+            string SQLComment2 = (sjm.CityName == "不拘") ? "" : " AND J.CITYNAME = '" + sjm.CityName + "'";
+            string SQLComment3 = (sjm.Wk_Type == "不拘") ? "" : "AND J.WK_TYPE = '" + sjm.Wk_Type + "'";
             DataTable dt = bsc.ReadDB(
                             string.Format(
                             @"SELECT J.COMP_ID,C.COMPNAME,J.CITYNAME,J.JOB_ID,J.OCCU_DESC,J.WK_TYPE,J.CJOB_ID,JT.CJOB_NAME1
