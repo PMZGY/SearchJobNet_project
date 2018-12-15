@@ -6,7 +6,6 @@ namespace SearchJobNet_project.Models.CommentModel
     public class CommentModel
     {
         ///<summary> 評論PK </summary>
-        [Required]
         [Display(Name = "評論PK")]
         public int Comment_ID { get; set; }
 
@@ -14,9 +13,9 @@ namespace SearchJobNet_project.Models.CommentModel
         [Display(Name = "職缺")]
         public int Job_ID { get; set; }
 
-        ///<summary> 發表者 </summary>
-        [Display(Name = "發表者")]
-        public int User_ID { get; set; }
+        ///<summary> 發表者身分證字號 </summary>
+        [Display(Name = "發表者身分證字號")]
+        public string User_ID { get; set; }
 
         ///<summary> 內容 </summary>
         [Display(Name = "內容")]
