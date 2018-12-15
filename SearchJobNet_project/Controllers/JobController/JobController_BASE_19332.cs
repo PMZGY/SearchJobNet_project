@@ -15,16 +15,12 @@ namespace SearchJobNet_project.Controllers.JobController
         // 回傳 職缺清單
         public ActionResult Index(SJM.SearchJobModel searchModel)
         {
-            ViewBag.CityName = searchModel.CityName;
-            ViewBag.Wk_Type = searchModel.Wk_Type;
-            ViewBag.CompName = searchModel.CompName;
-            ViewBag.Cjob_Name1 = searchModel.Cjob_Name1;
-
-            ViewBag.SearchJobCol = searchModel;
-
+            //SJM.SearchJob sjm = new SJM.SearchJob();
+            //List<SJM.SearchJobModel> sjModel = new List<SJM.SearchJobModel>();
+            //sjModel = sjm.jobList(searchModel);
+            
             return View("JobListView");
         }
-
         public ActionResult SendJobListData(SJM.SearchJobModel searchModel)
         {
             SJM.SearchJob sjm = new SJM.SearchJob();

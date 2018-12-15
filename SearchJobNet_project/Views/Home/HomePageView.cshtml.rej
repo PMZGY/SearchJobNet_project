@@ -1,0 +1,10 @@
+diff a/SearchJobNet_project/Views/Home/HomePageView.cshtml b/SearchJobNet_project/Views/Home/HomePageView.cshtml	(rejected hunks)
+@@ -280,7 +280,7 @@
+                         <button type="submit" class="btn btn-primary" id="searchJobButton">搜尋</button>
+                     </div>
+                     </div>
+-
++    }
+                    
+                 </div>
+             </div>
