@@ -60,9 +60,10 @@
                 .done(function (Data) {
                     console.log(Data);
                     /*傳一個List<CommentModel> 進來  each 建一個 container 來放資料*/
-                    $.each(Data,function (commentModel) {
+                    $.each(Data,function (index , Model) {
                         //建一個model來接值
-
+                        var commentModel = Model
+                 
                         // var commentModel
 
                         var comment_container = '<div class="container">' +
@@ -90,7 +91,8 @@
                     })
                 })
             .fail(function () {
-                $(".comment_table").append('<div style="color:#AAA; text-align:center;">沒有評論...</div>' + jobID.toString())
+                $(".comment_table").append('<div style="color:#AAA; text-align:center;">沒有評論...</div>')
             });
+        /*  */
        })   
 })
