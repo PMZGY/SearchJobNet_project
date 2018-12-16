@@ -274,11 +274,11 @@ namespace SearchJobNet_project.Models.CommentModel
             else
             {
                 //是職缺
-                jobID = Convert.ToInt32(jobID);
+                jobID = Convert.ToInt32(ID);
             }
 
             // 判斷是 會員功能呼叫 或是 職缺功能呼叫
-            string SQLComment = (phase == 0) ? string.Format("AND C.USERID = '{0}'",memberID) : string.Format("AND C.JOB_ID = {0}",jobID);
+            string SQLComment = (phase == 0) ? string.Format("AND C.USER_ID = '{0}'", memberID) : string.Format("AND C.JOB_ID = {0}",jobID);
 
             DataTable dt = bsc.ReadDB(
                             string.Format(
