@@ -155,13 +155,13 @@ namespace SearchJobNet_project.Models.SearchJobModel
             {
                 joblist.Add(new SJM.SearchJobModel()
                 {
-                    Comp_ID = Convert.ToInt16(dt.Rows[i][0]),
+                    Comp_ID = dt.Rows[i][0].ToString(),
                     CompName = dt.Rows[i][1].ToString(),
                     CityName = dt.Rows[i][2].ToString(),
-                    Job_ID = Convert.ToInt16(dt.Rows[i][3]),
+                    Job_ID = dt.Rows[i][3].ToString(),
                     Occu_Desc = dt.Rows[i][4].ToString(),
                     Wk_Type = dt.Rows[i][5].ToString(),
-                    Cjob_ID = Convert.ToInt16(dt.Rows[i][6]),
+                    Cjob_ID = dt.Rows[i][6].ToString(),
                     Cjob_Name1 = dt.Rows[i][7].ToString()
                 });
             }
@@ -173,7 +173,7 @@ namespace SearchJobNet_project.Models.SearchJobModel
 
 
         // 搜尋職缺細項
-        public JM.JobModel jobDetail(int jobID)
+        public JM.JobModel jobDetail(string jobID)
         {
 
             // SQL指令 撈出職缺細項
@@ -192,7 +192,7 @@ namespace SearchJobNet_project.Models.SearchJobModel
                                 @"SELECT *
                                   FROM [Job] AS J , [Company] AS C , [JobType] AS JT 
                                   WHERE 1=1
-                                  AND J.JOB_ID = {0}
+                                  AND J.JOB_ID = '{0}'
                                   AND J.COMP_ID = C.COMP_ID
                                   AND J.CJOB_ID = JT.CJOB_ID"
                                   , jobID)
@@ -200,10 +200,10 @@ namespace SearchJobNet_project.Models.SearchJobModel
             JM.JobModel jmModel = new JM.JobModel();
             // 將DataTable的資料轉換為model 將職缺細項列出
 
-            jmModel.Job_ID = Convert.ToInt16(dt.Rows[0][0]);
+            jmModel.Job_ID = dt.Rows[0][0].ToString();
             jmModel.Occu_Desc = dt.Rows[0][1].ToString();
             jmModel.Wk_Type = dt.Rows[0][2].ToString();
-            jmModel.Cjob_ID = Convert.ToInt16(dt.Rows[0][3]);
+            jmModel.Cjob_ID = dt.Rows[0][3].ToString();
             jmModel.Cjob_Name1 = dt.Rows[0][4].ToString();
             jmModel.AvailReqNum = Convert.ToInt16(dt.Rows[0][5]);
             jmModel.Stop_Date = dt.Rows[0][6].ToString();
@@ -214,7 +214,7 @@ namespace SearchJobNet_project.Models.SearchJobModel
             jmModel.SalaryCd = dt.Rows[0][11].ToString();
             jmModel.EdGrDesc = dt.Rows[0][12].ToString();
             jmModel.Url_Query = dt.Rows[0][13].ToString();
-            jmModel.Comp_ID = Convert.ToInt16(dt.Rows[0][14]);
+            jmModel.Comp_ID = dt.Rows[0][14].ToString();
             jmModel.CompName = dt.Rows[0][15].ToString();
             jmModel.TranDate = dt.Rows[0][16].ToString();
 
@@ -223,6 +223,115 @@ namespace SearchJobNet_project.Models.SearchJobModel
             #endregion
 
             return jmModel;
+        }
+
+
+        // 搜尋我的最愛
+        public List<SJM.SearchJobModel> myFavorite(string user_ID)
+        {
+            #region [做DB連線 以及 執行DB處理]
+
+            // 建立DB連線
+            Tools.DBConnection bsc = new Tools.DBConnection();
+            #endregion
+            // 取出我的最愛
+            #region[ 取出我的最愛 ]
+            DataTable dt = bsc.ReadDB(
+                            string.Format(
+                            @"SELECT JOB_ID
+                                  FROM [MyFavorite] 
+                                  WHERE 1=1
+                                  AND USER_ID = '{0}'"
+                                  , user_ID)
+                                );
+            string[] job_ID = new string[dt.Rows.Count];
+            for (int i = 0; i < dt.Rows.Count; i++)
+            {
+                job_ID[i] = dt.Rows[i][0].ToString();
+            }
+
+            DataTable dt1 = bsc.ReadDB(
+                            string.Format(
+                            @"SELECT J.COMP_ID,C.COMPNAME,J.CITYNAME,J.JOB_ID,J.OCCU_DESC,J.WK_TYPE,J.CJOB_ID,JT.CJOB_NAME1
+                                  FROM [Job] AS J , [JobType] AS JT ,[Company] AS C
+                                  WHERE 1=1
+                                  AND J.CJOB_ID = JT.CJOB_ID
+                                  AND C.COMP_ID = J.COMP_ID
+                                  AND JOB_ID IN ({0})"
+                                  , job_ID)
+                                );
+
+            // 將DataTable的資料轉換為model
+            List<SJM.SearchJobModel> joblist = new List<SJM.SearchJobModel>();
+            for (int i = 0; i < dt1.Rows.Count; i++)
+            {
+                joblist.Add(new SJM.SearchJobModel()
+                {
+                    Comp_ID = dt1.Rows[i][0].ToString(),
+                    CompName = dt1.Rows[i][1].ToString(),
+                    CityName = dt1.Rows[i][2].ToString(),
+                    Job_ID = dt1.Rows[i][3].ToString(),
+                    Occu_Desc = dt1.Rows[i][4].ToString(),
+                    Wk_Type = dt1.Rows[i][5].ToString(),
+                    Cjob_ID = dt1.Rows[i][6].ToString(),
+                    Cjob_Name1 = dt1.Rows[i][7].ToString()
+                });
+            }
+
+            #endregion
+            return joblist;
+
+        }
+
+        // 新增我的最愛 [ 評論model的attr. 皆為填入項目 ]
+        public string insertMyFavorite(string user_ID, string job_ID)
+        {
+            #region [做DB連線 以及 執行DB處理]
+
+            // 建立DB連線
+            Tools.DBConnection bsc = new Tools.DBConnection();
+
+            // 放入 我的最愛的資料
+            string doDB = bsc.ActionDB(
+                            string.Format(
+                            @"INSERT INTO [MyFavorite] (USER_ID,JOB_ID)
+                              VALUES('{0}','{1}');"
+                              , user_ID, job_ID)
+                            );
+
+            // 如果 doDB為"success" ,代表DB連線成功 ,反之失敗
+            if (doDB != "success")
+            {
+                return "DB處理錯誤";
+            }
+
+            #endregion
+
+            #region[檢查DB內容]
+
+            // 查看是否新增成功
+            DataTable dt = bsc.ReadDB(
+                             string.Format(
+                             @"SELECT JOB_ID
+                                  FROM [MyFavorite] 
+                                  WHERE 1=1
+                                  AND USER_ID = '{0}'
+                                  AND JOB_ID = '{1}'"
+                                   , user_ID, job_ID)
+                                 );
+
+            // 判斷 DB 是否有插入一模一樣的資料筆
+            if (dt.Rows.Count == 0)
+            {
+                return "insert error!";
+            }
+            else
+            {
+                return "insert success!";
+            }
+
+            #endregion
+
         }
 
     }

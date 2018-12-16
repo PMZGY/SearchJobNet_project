@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using SJM = SearchJobNet_project.Models.SearchJobModel;
 using JM = SearchJobNet_project.Models.JobModel;
+using Newtonsoft.Json;
 
 namespace SearchJobNet_project.Controllers.JobController
 {
@@ -30,28 +31,48 @@ namespace SearchJobNet_project.Controllers.JobController
             SJM.SearchJob sjm = new SJM.SearchJob();
             List<SJM.SearchJobModel> sjModel = new List<SJM.SearchJobModel>();
             sjModel = sjm.jobList(searchModel);
-
-            return Json(this.Json(sjModel),JsonRequestBehavior.AllowGet);
+            string json = JsonConvert.SerializeObject(sjModel);
+            return Json(json);
         }
 
         //到職缺細項頁面
         // 傳入 職缺PK,執行 [查看職缺細項] 功能
         // 回傳 整筆資料或部分資料(list的JobModel型態)
-        public ActionResult toJobDetailView(int JobID)
+
+            //for test 12/16
+
+        //public ActionResult toJobDetailView(string jobID)
+        public ActionResult toJobDetailView()
         {
             SJM.SearchJob sjm = new SJM.SearchJob();
             JM.JobModel jmModel = new JM.JobModel();
-            jmModel = sjm.jobDetail(JobID);
+            //jmModel = sjm.jobDetail(jobID);
+            jmModel = sjm.jobDetail("111");
             
             return View("JobDetailView", jmModel);
         }
 
         //到我的最愛頁面
-        public ActionResult toMyFavoriteView()
+        public ActionResult toMyFavoriteView(string user_ID )
         {
-            return View("MyFavoriteView");
+            SJM.SearchJob sjm = new SJM.SearchJob();
+            List<SJM.SearchJobModel> sjModel = new List<SJM.SearchJobModel>();
+            sjModel = sjm.myFavorite(user_ID);
+
+            return Json(this.Json(sjModel), JsonRequestBehavior.AllowGet);
+            //return View("MyFavoriteView");
         }
 
+        // 傳入 使用者ID與職缺ID,執行 [加到我的最愛] 功能
+        // 回傳 成功新增資料與否
+        [HttpPost]
+        public ActionResult insertMyFavorite(string user_ID , string job_ID)
+        {
+            string msg = "";
+            SJM.SearchJob sjm = new SJM.SearchJob();
+            msg = sjm.insertMyFavorite(user_ID, job_ID);
+            return Content(msg);
+        }
 
     }
 }
