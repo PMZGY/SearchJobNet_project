@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Web.Mvc;
 using CM = SearchJobNet_project.Models.CommentModel;
+using Newtonsoft.Json;
 
 namespace SearchJobNet_project.Controllers.CommentController
 {
@@ -63,7 +64,13 @@ namespace SearchJobNet_project.Controllers.CommentController
             CM.Comment comment = new CM.Comment();
             List<CM.CommentModel> cmMemberModel = new List<CM.CommentModel>();
             cmMemberModel = comment.browseMemberOrJobComment(ID, phase);
-            return View(cmMemberModel);
+
+            // message for debugged 12/16
+            string json = JsonConvert.SerializeObject(cmMemberModel);
+            System.Diagnostics.Debug.Print(json + "wwwwww");
+
+            // try to use json to det data 12/16
+            return Json(cmMemberModel);
         }
 
         #region [先暫時不用]

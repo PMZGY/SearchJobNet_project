@@ -37,11 +37,16 @@ namespace SearchJobNet_project.Controllers.JobController
         //到職缺細項頁面
         // 傳入 職缺PK,執行 [查看職缺細項] 功能
         // 回傳 整筆資料或部分資料(list的JobModel型態)
-        public ActionResult toJobDetailView(int JobID)
+
+            //for test 12/16
+
+        //public ActionResult toJobDetailView(jobID)
+        public ActionResult toJobDetailView()
         {
             SJM.SearchJob sjm = new SJM.SearchJob();
             JM.JobModel jmModel = new JM.JobModel();
-            jmModel = sjm.jobDetail(JobID);
+            //jmModel = sjm.jobDetail(jobID);
+            jmModel = sjm.jobDetail(111);
             
             return View("JobDetailView", jmModel);
         }

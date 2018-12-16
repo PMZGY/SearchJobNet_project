@@ -30,7 +30,7 @@
     }*/
 
     $("p[name='model_content']").css({
-        "background-color": "#81C7d4"
+        "background-color": "#A5DEE4"
     });
 
     $(".detail_table").css({
@@ -44,39 +44,55 @@
     })*/
 
     /* 以下function */
+    
+    $("Document").ready(function (jobID) {
+        console.log(jobID);
+            
+            /*用jobID去撈comment*/
+           var action = 'Comment/browseMenberComment'   
 
-    /*   $("Document").ready(function (jobID) {
-           //取要傳到的action url
-           var action = 'Comment/browseComment( jobid )'
-   
-   
-       })   */
+           var formData = {
+               Job_ID: jobID,
+               phase: 1
+           };
 
-    /*傳一個List<CommentModel> 進來  each 建一個 caotainer 來放資料*/
-    /*
-    Array.each(function (commentID) {
-        var comment_container = '<div class="container">' +
-                                    '<div class="row">'   +
-                                        '<div class="column">' +
-                                            //model.jobid
-                                        '</div>' +
-                                    '</div>' +
-                                    '<div class="row">' +
-                                        '<div class="column">' +
-                                            //model.userid
-                                        '</div>' +
-                                        '<div class="column">' +
-                                            //model.time
-                                        '</div>' +
-                                    '</div>' +
-                                    '<div class="row">' +
-                                        '<div class="column">' +
-                                            //model.contentTEXT
-                                        '</div>' +
-                                    '</div>' +
-                                '</div>'
+           $.post(action,formData)
+                .done(function (Data) {
+                    console.log(Data);
+                    /*傳一個List<CommentModel> 進來  each 建一個 container 來放資料*/
+                    $.each(Data,function (index , Model) {
+                        //建一個model來接值
+                        var commentModel = Model
+                 
+                        // var commentModel
 
-        $(".comment_table").append(comment_container)
-    })
-    */
+                        var comment_container = '<div class="container">' +
+                                                    '<div class="row">' +
+                                                        '<div class="column">' +
+                                                            commentModel.Job_ID
+                                                        '</div>' +
+                                                    '</div>' +
+                                                    '<div class="row">' +
+                                                        '<div class="column">' +
+                                                            //commentModel.userid
+                                                        '</div>' +
+                                                        '<div class="column">' +
+                                                            //commentModel.time
+                                                        '</div>' +
+                                                    '</div>' +
+                                                    '<div class="row">' +
+                                                        '<div class="column">' +
+                                                            //commentModel.contentTEXT
+                                                        '</div>' +
+                                                    '</div>' +
+                                                '</div>'
+
+                        $(".comment_table").append(comment_container)
+                    })
+                })
+            .fail(function () {
+                $(".comment_table").append('<div style="color:#AAA; text-align:center;">沒有評論...</div>')
+            });
+        /*  */
+       })   
 })
