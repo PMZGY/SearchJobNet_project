@@ -5,8 +5,10 @@
             transport: {
                 read: {
                     type: "POST",
-                    url: "/Job/SendJobListData?CompName=" + $("#CompName").val() + "&Wk_Type=" + $("#Wk_Type").val() + "&CityName=" + $("#CityName").val() + "&Cjob_Name1=" + $("#Cjob_Name1").val(),
-                    dataType: "json"
+                    url: "/Job/toMyFavoriteView?",
+                    dataType: "json",
+                    data: "user_ID=這裡放userID"
+                                  
                 }
             },
             schema: {
