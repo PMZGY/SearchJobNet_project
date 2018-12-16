@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using SJM = SearchJobNet_project.Models.SearchJobModel;
 using JM = SearchJobNet_project.Models.JobModel;
+using Newtonsoft.Json;
 
 namespace SearchJobNet_project.Controllers.JobController
 {
@@ -30,8 +31,8 @@ namespace SearchJobNet_project.Controllers.JobController
             SJM.SearchJob sjm = new SJM.SearchJob();
             List<SJM.SearchJobModel> sjModel = new List<SJM.SearchJobModel>();
             sjModel = sjm.jobList(searchModel);
-
-            return Json(this.Json(sjModel),JsonRequestBehavior.AllowGet);
+            string json = JsonConvert.SerializeObject(sjModel);
+            return Json(json);
         }
 
         //到職缺細項頁面
