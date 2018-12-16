@@ -18,10 +18,9 @@ namespace SearchJobNet_project.Models.CommentModel
             // 放入 commentID的資料
             string doDB = bsc.ActionDB(
                             string.Format(
-                            @"INSERT INTO [Comment] (COMMENT_ID,JOB_ID,USER_ID,CONTENT_TEXT,TIME,REPORT_NO,IS_ALIVE)
-                              VALUES({0},{1},'{2}','{3}','{4}',{5},'{6}');"
-                              ,iComment.Comment_ID ,iComment.Job_ID ,iComment.User_ID
-                              ,iComment.Content_Text ,iComment.Time ,iComment.Report_no ,iComment.Is_Alive)
+                            @"INSERT INTO [Comment] (JOB_ID,USER_ID,CONTENT_TEXT,TIME)
+                              VALUES({0},'{1}','{2}','{3}');"
+                              ,iComment.Job_ID ,iComment.User_ID,iComment.Content_Text ,iComment.Time)
                             );
 
             // 如果 doDB為"success" ,代表DB連線成功 ,反之失敗
@@ -47,13 +46,10 @@ namespace SearchJobNet_project.Models.CommentModel
                 // 判斷 DB 是否有插入一模一樣的資料筆
                 for (int i = 0; i < cm.Count; i++)
                 {
-                    if ((cm[i].Comment_ID   == iComment.Comment_ID) &&
-                        (cm[i].Job_ID       == iComment.Job_ID) &&
+                    if ((cm[i].Job_ID       == iComment.Job_ID) &&
                         (cm[i].User_ID      == iComment.User_ID) &&
                         (cm[i].Content_Text == iComment.Content_Text) &&
-                        (cm[i].Time         == iComment.Time) &&
-                        (cm[i].Report_no    == iComment.Report_no) &&
-                        (cm[i].Is_Alive     == iComment.Is_Alive)
+                        (cm[i].Time         == iComment.Time)                        
                       )
                     {
                         return "insert success!";
@@ -110,12 +106,8 @@ namespace SearchJobNet_project.Models.CommentModel
                 for (int i = 0; i < cm.Count; i++)
                 {
                     if ((cm[i].Comment_ID   == mComment.Comment_ID) &&
-                        (cm[i].Job_ID       == mComment.Job_ID) &&
-                        (cm[i].User_ID      == mComment.User_ID) &&
                         (cm[i].Content_Text == mComment.Content_Text) &&
-                        (cm[i].Time         == mComment.Time) &&
-                        (cm[i].Report_no    == mComment.Report_no) &&
-                        (cm[i].Is_Alive     == mComment.Is_Alive)
+                        (cm[i].Time         == mComment.Time)
                       )
                     {
                         return "modify success!";
