@@ -41,13 +41,13 @@ namespace SearchJobNet_project.Controllers.JobController
 
             //for test 12/16
 
-        //public ActionResult toJobDetailView(string jobID)
+        //public ActionResult toJobDetailView(int jobID)
         public ActionResult toJobDetailView()
         {
             SJM.SearchJob sjm = new SJM.SearchJob();
             JM.JobModel jmModel = new JM.JobModel();
             //jmModel = sjm.jobDetail(jobID);
-            jmModel = sjm.jobDetail("111");
+            jmModel = sjm.jobDetail(111);
             
             return View("JobDetailView", jmModel);
         }
@@ -66,7 +66,7 @@ namespace SearchJobNet_project.Controllers.JobController
         // 傳入 使用者ID與職缺ID,執行 [加到我的最愛] 功能
         // 回傳 成功新增資料與否
         [HttpPost]
-        public ActionResult insertMyFavorite(string user_ID , string job_ID)
+        public ActionResult insertMyFavorite(string user_ID , int job_ID)
         {
             string msg = "";
             SJM.SearchJob sjm = new SJM.SearchJob();
