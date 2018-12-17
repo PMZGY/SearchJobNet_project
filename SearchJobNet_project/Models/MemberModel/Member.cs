@@ -56,7 +56,7 @@ namespace SearchJobNet_project.Models.MemberModel
         }
 
         // 會員功能 登入 [ 會員model的attr. 皆為填入項目 ]
-        public string loginMember(MM.MemberModel lMember)
+        public MM.MemberModel loginMember(MM.MemberModel lMember)
         {
             MemberModel mm = this.memberData(lMember.UserName);
 
@@ -65,11 +65,14 @@ namespace SearchJobNet_project.Models.MemberModel
                 (lMember.PassWord == mm.PassWord)
                )
             {
-                return "login success!";
+                System.Diagnostics.Debug.Print("後端登入成功");
+                return mm;
             }
             else
             {
-                return "login error!";
+                mm.User_ID = "";
+                System.Diagnostics.Debug.Print("後端登入失敗");
+                return mm;
             }
         }
 
@@ -92,12 +95,22 @@ namespace SearchJobNet_project.Models.MemberModel
                               AND A.USERNAME = '{0}'"
                               , UserName)
                             );
-
-            // 將DataTable的資料轉換為model
-            bMemberModel.User_ID = null;
-            bMemberModel.UserName = dt.Rows[0][1].ToString();
-            bMemberModel.PassWord = dt.Rows[0][2].ToString();
-            bMemberModel.Re_Time = null;
+            
+            // 將DataTable的資料轉換為model  資料行小於0則塞空資料
+            if (dt.Rows.Count > 0)
+            {
+                bMemberModel.User_ID = dt.Rows[0][0].ToString();
+                bMemberModel.UserName = dt.Rows[0][1].ToString();
+                bMemberModel.PassWord = dt.Rows[0][2].ToString();
+                bMemberModel.Re_Time = null;
+            }
+            else
+            {
+                bMemberModel.User_ID = "";
+                bMemberModel.UserName = "";
+                bMemberModel.PassWord = "";
+                bMemberModel.Re_Time = null;
+            }
 
             return bMemberModel;
 

@@ -1,5 +1,15 @@
 ﻿@{
     Layout = null;
+    var suserID = "";                                                                                   //判斷是否登入 不然跳轉回主頁
+    if (Session["suserID"] == null || string.IsNullOrWhiteSpace(Session["suserID"].ToString()))
+    {
+        <script>alert("請先登入");</script>
+        Response.Write("<script>alert('請先登入!!'); location.href='/'; </script>");    //實現登入後alert然後跳轉
+    }
+    else
+    {
+        suserID = Session["suserID"].ToString();
+    }
 }
 
 <!DOCTYPE html>
@@ -36,6 +46,14 @@
     <link href="http://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
     <link href="http://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i" rel="stylesheet">
     <!-- //online fonts -->
+    <link href="~/Content/kendo/kendo.default.min.css" rel="stylesheet" />
+    <link href="~/Content/kendo/kendo.common.min.css" rel="stylesheet" />
+    <!-- jquery js -->
+    <script src="browser_components/js/jquery-2.2.3.min.js"></script>
+    <!-- //kendo js-->
+    <script src="~/scripts/kendo/kendo.all.min.js"></script>
+    <!--//history js 控制-->
+    <script src="~/scripts/History.js"></script>
 </head>
 
 <body>
@@ -113,7 +131,7 @@
                 <button class="btn btn-primary" id="commonGridButton">評論歷史紀錄</button>
             </div>
 
-            <div id="jobGrid">會在這邊產生Grid</div>
+            <div id="jobGrid">會在這邊產生Gridwwaaw</div>
             <div id="commonGrid">會在這邊產生Grid</div>
             
             <div class="clearfix"> </div>
@@ -192,8 +210,7 @@
         </div>
     </div>
     <!-- //bootstrap-modal-pop-up -->
-    <!-- js -->
-    <script src="browser_components/js/jquery-2.2.3.min.js"></script>
+   
     <!-- //js-->
     <!-- banner-responsive-slider -->
     <script src="browser_components/js/responsiveslides.min.js"></script>
