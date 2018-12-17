@@ -380,5 +380,43 @@ namespace SearchJobNet_project.Models.CommentModel
             #endregion
         }
 
+        // 瀏覽 [歷史評論]
+        public List<CM.CommentModel> browseHistoryComment(string user_ID)
+        {
+            List<CM.CommentModel> bCommentModel = new List<CM.CommentModel>();
+
+            // 建立DB連線
+            Tools.DBConnection bsc = new Tools.DBConnection();
+
+            #region[ 取出 USER_ID的評論 ]
+
+            DataTable dt = bsc.ReadDB(
+                            string.Format(
+                            @"SELECT J.COMPNAME ,J.OCCU_DESC ,C.TIME ,C.IS_ALIVE
+                              FROM [Comment] AS C , [Job] AS J
+                              WHERE 1=1
+                              AND C.JOB_ID = J.JOB_ID
+                              AND C.USER_ID = '{0}'"
+                              , user_ID)
+                            );
+
+            // 將DataTable的資料轉換為model
+            for (int i = 0; i < dt.Rows.Count; i++)
+            {
+                bCommentModel.Add(new CM.CommentModel
+                {
+                    CompName  = dt.Rows[i][0].ToString(),
+                    Occu_Desc = dt.Rows[i][1].ToString(),
+                    Time      = dt.Rows[i][2].ToString(),
+                    Is_Alive  = dt.Rows[i][3].ToString()
+                });
+            }
+
+            #endregion
+
+            return bCommentModel;
+
+        }
+
     }
 }

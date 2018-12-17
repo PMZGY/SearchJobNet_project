@@ -73,6 +73,22 @@ namespace SearchJobNet_project.Controllers.CommentController
             return Json(cmMemberModel);
         }
 
+
+        // 傳入 USER_ID ,執行 [瀏覽歷史評論] 功能
+        // 回傳 list的CommentModel型態
+        [HttpPost]
+        public ActionResult browseHistoryComment(string user_ID)
+        {
+            CM.Comment comment = new CM.Comment();
+            List<CM.CommentModel> cmHistoryModel = new List<CM.CommentModel>();
+            cmHistoryModel = comment.browseHistoryComment(user_ID);
+
+            return Json(cmHistoryModel);
+        }
+
+
+
+
         #region [先暫時不用]
         // 傳入 評論PK,執行 [瀏覽評論] 功能
         // 回傳 整筆資料或部分資料(list的CommentModel型態)
