@@ -53,12 +53,19 @@ namespace SearchJobNet_project.Controllers.JobController
         }
 
         //到我的最愛頁面
-        public ActionResult toMyFavoriteView(string user_ID )
+
+        public ActionResult toMyFavoriteView()
+        {
+            return View("MyFavoriteView");
+        }
+
+        public ActionResult memberToMyFavoriteView()
         {
             SJM.SearchJob sjm = new SJM.SearchJob();
             List<SJM.SearchJobModel> sjModel = new List<SJM.SearchJobModel>();
-            sjModel = sjm.myFavorite(user_ID);
-
+            string userID = Session["suserID"].ToString();
+            sjModel = sjm.myFavorite(userID);
+            
             return Json(this.Json(sjModel), JsonRequestBehavior.AllowGet);
             //return View("MyFavoriteView");
         }

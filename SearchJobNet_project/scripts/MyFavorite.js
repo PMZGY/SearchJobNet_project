@@ -5,9 +5,8 @@
             transport: {
                 read: {
                     type: "POST",
-                    url: "/Job/toMyFavoriteView?",
+                    url: "/Job/memberToMyFavoriteView",
                     dataType: "json",
-                    data: "user_ID=這裡放userID"
                                   
                 }
             },
