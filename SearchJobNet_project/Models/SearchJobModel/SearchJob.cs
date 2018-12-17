@@ -244,14 +244,23 @@ namespace SearchJobNet_project.Models.SearchJobModel
                                   AND USER_ID = '{0}'"
                                   , user_ID)
                                 );
-            int[] job_ID = new int[dt.Rows.Count];
+            //int[] job_ID = new int[dt.Rows.Count];
+            string job_ID = "";
+
             for (int i = 0; i < dt.Rows.Count; i++)
             {
-                job_ID[i] = Convert.ToInt16(dt.Rows[i][0]);
+                if (i == 0)
+                {
+                    job_ID = Convert.ToString(dt.Rows[i][0]);
+                }
+                else {
+                    job_ID = job_ID + ','+ Convert.ToString(dt.Rows[i][0]);
+                }
+               
             }
             List<SJM.SearchJobModel> joblist = new List<SJM.SearchJobModel>();
 
-            if (job_ID.Length > 0) {
+            if (dt.Rows.Count > 0) {
                 DataTable dt1 = bsc.ReadDB(
                             string.Format(
                             @"SELECT J.COMP_ID,C.COMPNAME,J.CITYNAME,J.JOB_ID,J.OCCU_DESC,J.WK_TYPE,J.CJOB_ID,JT.CJOB_NAME1
@@ -268,13 +277,13 @@ namespace SearchJobNet_project.Models.SearchJobModel
                 {
                     joblist.Add(new SJM.SearchJobModel()
                     {
-                        Comp_ID = Convert.ToInt16(dt.Rows[i][0]),
+                        Comp_ID = Convert.ToInt16(dt1.Rows[i][0]),
                         CompName = dt1.Rows[i][1].ToString(),
                         CityName = dt1.Rows[i][2].ToString(),
-                        Job_ID = Convert.ToInt16(dt.Rows[i][3]),
+                        Job_ID = Convert.ToInt16(dt1.Rows[i][3]),
                         Occu_Desc = dt1.Rows[i][4].ToString(),
                         Wk_Type = dt1.Rows[i][5].ToString(),
-                        Cjob_ID = Convert.ToInt16(dt.Rows[i][6]),
+                        Cjob_ID = Convert.ToInt16(dt1.Rows[i][6]),
                         Cjob_Name1 = dt1.Rows[i][7].ToString()
                     });
                 }
