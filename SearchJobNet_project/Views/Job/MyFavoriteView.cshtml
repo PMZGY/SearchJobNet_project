@@ -1,5 +1,15 @@
 ﻿@{
     Layout = null;
+    var suserID = "";                                                                                   //判斷是否登入 不然跳轉回主頁
+    if (Session["suserID"] == null || string.IsNullOrWhiteSpace(Session["suserID"].ToString()))
+    {
+        <script>alert("請先登入");</script>
+        Response.Write("<script>alert('請先登入!!'); location.href='/'; </script>");    //實現登入後alert然後跳轉
+    }
+    else
+    {
+        suserID = Session["suserID"].ToString();
+    }
 }
 
 <!DOCTYPE html>
@@ -29,13 +39,19 @@
     <link href="~/browser_components/css/lightcase.css" rel="stylesheet" type="text/css" />
     <!-- css file -->
     <!-- Testimonials-slider-css-files -->
-    <link rel="stylesheet" href="~/css/owl.carousel.css" type="text/css" media="all">
     <link href="~/browser_components/css/owl.theme.css" rel="stylesheet">
     <!-- //Testimonials-slider-css-files -->
     <!-- online fonts -->
     <link href="http://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
     <link href="http://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i" rel="stylesheet">
     <!-- //online fonts -->
+    <link href="~/Content/kendo/kendo.default.min.css" rel="stylesheet" />
+    <link href="~/Content/kendo/kendo.common.min.css" rel="stylesheet" />
+    <!-- js -->
+    <script src="~/browser_components/js/jquery-2.2.3.min.js"></script>
+    <!-- //js-->
+    <script src="~/scripts/kendo/kendo.all.min.js"></script>
+    <script src="~/scripts/MyFavorite.js"></script>
 </head>
 
 <body>
@@ -49,10 +65,6 @@
                     <div class="w3-header-top-right">
                         <div class="agileinfo-social-grids">
                             <ul>
-                                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                <li><a href="#"><i class="fa fa-rss"></i></a></li>
-                                <li><a href="#"><i class="fa fa-vk"></i></a></li>
                             </ul>
                         </div>
                         <div class="clearfix"> </div>
@@ -80,7 +92,7 @@
 
                     <!-- Collect the nav links, forms, and other content for toggling -->
                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                        <ul class="nav navbar-nav link-effect-4">
+                        <ul class="nav navbar-nav link-effect-4" style="font-size:large">
                             <li class="active first-list">@Html.ActionLink("回首頁", "Index", "Home") </li>
                             <li><a href="#" data-toggle="modal" data-target="#searchjob">職缺查詢</a> </li>
                             <li>@Html.ActionLink("我的最愛", "toMyFavoriteView", "Job") </li>
@@ -119,7 +131,7 @@
             <div class="container">
                 <div class="col-md-8 w3-agile-grid">
                     <h5>About Us</h5>
-                    <p>中中與他們的夥伴</p>
+                    <p style="font-family: 'Microsoft JhengHei'">中央大學資訊管理研究所碩士一年級<br />陳芃諭 王美淋 鍾文翔 劉冠慶 蔡沅廷</p>
 
                 </div>
 
@@ -167,7 +179,7 @@
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 </div>
                 <div class="modal-body">
-                    <img src="browser_components/images/modal1.jpg" alt=" " class="img-responsive" />
+                    <img src="~/browser_components/images/modal1.jpg" alt=" " class="img-responsive" />
                     <p>
                         Ut enim ad minima veniam, quis nostrum
                         exercitationem ullam corporis suscipit laboriosam,
@@ -185,9 +197,54 @@
         </div>
     </div>
     <!-- //bootstrap-modal-pop-up -->
-    <!-- js -->
-    <script src="~/browser_components/js/jquery-2.2.3.min.js"></script>
-    <!-- //js-->
+
+    <!--搜尋職缺popup-->
+    <!-- bootstrap-modal-pop-up -->
+    <div class="modal video-modal fade" id="searchjob" tabindex="-1" role="dialog" aria-labelledby="searchjob">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    搜尋職缺
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                </div>
+
+                <div class="modal-body">
+                    <img src="~/browser_components/images/modal1.jpg" alt=" " class="img-responsive" />
+
+                    <ul class="fields" vailgn="center">
+
+                        <li class="first-list">
+                            <div class="fields-label" style="margin-top:20px;margin-left:180px;">
+                                @Html.Label("公司名稱：", new { style = "width: 80px;" })
+                                <input id="DCompName" class="k-textbox k-input" style="width:160px;" />
+                            </div>
+                            <div class="fields-value" style="margin-top:20px;margin-left:180px">
+                                @Html.Label("工作性質：", new { style = "width: 80px;" })
+                                @Html.DropDownList("工作性質", (IEnumerable<SelectListItem>)ViewBag.DWorkType, "不拘", new { @class = "k-textbox k-input", style = "width:160px;", id = "DWorkType" })
+
+                            </div>
+                            <div class="fields-value" style="margin-top:20px;margin-left:180px">
+                                @Html.Label("工作地點：", new { style = "width: 80px;" })
+                                @Html.DropDownList("工作地點", (IEnumerable<SelectListItem>)ViewBag.DCityName, "不拘", new { @class = "k-textbox k-input", style = "width:160px;", id = "DCityName" })
+
+                            </div>
+                            <div class="fields-value" style="margin-top:20px;margin-left:180px">
+                                @Html.Label("職務類別：", new { style = "width: 80px;" })
+                                @Html.DropDownList("請選擇職務類別", (IEnumerable<SelectListItem>)ViewBag.DCjob_Name1, "不拘", new { @class = "k-textbox k-input", style = "width:160px;", id = "DCjob_Name1" })
+
+                            </div>
+                        </li>
+
+                    </ul>
+                    <div class="form-footer" style="text-align:right;margin-right:30px;margin-bottom:20px">
+                        <button type="submit" class="btn btn-primary" id="searchJobButton">搜尋</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!-- //bootstrap-modal-pop-up -->
     <!-- banner-responsive-slider -->
     <script src="~/browser_components/js/responsiveslides.min.js"></script>
     <script>

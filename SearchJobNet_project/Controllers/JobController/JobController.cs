@@ -16,6 +16,12 @@ namespace SearchJobNet_project.Controllers.JobController
         // 回傳 職缺清單
         public ActionResult Index(SJM.SearchJobModel searchModel)
         {
+            // 搜尋職缺欄位內容種類
+            SJM.SearchJob sjm = new SJM.SearchJob();
+            ViewBag.DWorkType = sjm.getWorkType();
+            ViewBag.DCityName = sjm.getCityName();
+            ViewBag.DCjob_Name1 = sjm.getCjob_Name1();
+
             ViewBag.CityName = searchModel.CityName;
             ViewBag.Wk_Type = searchModel.Wk_Type;
             ViewBag.CompName = searchModel.CompName;
@@ -53,12 +59,23 @@ namespace SearchJobNet_project.Controllers.JobController
         }
 
         //到我的最愛頁面
-        public ActionResult toMyFavoriteView(string user_ID )
+
+        public ActionResult toMyFavoriteView()
+        {
+            SJM.SearchJob sjm = new SJM.SearchJob();
+            ViewBag.DWorkType = sjm.getWorkType();
+            ViewBag.DCityName = sjm.getCityName();
+            ViewBag.DCjob_Name1 = sjm.getCjob_Name1();
+            return View("MyFavoriteView");
+        }
+
+        public ActionResult memberToMyFavoriteView()
         {
             SJM.SearchJob sjm = new SJM.SearchJob();
             List<SJM.SearchJobModel> sjModel = new List<SJM.SearchJobModel>();
-            sjModel = sjm.myFavorite(user_ID);
-
+            string userID = Session["suserID"].ToString();
+            sjModel = sjm.myFavorite(userID);
+            
             return Json(this.Json(sjModel), JsonRequestBehavior.AllowGet);
             //return View("MyFavoriteView");
         }
@@ -66,7 +83,7 @@ namespace SearchJobNet_project.Controllers.JobController
         // 傳入 使用者ID與職缺ID,執行 [加到我的最愛] 功能
         // 回傳 成功新增資料與否
         [HttpPost]
-        public ActionResult insertMyFavorite(string user_ID , string job_ID)
+        public ActionResult insertMyFavorite(string user_ID , int job_ID)
         {
             string msg = "";
             SJM.SearchJob sjm = new SJM.SearchJob();
@@ -74,5 +91,15 @@ namespace SearchJobNet_project.Controllers.JobController
             return Content(msg);
         }
 
+        // 傳入 使用者ID與職缺ID [刪除我的最愛] 功能
+        // 回傳 成功修改資料與否
+        [HttpPost]
+        public ActionResult deleteComment(string user_ID, int job_ID)
+        {
+            string msg = "";
+            SJM.SearchJob sjm = new SJM.SearchJob();
+            //           msg = sjm.delMyFavorite(user_ID, job_ID);
+            return Content(msg);
+        }
     }
 }

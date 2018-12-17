@@ -41,7 +41,7 @@
     <script src="~/browser_components/js/jquery-2.2.3.min.js"></script>
     <!-- //js-->
     <script src="~/scripts/kendo/kendo.all.min.js"></script>
-
+    <link href="~/scripts/Shared.css" rel="stylesheet" />
     <script src="~/scripts/JobList.js"></script>
 
 </head>
@@ -57,10 +57,7 @@
                     <div class="w3-header-top-right">
                         <div class="agileinfo-social-grids">
                             <ul>
-                                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                <li><a href="#"><i class="fa fa-rss"></i></a></li>
-                                <li><a href="#"><i class="fa fa-vk"></i></a></li>
+                                <img src="~/browser_components/images/login.png" class="img-responsive" width="40" height="40" data-toggle="modal" data-target="#member" /> 
                             </ul>
                         </div>
                         <div class="clearfix"> </div>
@@ -88,7 +85,7 @@
 
                     <!-- Collect the nav links, forms, and other content for toggling -->
                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                        <ul class="nav navbar-nav link-effect-4">
+                        <ul class="nav navbar-nav link-effect-4" style="font-size:large">
                             <li class="active first-list">@Html.ActionLink("回首頁", "Index", "Home") </li>
                             <li><a href="#" data-toggle="modal" data-target="#searchjob">職缺查詢</a> </li>
                             <li>@Html.ActionLink("我的最愛", "toMyFavoriteView", "Job") </li>
@@ -113,7 +110,7 @@
     <div id="about" class="banner-bottom">
         <div class="container">
             <div class="wls_head_all">
-                <h3>職缺</h3>
+                <h3 style="font-family: 'Microsoft JhengHei'">職缺</h3>
             </div>
             <!--產生職缺項目表單-->
             <div id="grid"></div>
@@ -128,7 +125,7 @@
             <div class="container">
                 <div class="col-md-8 w3-agile-grid">
                     <h5>About Us</h5>
-                    <p>中中與他們的夥伴</p>
+                    <p style="font-family: 'Microsoft JhengHei'">中央大學資訊管理研究所碩士一年級<br />陳芃諭 王美淋 鍾文翔 劉冠慶 蔡沅廷</p>
 
                 </div>
 
@@ -194,6 +191,140 @@
 		});
     </script>
     <!-- //banner-responsive-slider -->
+
+    <!--搜尋職缺popup-->
+    <!-- bootstrap-modal-pop-up -->
+    <div class="modal video-modal fade" id="searchjob" tabindex="-1" role="dialog" aria-labelledby="searchjob">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    搜尋職缺
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                </div>
+
+                <div class="modal-body">
+                    <img src="~/browser_components/images/modal1.jpg" alt=" " class="img-responsive" />
+
+                    <ul class="fields" vailgn="center">
+
+                        <li class="first-list">
+                            <div class="fields-label" style="margin-top:20px;margin-left:180px;">
+                                @Html.Label("公司名稱：", new { style = "width: 80px;" })
+                                <input id="DCompName" class="k-textbox k-input" style="width:160px;" />
+                            </div>
+                            <div class="fields-value" style="margin-top:20px;margin-left:180px">
+                                @Html.Label("工作性質：", new { style = "width: 80px;" })
+                                @Html.DropDownList("工作性質", (IEnumerable<SelectListItem>)ViewBag.DWorkType, "不拘", new { @class = "k-textbox k-input", style = "width:160px;", id = "DWorkType" })
+
+                            </div>
+                            <div class="fields-value" style="margin-top:20px;margin-left:180px">
+                                @Html.Label("工作地點：", new { style = "width: 80px;" })
+                                @Html.DropDownList("工作地點", (IEnumerable<SelectListItem>)ViewBag.DCityName, "不拘", new { @class = "k-textbox k-input", style = "width:160px;", id = "DCityName" })
+
+                            </div>
+                            <div class="fields-value" style="margin-top:20px;margin-left:180px">
+                                @Html.Label("職務類別：", new { style = "width: 80px;" })
+                                @Html.DropDownList("請選擇職務類別", (IEnumerable<SelectListItem>)ViewBag.DCjob_Name1, "不拘", new { @class = "k-textbox k-input", style = "width:160px;", id = "DCjob_Name1" })
+
+                            </div>
+                        </li>
+
+                    </ul>
+                    <div class="form-footer" style="text-align:right;margin-right:30px;margin-bottom:20px">
+                        <button type="submit" class="btn btn-primary" id="searchJobButton">搜尋</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!-- //bootstrap-modal-pop-up -->
+
+    <!--會員popup-->
+    <!-- bootstrap-modal-pop-up -->
+    <div class="modal video-modal fade" id="member" tabindex="-1" role="dialog" aria-labelledby="member">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    會員登入
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                </div>
+
+                <div class="modal-body">
+                    <img src="~/browser_components/images/welcome.png" class="img-responsive" />
+
+                    <ul class="fields" vailgn="center">
+
+                        <li class="first-list">
+                            <div class="fields-label fields-label-50" style="margin-top:20px;margin-left:180px">
+                                @Html.Label("帳號：", new { style = "width: 50px" })
+                                <input id="UserName" class="k-textbox k-input" style="width:160px;" minlength="8" required validationMessage="請輸入帳號" />
+                            </div>
+                            <div class="fields-label fields-label-50" style="margin-top:20px;margin-left:180px;margin-bottom:20px">
+                                @Html.Label("密碼：", new { style = "width: 50px" })
+                                <input type="password" id="PassWord" class="k-textbox k-input" style="width:160px;" minlength="8" required validationMessage="請輸入密碼" />
+                            </div>
+                            <div class="form-footer" style="margin-left:230px;margin-bottom:20px">
+                                <button style="margin-right:20px" type="submit" data-toggle="modal" data-target="#memberRegister" class="btn btn-primary" data-url="@Url.Action("Index", "Job")">註冊</button>
+                                <button type="submit" class="btn btn-primary" id="login">登入</button>
+                            </div>
+                        </li>
+
+                    </ul>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+    <!-- //bootstrap-modal-pop-up -->
+
+    <!--註冊popup-->
+    <!-- bootstrap-modal-pop-up -->
+    <div class="modal video-modal fade" id="memberRegister" tabindex="-1" role="dialog" aria-labelledby="memberRegister" style="font-family: 'Microsoft JhengHei'">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    會員註冊
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                </div>
+
+                <div class="modal-body">
+                    <img src="~/browser_components/images/modal1.jpg" alt=" " class="img-responsive" />
+
+                    <ul class="fields" vailgn="center">
+
+                        <li class="first-list">
+                            <div class="fields-label fields-label-50" style="margin-top:20px;margin-left:20px">
+                                @Html.Label("帳號：", new { style = "width: 50px" })
+                                <input id="account" value="ponpon111" class="k-textbox k-input" style="width:160px;" minlength="8" required validationMessage="請輸入帳號" />
+                            </div>
+                            <div class="fields-label fields-label-50" style="margin-top:20px;margin-left:20px;margin-bottom:20px">
+                                @Html.Label("密碼：", new { style = "width: 50px" })
+                                <input type="password" value="12345678911" id="password" class="k-textbox k-input" style="width:160px;" minlength="8" required validationMessage="請輸入密碼" />
+                            </div>
+                            <div class="fields-label fields-label-50" style="margin-top:20px;margin-left:20px;margin-bottom:20px">
+                                @Html.Label("確認密碼：", new { style = "width: 100px" })
+                                <input type="password" value="12345678911" id="confirmpassword" class="k-textbox k-input" style="width:160px;" minlength="8" required validationMessage="請輸入密碼" />
+                            </div>
+                            <div class="fields-label fields-label-50" style="margin-top:20px;margin-left:20px;margin-bottom:20px">
+                                @Html.Label("身分證字號：", new { style = "width: 100px" })
+                                <input id="personid" value="F111111111" class="k-textbox k-input" style="width:160px;" minlength="8" required validationMessage="請輸入身分證字號" />
+                            </div>
+                            <div class="form-footer" style="margin-left:20px;margin-bottom:20px">
+                                <button style="margin-right:20px" type="submit" class="btn btn-primary" id="register">確認</button>
+                            </div>
+                        </li>
+
+                    </ul>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+    <!-- //bootstrap-modal-pop-up -->
+
     <!-- light-case -->
     <script src="~/browser_components/js/lightcase.js"></script>
     <script>

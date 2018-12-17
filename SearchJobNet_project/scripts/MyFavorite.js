@@ -5,9 +5,8 @@
             transport: {
                 read: {
                     type: "POST",
-                    url: "/Job/toMyFavoriteView?",
+                    url: "/Job/memberToMyFavoriteView",
                     dataType: "json",
-                    data: "user_ID=這裡放userID"
                                   
                 }
             },
@@ -42,36 +41,10 @@
         ]
     });
 
-
-
-    //$("#grid").kendoGrid({
-    //    dataSource: {
-    //        data: Job,
-    //        schema: {
-    //            model: {
-    //                fields: {
-    //                    CompName: { type: "string" },
-    //                    Occu_Desc: { type: "string" },
-    //                    CityName: { type: "string" }
-    //                }
-    //            }
-    //        },
-    //        pageSize: 20
-    //    },
-    //    height: 550,
-    //    scrollable: true,
-    //    sortable: true,
-    //    filterable: true,
-    //    pageable: {
-    //        input: true,
-    //        numeric: false
-    //    },
-    //    columns: [
-    //        { field: "CompName", title: "公司名稱", width: "300px" },
-    //        { field: "Occu_Desc", title: "職務名稱", width: "300px" },
-    //        { field: "CityName", title: "地點", width: "130px" }
-    //    ]
-    //});
+    //點擊搜索職缺
+    $("#searchJobButton").click(function (e) {
+        document.location.href = "/Job/Index?CompName=" + $('#DCompName').val() + "&Wk_Type=" + $("#DWorkType option:selected").text() + "&CityName=" + $("#DCityName option:selected").text() + "&Cjob_Name1=" + $("#DCjob_Name1 option:selected").text();
+    })
 
 
 })
