@@ -5,13 +5,11 @@ using SJM = SearchJobNet_project.Models.SearchJobModel;
 namespace SearchJobNet_project.Models.HistoryModel
 {
 	public class HistoryModel
-	{
-        
-       
+	{              
         ///<summary> 發表者 </summary>
         [Required]
         [Display(Name = "發表者")]
-        public int User_ID { get; set; }
+        public string User_ID { get; set; }
 
         ///<summary> 職缺 </summary>
         [Required]
@@ -24,9 +22,9 @@ namespace SearchJobNet_project.Models.HistoryModel
         public string Time { get; set; }
 
         ///<summary> 評論model </summary>
-        public List<CM.CommentModel> commentModel { get; set; }
+        public CM.CommentModel commentModel { get; set; }
 
         ///<summary> search job model </summary>
-        public List<SJM.SearchJobModel> searchjobModel { get; set; }
+        public SJM.SearchJobModel searchjobModel { get; set; }
     }
 }

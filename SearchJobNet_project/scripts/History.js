@@ -1,27 +1,36 @@
 ﻿$(function () {
-
-
-
-    $("#jobgrid").kendoGrid({
+   
+    //頁面進來只顯示瀏覽history 隱藏評論history
+    $("#commonGrid").hide();
+    $("#jobGrid").show();
+    //呼叫job grid
+    $("#jobGrid").kendoGrid({
+        
         dataSource: {
+            
             transport: {
                 read: {
+                    type: "POST",
                     url: "/History/browseHistoryjob",
-                    dataType: "json"
+                    dataType: "json",
+                   
+                    
                 }
 
             },
+           
             schema: {
                 model: {
                     fields: {
-                        Comp_ID: { type: "number" },
-                        CompName: { type: "string" },
-                        Job_ID: { type: "string" },
-                        CityName: { type: "string" },
-                        Occu_Desc: { type: "string" },
-                        Wk_Type: { type: "string" },
-                        Cjob_ID: { type: "number" },
-                        Cjob_Name1: { type: "string" }
+                        searchjobModel:{Comp_ID: { type: "number" },
+                            CompName: { type: "string" },
+                            Job_ID: { type: "string" },
+                            CityName: { type: "string" },
+                            Occu_Desc: { type: "string" },
+                            Wk_Type: { type: "string" },
+                            Cjob_ID: { type: "number" },
+                            Cjob_Name1: { type: "string" }},
+                        Time:{type:"string"}
                     }
                 }
             },
@@ -36,15 +45,77 @@
             numeric: false
         },
         columns: [
-            { field: "CompName", title: "公司名稱", width: "300px" },
-            { field: "Occu_Desc", title: "職務名稱", width: "300px" },
-            { field: "CityName", title: "地點", width: "130px" }
+            { field: "searchjobModel.CompName", title: "公司名稱", width: "130px" },
+            { field: "searchjobModel.Occu_Desc", title: "職務名稱", width: "130px" },
+            { field: "searchjobModel.CityName", title: "地點", width: "130px" },
+            { field: "Time", title: "上次瀏覽時間", width: "130px"}
         ]
+        
+    });
+ //按下job button只顯示瀏覽history 隱藏評論history
+$("#jobGridButton").click(function () {
+    $("#jobGrid").show();
+    $("#commonGrid").hide();
+
+});
+
+//按下comment button只顯示評論history 隱藏瀏覽history 
+$("#commonGridButton").click(function () {
+    $("#jobGrid").hide();
+    $("#commonGrid").show();
+    $("#commonGrid").kendoGrid({
+
+        dataSource: {
+
+            transport: {
+                read: {
+                    type: "POST",
+                    url: "/History/browseHistoryComment",
+                    dataType: "json",
+                    
+
+                }
+
+            },
+
+            schema: {
+                model: {
+                    fields: {
+                        Comment_ID   : { type: "number" },
+                        Job_ID      : { type: "number" },
+                        User_ID     : { type: "string" },
+                        Content_Text : { type: "string" },
+                        Time        : { type: "string" },
+                        Report_no   : { type: "number" },
+                        Is_Alive    : { type: "string" }
+                    }
+                }
+            },
+            pageSize: 20
+        },
+        height: 550,
+        scrollable: true,
+        sortable: true,
+        filterable: true,
+        pageable: {
+            input: true,
+            numeric: false
+        },
+        columns: [
+            { field: "Comment_ID", title: "評論id", width: "130px" },
+            { field: "Job_ID", title: "職務id", width: "130px" },
+            { field: "Is_Alive", title: "存活", width: "130px" },
+            { field: "Time", title: "上次評論時間", width: "130px" }
+        ]
+
     });
 
+});
+    
+})
 
 
-    //$("#grid").kendoGrid({
+//$("#grid").kendoGrid({
     //    dataSource: {
     //        data: Job,
     //        schema: {
@@ -72,6 +143,3 @@
     //        { field: "CityName", title: "地點", width: "130px" }
     //    ]
     //});
-
-
-})

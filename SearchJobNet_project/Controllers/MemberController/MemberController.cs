@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Web.Mvc;
 using MM = SearchJobNet_project.Models.MemberModel;
-
+using System.Collections.Generic;
 namespace SearchJobNet_project.Controllers.MemberController
 {
     public class MemberController : Controller
@@ -27,10 +27,13 @@ namespace SearchJobNet_project.Controllers.MemberController
         [HttpPost]
         public ActionResult loginMember(MM.MemberModel memberModel)
         {
-            string msg = "";
+            MM.MemberModel mbdata = new MM.MemberModel();
             MM.Member mb = new MM.Member();
-            msg = mb.loginMember(memberModel);
-            return Content(msg);
+            mbdata = mb.loginMember(memberModel);            
+            
+            Session["suserID"] = mbdata.User_ID;         //儲存seesion userID 如果沒登入則會存null
+            return Json(mbdata);
+            
         }
 
         #region[暫時先沒有忘記密碼功能]
