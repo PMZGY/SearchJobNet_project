@@ -39,10 +39,10 @@
         editable: "inline"
     });
 
-    $("#grid").data("kendoGrid").table.on("click", "tr", sendJobDetailId)
+    $("#grid").data("kendoGrid").table.on("click", "tr", sendJobDetailId);
 
     function sendJobDetailId(e) {
-        dataItem = $("#grid").data("kendoGrid").dataItem($(e.currentTarget).closest("tr")).Job_ID
+        dataItem = $("#grid").data("kendoGrid").dataItem($(e.currentTarget).closest("tr")).Job_ID;
         alert(dataItem);
     }
 

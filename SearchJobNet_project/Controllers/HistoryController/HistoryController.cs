@@ -26,7 +26,7 @@ namespace SearchJobNet_project.Controllers.HistoryController
         {
             string msg = "";
             HM.History hm = new HM.History();
-            msg = hm.insertHistory(userID,jobID);
+            msg = hm.insertHistory(Session["suserID"].ToString(), jobID);
             return msg;
         }
         // 傳入 使用者PK 執行 [瀏覽瀏覽職缺紀錄] 功能
@@ -49,12 +49,12 @@ namespace SearchJobNet_project.Controllers.HistoryController
 
         // 傳入 使用者PK 執行 [瀏覽歷史評論紀錄] 功能
         // 回傳 整筆資料或部分資料(json的HistoryModel型態)
-        public ActionResult browseHistoryComment(string userID)
+        public ActionResult browseHistoryComment()
         {
             System.Diagnostics.Debug.Print(Session["suserID"].ToString()+" this is");         
             CM.Comment comment = new CM.Comment();
             List<CM.CommentModel> hcommentModel = new List<CM.CommentModel>();
-            hcommentModel = comment.browseMemberOrJobComment(Session["suserID"].ToString(), 0);
+            hcommentModel = comment.browseHistoryComment(Session["suserID"].ToString());
            
 
             return Json(hcommentModel);

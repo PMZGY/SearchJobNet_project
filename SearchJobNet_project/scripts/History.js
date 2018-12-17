@@ -52,6 +52,12 @@
         ]
         
     });
+    $("#jobGrid").data("kendoGrid").table.on("click", "tr", sendJobDetailId);
+
+    function sendJobDetailId(e) {
+        dataItem = $("#jobGrid").data("kendoGrid").dataItem($(e.currentTarget).closest("tr")).searchjobModel.Job_ID;
+        alert(dataItem);
+    }
  //按下job button只顯示瀏覽history 隱藏評論history
 $("#jobGridButton").click(function () {
     $("#jobGrid").show();
@@ -81,13 +87,15 @@ $("#commonGridButton").click(function () {
             schema: {
                 model: {
                     fields: {
-                        Comment_ID   : { type: "number" },
-                        Job_ID      : { type: "number" },
-                        User_ID     : { type: "string" },
-                        Content_Text : { type: "string" },
-                        Time        : { type: "string" },
-                        Report_no   : { type: "number" },
-                        Is_Alive    : { type: "string" }
+                        Comment_ID   :  { type: "number" },
+                        Job_ID       :  { type: "number" },
+                        User_ID      :  { type: "string" },
+                        Content_Text :  { type: "string" },
+                        Time         :  { type: "string" },
+                        Report_no    :  { type: "number" },
+                        Is_Alive     :  { type: "string" },
+                        Occu_Desc    :  { type: "string" },
+                        CompName     :  { type: "string" }
                     }
                 }
             },
@@ -102,10 +110,11 @@ $("#commonGridButton").click(function () {
             numeric: false
         },
         columns: [
-            { field: "Comment_ID", title: "評論id", width: "130px" },
-            { field: "Job_ID", title: "職務id", width: "130px" },
-            { field: "Is_Alive", title: "存活", width: "130px" },
-            { field: "Time", title: "上次評論時間", width: "130px" }
+            { field: "Occu_Desc", title: "評論職務名稱", width: "110px" },
+            { field: "CompName", title: "評論公司名稱", width: "140px" },
+            { field: "Content_Text", title: "評論內容", width: "160px" },
+            { field: "Is_Alive", title: "是否存活", width: "80px" },
+            { field: "Time", title: "評論時間", width: "80px" }
         ]
 
     });
