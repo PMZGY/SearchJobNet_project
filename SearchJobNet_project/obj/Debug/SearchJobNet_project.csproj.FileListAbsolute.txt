@@ -92,6 +92,7 @@ E:\SearchJobNet_project\SearchJobNet_project\bin\System.Web.Mvc.xml
 E:\SearchJobNet_project\SearchJobNet_project\obj\Debug\SearchJobNet_project.csprojResolveAssemblyReference.cache
 E:\SearchJobNet_project\SearchJobNet_project\obj\Debug\SearchJobNet_project.dll
 E:\SearchJobNet_project\SearchJobNet_project\obj\Debug\SearchJobNet_project.pdb
+D:\SearchJob\SearchJobNet_project\obj\Debug\SearchJobNet_project.csprojResolveAssemblyReference.cache
 D:\SearchJob\SearchJobNet_project\bin\ApplicationInsights.config
 D:\SearchJob\SearchJobNet_project\bin\roslyn\csc.exe
 D:\SearchJob\SearchJobNet_project\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
