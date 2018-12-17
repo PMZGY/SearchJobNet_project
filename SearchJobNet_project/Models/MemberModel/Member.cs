@@ -95,7 +95,7 @@ namespace SearchJobNet_project.Models.MemberModel
                               AND A.USERNAME = '{0}'"
                               , UserName)
                             );
-            System.Diagnostics.Debug.Print(dt.Rows[0][0].ToString() + "wwwwww");
+            
             // 將DataTable的資料轉換為model  資料行小於0則塞空資料
             if (dt.Rows.Count > 0)
             {
