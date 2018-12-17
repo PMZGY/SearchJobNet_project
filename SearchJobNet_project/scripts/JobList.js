@@ -20,7 +20,6 @@
         serverSorting: true
     });
 
-    //判斷是否Grid有存在
     $("#grid").kendoGrid({
         dataSource: dataSrc,
         scrollable: true,
@@ -38,9 +37,14 @@
         ],
         editable: true,
         editable: "inline"
-
     });
 
+    $("#grid").data("kendoGrid").table.on("click", "tr", sendJobDetailId)
+
+    function sendJobDetailId(e) {
+        dataItem = $("#grid").data("kendoGrid").dataItem($(e.currentTarget).closest("tr")).Job_ID
+        alert(dataItem);
+    }
 
     //$("#grid").kendoGrid({
     //    dataSource: {
