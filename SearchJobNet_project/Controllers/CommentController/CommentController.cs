@@ -45,16 +45,16 @@ namespace SearchJobNet_project.Controllers.CommentController
             return Content(msg);
         }
 
-        // 傳入 評論model,執行 [檢舉評論] 功能
-        // 回傳 成功修改資料與否
-        [HttpPost]
-        public ActionResult reportComment(CM.CommentModel commentModel)
-        {
-            string msg = "";
-            CM.Comment cm = new CM.Comment();
-            msg = cm.reportComment(commentModel);
-            return Content(msg);
-        }
+        // 傳入 sessionID以及commentID ,執行 [檢舉評論] 功能
+        // 回傳 成功修改資料與否(string 型態)
+        //[HttpPost]
+        //public ActionResult reportComment(object formData)
+        //{
+        //    string msg = "";
+        //    CM.Comment cm = new CM.Comment();
+        //    msg = cm.reportComment(formData);
+        //    return Content(msg);
+        //}
 
         // 傳入 USERPK,執行 [瀏覽會員評論 / 職缺評論] 功能
         // 回傳 整筆資料或部分資料(list的CommentModel型態)

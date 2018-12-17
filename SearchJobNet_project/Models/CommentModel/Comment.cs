@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using CM = SearchJobNet_project.Models.CommentModel;
@@ -173,74 +174,96 @@ namespace SearchJobNet_project.Models.CommentModel
         }
 
         // 檢舉評論 [ 評論model的attr. commentID 和 time 為修改pk ]
-        public string reportComment(CM.CommentModel rComment)
-        {
-            #region[查看與修改 評論檢舉次數]
+        //public string reportComment(string formData)
+        //{
+        //    // 將formData 解json 序列化
+        //    CommentModel cm = JsonConvert.DeserializeObject<CommentModel>(formData);
 
-            // 檢查 評論檢舉次數是否到達五次
-            rComment.Report_no = rComment.Report_no + 1;
+        //    #region [做DB連線 以及 執行DB處理]
 
-            if (rComment.Report_no == 5)
-            {
-                rComment.Is_Alive = "true";
-            }
-            else
-            {
-                rComment.Is_Alive = "false";
-            }
+        //    // 建立DB連線
+        //    Tools.DBConnection bsc = new Tools.DBConnection();
 
-            #endregion
+        //    #region[判斷sessionID者是否曾經檢舉過此筆]
 
-            #region [做DB連線 以及 執行DB處理]
+        //    // 判斷sessionID者是否曾經檢舉過此筆
+        //    DataTable dt = bsc.ReadDB(
+        //                       string.Format(
+        //                       @"SELECT *
+        //                         FROM [Report] AS R
+        //                         WHERE 1=1
+        //                         AND R.USER_ID = '{0}'"
+        //                         , cm.SessionID)
+        //                        );
 
-            // 建立DB連線
-            Tools.DBConnection bsc = new Tools.DBConnection();
+        //    // 若已檢舉過 ,直接回傳"Can't report again!"
+        //    if (dt.Rows.Count > 0)
+        //    {
+        //        return "Can't report again!";
+        //    }
 
-            // 判斷檢舉次數 是否到達五次
-            string SQLComment = (rComment.Report_no == 5)?", Is_Alive  = \"false\"":"";
+        //    #endregion
+
+        //    #region[此筆評論增加report numbers ,判斷是否還存活 ,新增report table資料]
+
+        //    // 判斷此筆資料的 檢舉次數
+        //    DataTable reporttimes = bsc.ReadDB(
+        //                                string.Format(
+        //                                @"SELECT *
+        //                                    FROM [Report] AS R
+        //                                    WHERE 1=1
+        //                                    AND R.USER_ID = '{0}'"
+        //                                    , cm.SessionID)
+        //                                );
+
+        //    #endregion
+
+
+        //    // 判斷檢舉次數 是否到達五次
+        //    string SQLComment = (rComment.Report_no == 5)?", Is_Alive  = \"false\"":"";
             
-            // 修改 commentID的資料
-            String doDB = bsc.ActionDB(
-                            string.Format(
-                            @"UPDATE [Comment]
-                              SET REPORT_NO = {0}
-                                  '{1}'
-                              WHERE 1=1
-                              AND COMMENT_ID = {2}
-                              AND TIME = '{3}' ;"
-                                , rComment.Report_no, SQLComment, rComment.Comment_ID, rComment.Time)
-                            );
+        //    // 修改 commentID的資料
+        //    String doDB = bsc.ActionDB(
+        //                    string.Format(
+        //                    @"UPDATE [Comment]
+        //                      SET REPORT_NO = {0}
+        //                          '{1}'
+        //                      WHERE 1=1
+        //                      AND COMMENT_ID = {2}
+        //                      AND TIME = '{3}' ;"
+        //                        , rComment.Report_no, SQLComment, rComment.Comment_ID, rComment.Time)
+        //                    );
 
-            // 如果 doDB為"success" ,代表DB連線成功 ,反之失敗
-            if (doDB != "success")
-            {
-                return "DB處理錯誤";
-            }
+        //    // 如果 doDB為"success" ,代表DB連線成功 ,反之失敗
+        //    if (doDB != "success")
+        //    {
+        //        return "DB處理錯誤";
+        //    }
 
-            #endregion
+        //    #endregion
 
-            #region[檢查DB內容]
+        //    #region[檢查DB內容]
 
-            // 查看是否修改成功
-            List<CommentModel> cm = this.browseComment(rComment.Comment_ID);
+        //    // 查看是否修改成功
+        //    List<CommentModel> cm = this.browseComment(rComment.Comment_ID);
 
-            // 查看檢舉評論那筆 ,是否執行成功
+        //    // 查看檢舉評論那筆 ,是否執行成功
 
-            for (int i = 0; i < cm.Count; i++)
-            {
-                if ((cm[i].Comment_ID == rComment.Comment_ID) && 
-                    (cm[i].Time       == rComment.Time) &&
-                    (cm[i].Report_no  == rComment.Report_no)&&
-                    (cm[i].Is_Alive   == rComment.Is_Alive)
-                   )
-                {
-                    return "report success!";
-                }
-            }
-            return "delete success!";
+        //    for (int i = 0; i < cm.Count; i++)
+        //    {
+        //        if ((cm[i].Comment_ID == rComment.Comment_ID) && 
+        //            (cm[i].Time       == rComment.Time) &&
+        //            (cm[i].Report_no  == rComment.Report_no)&&
+        //            (cm[i].Is_Alive   == rComment.Is_Alive)
+        //           )
+        //        {
+        //            return "report success!";
+        //        }
+        //    }
+        //    return "delete success!";
             
-            #endregion
-        }
+        //    #endregion
+        //}
 
         // 瀏覽[會員= 0/職缺= 1]評論
         public List<CM.CommentModel> browseMemberOrJobComment(object ID,int phase)
