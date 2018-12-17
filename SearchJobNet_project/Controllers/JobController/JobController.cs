@@ -73,7 +73,7 @@ namespace SearchJobNet_project.Controllers.JobController
         // 傳入 使用者ID與職缺ID,執行 [加到我的最愛] 功能
         // 回傳 成功新增資料與否
         [HttpPost]
-        public ActionResult insertMyFavorite(string user_ID , string job_ID)
+        public ActionResult insertMyFavorite(string user_ID , int job_ID)
         {
             string msg = "";
             SJM.SearchJob sjm = new SJM.SearchJob();
@@ -81,5 +81,15 @@ namespace SearchJobNet_project.Controllers.JobController
             return Content(msg);
         }
 
+        // 傳入 使用者ID與職缺ID [刪除我的最愛] 功能
+        // 回傳 成功修改資料與否
+        [HttpPost]
+        public ActionResult deleteComment(string user_ID, int job_ID)
+        {
+            string msg = "";
+            SJM.SearchJob sjm = new SJM.SearchJob();
+            //           msg = sjm.delMyFavorite(user_ID, job_ID);
+            return Content(msg);
+        }
     }
 }

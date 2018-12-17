@@ -249,8 +249,10 @@ namespace SearchJobNet_project.Models.SearchJobModel
             {
                 job_ID[i] = Convert.ToInt16(dt.Rows[i][0]);
             }
+            List<SJM.SearchJobModel> joblist = new List<SJM.SearchJobModel>();
 
-            DataTable dt1 = bsc.ReadDB(
+            if (job_ID.Length > 0) {
+                DataTable dt1 = bsc.ReadDB(
                             string.Format(
                             @"SELECT J.COMP_ID,C.COMPNAME,J.CITYNAME,J.JOB_ID,J.OCCU_DESC,J.WK_TYPE,J.CJOB_ID,JT.CJOB_NAME1
                                   FROM [Job] AS J , [JobType] AS JT ,[Company] AS C
@@ -260,30 +262,32 @@ namespace SearchJobNet_project.Models.SearchJobModel
                                   AND JOB_ID IN ({0})"
                                   , job_ID)
                                 );
-
-            // 將DataTable的資料轉換為model
-            List<SJM.SearchJobModel> joblist = new List<SJM.SearchJobModel>();
-            for (int i = 0; i < dt1.Rows.Count; i++)
-            {
-                joblist.Add(new SJM.SearchJobModel()
+                // 將DataTable的資料轉換為model
+                
+                for (int i = 0; i < dt1.Rows.Count; i++)
                 {
-                    Comp_ID = Convert.ToInt16(dt.Rows[i][0]),
-                    CompName = dt1.Rows[i][1].ToString(),
-                    CityName = dt1.Rows[i][2].ToString(),
-                    Job_ID = Convert.ToInt16(dt.Rows[i][3]),
-                    Occu_Desc = dt1.Rows[i][4].ToString(),
-                    Wk_Type = dt1.Rows[i][5].ToString(),
-                    Cjob_ID = Convert.ToInt16(dt.Rows[i][6]),
-                    Cjob_Name1 = dt1.Rows[i][7].ToString()
-                });
+                    joblist.Add(new SJM.SearchJobModel()
+                    {
+                        Comp_ID = Convert.ToInt16(dt.Rows[i][0]),
+                        CompName = dt1.Rows[i][1].ToString(),
+                        CityName = dt1.Rows[i][2].ToString(),
+                        Job_ID = Convert.ToInt16(dt.Rows[i][3]),
+                        Occu_Desc = dt1.Rows[i][4].ToString(),
+                        Wk_Type = dt1.Rows[i][5].ToString(),
+                        Cjob_ID = Convert.ToInt16(dt.Rows[i][6]),
+                        Cjob_Name1 = dt1.Rows[i][7].ToString()
+                    });
+                }
             }
+
+            
 
             #endregion
             return joblist;
 
         }
 
-        // 新增我的最愛 [ 評論model的attr. 皆為填入項目 ]
+        // 新增我的最愛 
         public string insertMyFavorite(string user_ID, int job_ID)
         {
             #region [做DB連線 以及 執行DB處理]
@@ -332,6 +336,58 @@ namespace SearchJobNet_project.Models.SearchJobModel
 
             #endregion
 
+        }
+
+        // 刪除我的最愛 
+        public string delMyFavorite(string user_ID, int job_ID)
+        {
+            #region [做DB連線 以及 執行DB處理]
+
+            // 建立DB連線
+            Tools.DBConnection bsc = new Tools.DBConnection();
+
+            // 刪除 commentID的資料
+            String doDB = bsc.ActionDB(
+                            string.Format(
+                            @"DELETE FROM [MyFavorite]
+                              WHERE 1=1
+                              AND USER_ID = '{0}'
+                              AND JOB_ID = {1}"
+                            , user_ID, job_ID)
+                           );
+
+            // 如果 doDB為"success" ,代表DB連線成功 ,反之失敗
+            if (doDB != "success")
+            {
+                return "DB處理錯誤";
+            }
+
+            #endregion
+
+            #region[檢查DB內容]
+
+            // 查看是否刪除成功
+            DataTable dt = bsc.ReadDB(
+                             string.Format(
+                             @"SELECT JOB_ID
+                                  FROM [MyFavorite] 
+                                  WHERE 1=1
+                                  AND USER_ID = '{0}'
+                                  AND JOB_ID = {1}"
+                                   , user_ID, job_ID)
+                                 );
+
+            // 判斷 DB 是否還有一模一樣的資料筆
+            if (dt.Rows.Count == 0)
+            {
+                return "delete error!";
+            }
+            else
+            {
+                return "delete success!";
+            }
+
+            #endregion
         }
 
     }
