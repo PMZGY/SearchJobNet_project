@@ -16,6 +16,12 @@ namespace SearchJobNet_project.Controllers.JobController
         // 回傳 職缺清單
         public ActionResult Index(SJM.SearchJobModel searchModel)
         {
+            // 搜尋職缺欄位內容種類
+            SJM.SearchJob sjm = new SJM.SearchJob();
+            ViewBag.DWorkType = sjm.getWorkType();
+            ViewBag.DCityName = sjm.getCityName();
+            ViewBag.DCjob_Name1 = sjm.getCjob_Name1();
+
             ViewBag.CityName = searchModel.CityName;
             ViewBag.Wk_Type = searchModel.Wk_Type;
             ViewBag.CompName = searchModel.CompName;
@@ -56,6 +62,10 @@ namespace SearchJobNet_project.Controllers.JobController
 
         public ActionResult toMyFavoriteView()
         {
+            SJM.SearchJob sjm = new SJM.SearchJob();
+            ViewBag.DWorkType = sjm.getWorkType();
+            ViewBag.DCityName = sjm.getCityName();
+            ViewBag.DCjob_Name1 = sjm.getCjob_Name1();
             return View("MyFavoriteView");
         }
 

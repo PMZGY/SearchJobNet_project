@@ -215,11 +215,9 @@
     <Content Include="Content\kendo\kendo.default.min.css.map" />
     <Content Include="Content\kendo\kendo.speed.min.css.map" />
     <Content Include="Content\kendo\kendo.speed.mobile.min.css.map" />
-    <None Include="scripts\jquery-1.9.1.intellisense.js" />
+    <Content Include="browser_components\fonts\DFHsiu-W3-WINP-BF.woff" />
     <Content Include="scripts\JobDetail.js" />
     <Content Include="scripts\JobList.js" />
-    <Content Include="scripts\jquery-1.9.1.js" />
-    <Content Include="scripts\jquery-1.9.1.min.js" />
     <Content Include="scripts\kendo\cultures\kendo.culture.en-US.min.js" />
     <Content Include="scripts\kendo\cultures\kendo.culture.en.min.js" />
     <Content Include="scripts\kendo\cultures\kendo.culture.zh-CHS.min.js" />
@@ -256,6 +254,7 @@
     <Content Include="scripts\kendo\messages\kendo.messages.zh-HK.min.js" />
     <Content Include="scripts\kendo\messages\kendo.messages.zh-TW.min.js" />
     <Content Include="scripts\MyFavorite.js" />
+    <Content Include="scripts\Shared.css" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -294,7 +293,6 @@
     <Content Include="Views\Job\JobDetailView.cshtml" />
     <Content Include="Views\Job\JobListView.cshtml" />
     <Content Include="Views\Job\MyFavoriteView.cshtml" />
-    <Content Include="scripts\jquery-1.9.1.min.map" />
     <Content Include="scripts\kendo\kendo.all.min.js.map" />
     <Content Include="scripts\kendo\kendo.aspnetmvc.min.js.map" />
     <None Include="Web.Debug.config">
@@ -307,7 +305,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="browser_components\css\" />
-    <Folder Include="browser_components\fonts\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

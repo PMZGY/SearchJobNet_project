@@ -1,6 +1,6 @@
 ﻿$(function () {
 
-
+    //生JobListKendoGrid
     var dataSrc = new kendo.data.DataSource({
         transport: {
             read: {
@@ -46,77 +46,71 @@
         alert(dataItem);
     }
 
-    //$("#grid").kendoGrid({
-    //    dataSource: {
-    //        transport: {
-    //            read: {
-    //                type: "POST",
-    //                url: "/Job/SendJobListData?CompName=" + $("#CompName").val() + "&Wk_Type=" + $("#Wk_Type").val() + "&CityName=" + $("#CityName").val() + "&Cjob_Name1=" + $("#Cjob_Name1").val(),
-    //                dataType: "json"
-    //            }
-                
-    //        },
-    //        schema: {
-    //            model: {
-    //                fields: {
-    //                    Comp_ID:{type:"number"},
-    //                    CompName: { type: "string" },
-    //                    Job_ID:{type:"string"},
-    //                    CityName: { type: "string" },
-    //                    Occu_Desc: { type: "string" },
-    //                    Wk_Type:{type:"string"},
-    //                    Cjob_ID:{type:"number"},
-    //                    Cjob_Name1:{type:"string"}
-    //                }
-    //            }
-    //        },
-    //        pageSize: 20
-    //    },
-    //    height: 550,
-    //    scrollable: true,
-    //    sortable: true,
-    //    filterable: true,
-    //    pageable: {
-    //        input: true,
-    //        numeric: false
-    //    },
-    //    columns: [
-    //        { field: "CompName", title: "公司名稱", width: "300px" },
-    //        { field: "Occu_Desc", title: "職務名稱", width: "300px" },
-    //        { field: "CityName", title: "地點", width: "130px" }
-    //    ]
-    //});
+    //點擊搜索職缺
+    $("#searchJobButton").click(function (e) {
+        document.location.href = "/Job/Index?CompName=" + $('#DCompName').val() + "&Wk_Type=" + $("#DWorkType option:selected").text() + "&CityName=" + $("#DCityName option:selected").text() + "&Cjob_Name1=" + $("#DCjob_Name1 option:selected").text();
+    })
+
+    //點擊登入
+    $("#login").click(function (e) {
+        //取要傳到的action url
+        var action = '../Member/loginMember'
+
+        //取form資料
+        var formData = {
+            UserName: $('#UserName').val(),
+            PassWord: $('#PassWord').val()
+        };
+
+        //傳資料給後端
+        $.post(action, formData)
+            .done(function (Data) {
+                if (Data.User_ID != "")                                   //userid不為空則登入成功
+                    alert(Data.UserName + "登入成功!");
+
+                if (Data.User_ID == "")                                   //userid為空則登入失敗
+                    alert("帳號密碼錯誤!");
+                $('.close').click();
 
 
+            })
+            .fail(function (Data) {
 
-    //$("#grid").kendoGrid({
-    //    dataSource: {
-    //        data: Job,
-    //        schema: {
-    //            model: {
-    //                fields: {
-    //                    CompName: { type: "string" },
-    //                    Occu_Desc: { type: "string" },
-    //                    CityName: { type: "string" }
-    //                }
-    //            }
-    //        },
-    //        pageSize: 20
-    //    },
-    //    height: 550,
-    //    scrollable: true,
-    //    sortable: true,
-    //    filterable: true,
-    //    pageable: {
-    //        input: true,
-    //        numeric: false
-    //    },
-    //    columns: [
-    //        { field: "CompName", title: "公司名稱", width: "300px" },
-    //        { field: "Occu_Desc", title: "職務名稱", width: "300px" },
-    //        { field: "CityName", title: "地點", width: "130px" }
-    //    ]
-    //});
+                if (Data.User_ID == "")
+                    alert("登入失敗!");
+            });
+    })
+
+    //點擊註冊
+    $("#register").click(function (e) {
+        //取要傳到的action url
+        var action = '../Member/registerMember'
+        //取form資料
+        //var formData = $('form#memberRegisterTable').serializeArray();
+        if ($('#confirmpassword').val() === $('#password').val()) {
+            var formData = {
+                User_ID: $('#personid').val(),
+                UserName: $('#account').val(),
+                PassWord: $('#password').val(),
+                Re_Time: null
+            };
+            debugger;
+            //傳資料給後端
+            $.post(action, formData)
+                .done(function (Data) {
+                    debugger;
+                    if (Data == "insert success!")
+                        alert("註冊成功!");
+                    $('.close').click();
+                })
+                .fail(function (data) {
+                    alert("註冊失敗!");
+                });
+        } else {
+            alert("密碼輸入不同");
+        }
+
+    })
 
 
 })

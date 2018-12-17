@@ -43,7 +43,7 @@
     <script src="browser_components/js/jquery-2.2.3.min.js"></script>
     <!-- //js-->
     <script src="~/scripts/kendo/kendo.all.min.js"></script>
-
+    <link href="~/scripts/Shared.css" rel="stylesheet" />
     <script src="~/scripts/HomePage.js"></script>
 </head>
 
@@ -86,7 +86,7 @@
 
                     <!-- Collect the nav links, forms, and other content for toggling -->
                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                        <ul class="nav navbar-nav link-effect-4">
+                        <ul class="nav navbar-nav link-effect-4" style="font-size:large">
                             <li class="active first-list">@Html.ActionLink("回首頁","Index","Home") </li>
                             <li><a href="#" data-toggle="modal" data-target="#searchjob">職缺查詢</a> </li>
                             <li>@Html.ActionLink("我的最愛","toMyFavoriteView","Job") </li>
@@ -100,12 +100,12 @@
         <div class="w3layouts-banner-slider">
             <div class="container">
                 <div class="slider">
-                    <div class="callbacks_container">
+                    <div class="callbacks_container" style="font-family:Microsoft JhengHei;">
                         <ul class="rslides callbacks callbacks1" id="slider4">
                             <li>
                                 <div class="agileits-banner-info">
-                                    <h3>找到最適合您的職業</h3>
-                                    <p>薪資、待遇、職缺評價，你想看的資訊我們都幫你找好了</p>
+                                    <h3 style="font-family: 'Microsoft JhengHei'">找到最適合您的職業</h3>
+                                    <p style="font-family: 'Microsoft JhengHei'">薪資、待遇、職缺評價，你想看的資訊我們都幫你找好了</p>
                                     <div class="w3-button">
                                         <div class="w3ls-button">
                                             <a href="#" data-toggle="modal" data-target="#myModal">More</a>
@@ -115,19 +115,8 @@
                             </li>
                             <li>
                                 <div class="agileits-banner-info">
-                                    <h3>尋夢</h3>
-                                    <p>在我們的求職網上</p>
-                                    <div class="w3-button">
-                                        <div class="w3ls-button">
-                                            <a href="#" data-toggle="modal" data-target="#myModal">More</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="agileits-banner-info">
-                                    <h3>你們還想要加什麼字?????</h3>
-                                    <p></p>
+                                    <h3 style="font-family: 'Microsoft JhengHei'">尋夢</h3>
+                                    <p style="font-family: 'Microsoft JhengHei'">在我們的求職網上</p>
                                     <div class="w3-button">
                                         <div class="w3ls-button">
                                             <a href="#" data-toggle="modal" data-target="#myModal">More</a>
@@ -253,7 +242,7 @@
                         <ul class="fields" vailgn="center">
 
                             <li class="first-list">
-                                <div class="fields-label" style="margin-top:20px;margin-left:180px">
+                                <div class="fields-label" style="margin-top:20px;margin-left:180px;">
                                     @Html.Label("公司名稱：",new { style = "width: 80px;" })
                                     <input id="CompName" class="k-textbox k-input" style="width:160px;" />
                                 </div>
@@ -327,7 +316,7 @@
 
     <!--註冊popup-->
     <!-- bootstrap-modal-pop-up -->
-    <div class="modal video-modal fade" id="memberRegister" tabindex="-1" role="dialog" aria-labelledby="memberRegister">
+    <div class="modal video-modal fade" id="memberRegister" tabindex="-1" role="dialog" aria-labelledby="memberRegister" style="font-family: 'Microsoft JhengHei'">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
