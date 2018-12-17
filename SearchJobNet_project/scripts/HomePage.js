@@ -29,28 +29,34 @@ $(function () {
     })
 
     //點擊登入
-    $("#login").click(function (e) {
-        //取要傳到的action url
-        var action = '../Member/loginMember'
+   $("#login").click(function (e) {
+       //取要傳到的action url
+       var action = '../Member/loginMember'
 
-        //取form資料
-        var formData = {
-            UserName: $('#UserName').val(),
-            PassWord: $('#PassWord').val()
-        };
+       //取form資料
+       var formData = {
+           UserName: $('#UserName').val(),
+           PassWord: $('#PassWord').val()
+       };
 
-        //傳資料給後端
-        $.post(action, formData)
-            .done(function (Data) {
-                if (Data == "login success")
-                alert("登入成功!");
-                $('.close').click();
+       //傳資料給後端
+       $.post(action, formData)
+           .done(function (Data) {
+               if (Data.User_ID != "")                                   //userid不為空則登入成功
+                   alert(Data.UserName + "登入成功!");
 
-            })
-            .fail(function (data) {
-                alert("登入失敗!");
-            });
-    })
+               if (Data.User_ID == "")                                   //userid為空則登入失敗
+                   alert("帳號密碼錯誤!");
+               $('.close').click();
+
+
+           })
+           .fail(function (Data) {
+
+               if (Data.User_ID == "")
+                   alert("登入失敗!");
+           });
+   })
     
     //點擊註冊
     $("#register").click(function (e) {

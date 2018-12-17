@@ -3,6 +3,7 @@ using System.Web.Mvc;
 using HM = SearchJobNet_project.Models.HistoryModel;
 using CC = SearchJobNet_project.Controllers.CommentController;
 using CM = SearchJobNet_project.Models.CommentModel;
+using Newtonsoft.Json;
 
 namespace SearchJobNet_project.Controllers.HistoryController
 {
@@ -21,46 +22,42 @@ namespace SearchJobNet_project.Controllers.HistoryController
 
         // 傳入 歷史model, 執行[生成瀏覽職缺紀錄] 功能
         // 回傳 成功新增資料與否
-        public string insertHistory(HM.HistoryModel historyModel)
+        public string insertHistory(string userID,int jobID)
         {
             string msg = "";
             HM.History hm = new HM.History();
-            msg = hm.insertHistory(historyModel);
+            msg = hm.insertHistory(userID,jobID);
             return msg;
         }
-        // 傳入 使用者PK,職缺PK 執行 [瀏覽瀏覽職缺紀錄] 功能
-        // 回傳 整筆資料或部分資料(list的HistoryModel型態)
-        public ActionResult browseHistoryjob(int userID)
+        // 傳入 使用者PK 執行 [瀏覽瀏覽職缺紀錄] 功能
+        // 回傳 整筆資料或部分資料(json的HistoryModel型態)
+        public ActionResult browseHistoryjob()
         {
+            
             HM.History hm = new HM.History();
             List<HM.HistoryModel> hmModel = new List<HM.HistoryModel>();
-            hmModel = hm.browseHistoryjob(userID);
+             
+            hmModel = hm.browseHistoryjob(Session["suserID"].ToString());
+           
+           
+            string json = JsonConvert.SerializeObject(hmModel);
 
-            return Json(this.Json(hmModel), JsonRequestBehavior.AllowGet);
-            
+            return Json(hmModel);
+
         }
 
 
-        // 傳入 使用者PK 執行 [瀏覽評論紀錄] 功能
-        // 回傳 整筆資料或部分資料(list的HistoryModel型態)
-        //public List<HM.HistoryModel> browseHistorycomment(string userID)
-        //{
-        //    HM.History hm = new HM.History();
-        //    List<HM.HistoryModel> hmModel = new List<HM.HistoryModel>();
-        //    hmModel = hm.browseHistorycomment(userID);
-        //    return hmModel;
-        //}
-
-        // 串聯 歷史model與評論model
-        public List<CM.CommentModel> browseHistoryComment(int userID)
+        // 傳入 使用者PK 執行 [瀏覽歷史評論紀錄] 功能
+        // 回傳 整筆資料或部分資料(json的HistoryModel型態)
+        public ActionResult browseHistoryComment(string userID)
         {
-          
+            System.Diagnostics.Debug.Print(Session["suserID"].ToString()+" this is");         
             CM.Comment comment = new CM.Comment();
             List<CM.CommentModel> hcommentModel = new List<CM.CommentModel>();
-            hcommentModel = comment.browseMemberOrJobComment(userID, 0);
+            hcommentModel = comment.browseMemberOrJobComment(Session["suserID"].ToString(), 0);
            
 
-            return hcommentModel;
+            return Json(hcommentModel);
         }
 
 
