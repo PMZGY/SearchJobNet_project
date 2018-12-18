@@ -1,14 +1,13 @@
 ﻿using System.Collections.Generic;
 using System.Web.Mvc;
 using HM = SearchJobNet_project.Models.HistoryModel;
-using CC = SearchJobNet_project.Controllers.CommentController;
 using CM = SearchJobNet_project.Models.CommentModel;
-using Newtonsoft.Json;
+
 
 namespace SearchJobNet_project.Controllers.HistoryController
 {
-	public class HistoryController:Controller
-	{
+    public class HistoryController : Controller
+    {
         // 建立建構子
         public HistoryController() { }
 
@@ -36,14 +35,14 @@ namespace SearchJobNet_project.Controllers.HistoryController
         // 回傳 整筆資料或部分資料(json的HistoryModel型態)
         public ActionResult browseHistoryjob()
         {
-            
+
             HM.History hm = new HM.History();
             List<HM.HistoryModel> hmModel = new List<HM.HistoryModel>();
-             
+
             hmModel = hm.browseHistoryjob(Session["suserID"].ToString());
-           
-           
-            
+
+
+
 
             return Json(hmModel);
 
@@ -54,11 +53,11 @@ namespace SearchJobNet_project.Controllers.HistoryController
         // 回傳 整筆資料或部分資料(json的HistoryModel型態)
         public ActionResult browseHistoryComment()
         {
-            System.Diagnostics.Debug.Print(Session["suserID"].ToString()+" this is");         
+            System.Diagnostics.Debug.Print(Session["suserID"].ToString() + " this is");
             CM.Comment comment = new CM.Comment();
             List<CM.CommentModel> hcommentModel = new List<CM.CommentModel>();
             hcommentModel = comment.browseHistoryComment(Session["suserID"].ToString());
-           
+
 
             return Json(hcommentModel);
         }
