@@ -1,4 +1,5 @@
-﻿using System.Data;
+﻿using System;
+using System.Data;
 using MM = SearchJobNet_project.Models.MemberModel;
 
 namespace SearchJobNet_project.Models.MemberModel
@@ -14,6 +15,10 @@ namespace SearchJobNet_project.Models.MemberModel
 
             // 建立DB連線
             Tools.DBConnection bsc = new Tools.DBConnection();
+
+            // 將會員註冊時間 ,填入membermodel裡面
+            DateTime datetime = new DateTime();
+            rMember.Re_Time = datetime.ToString();
 
             // 放入 UserID的資料
             string doDB = bsc.ActionDB(
@@ -32,16 +37,16 @@ namespace SearchJobNet_project.Models.MemberModel
 
             #endregion
 
-            #region[檢查DB內容]
+            #region[檢查DB內容,用 UserName做檢查]
 
             // 查看是否新增成功
-            MemberModel cm = this.memberData(rMember.User_ID);
+            MemberModel cm = this.memberData(rMember.UserName);
 
             // 檢查MemberModel
-            if ((rMember.User_ID == cm.User_ID) &&
+            if ((rMember.User_ID  == cm.User_ID) &&
                 (rMember.UserName == cm.UserName) &&
                 (rMember.PassWord == cm.PassWord) &&
-                (rMember.Re_Time == cm.Re_Time)
+                (rMember.Re_Time  == cm.Re_Time)
                )
             {
                 return "insert success!";
@@ -76,7 +81,7 @@ namespace SearchJobNet_project.Models.MemberModel
             }
         }
 
-        // 瀏覽會員DB資料
+        // 使用USER_ID,瀏覽會員DB資料,也判斷新增/登入是否成功
         public MM.MemberModel memberData(string UserName)
         {
             MM.MemberModel bMemberModel = new MM.MemberModel();
@@ -96,20 +101,20 @@ namespace SearchJobNet_project.Models.MemberModel
                               , UserName)
                             );
             
-            // 將DataTable的資料轉換為model  資料行小於0則塞空資料
+            // 將DataTable的資料轉換為model ,資料行小於0則塞空資料
             if (dt.Rows.Count > 0)
             {
-                bMemberModel.User_ID = dt.Rows[0][0].ToString();
+                bMemberModel.User_ID  = dt.Rows[0][0].ToString();
                 bMemberModel.UserName = dt.Rows[0][1].ToString();
                 bMemberModel.PassWord = dt.Rows[0][2].ToString();
-                bMemberModel.Re_Time = null;
+                bMemberModel.Re_Time  = dt.Rows[0][3].ToString();
             }
             else
             {
-                bMemberModel.User_ID = "";
+                bMemberModel.User_ID  = "";
                 bMemberModel.UserName = "";
                 bMemberModel.PassWord = "";
-                bMemberModel.Re_Time = null;
+                bMemberModel.Re_Time  = null;
             }
 
             return bMemberModel;

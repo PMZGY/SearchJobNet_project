@@ -33,6 +33,18 @@ namespace SearchJobNet_project.Models.CommentModel
         [Display(Name = "是否存在")]
         public string Is_Alive { get; set; }
 
+        ///<summary> JobModel - 公司名稱 </summary>
+        [Display(Name = "公司名稱")]
+        public string CompName { get; set; }
+
+        ///<summary> JobModel - 職缺名稱 </summary>
+        [Display(Name = "職缺名稱")]
+        public string Occu_Desc { get; set; }
+
+        ///<summary> JobList - 當下會員 </summary>
+        [Display(Name = "當下會員Session")]
+        public string SessionID { get; set; }
+
     }
             
 }
