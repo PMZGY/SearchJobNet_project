@@ -45,7 +45,10 @@
         dataItem = $("#grid").data("kendoGrid").dataItem($(e.currentTarget).closest("tr")).Job_ID;
         var action = "../Job/toJobDetailView";
         //傳資料給後端
-        document.location.href = "/Job/toJobDetailView?jobID=" + dataItem;
+        var action2 = '../History/insertHistory'
+       document.location.href = "/Job/toJobDetailView?jobID=" + dataItem;
+            
+         $.post(action2, { jobID: dataItem });
     }
 
     //點擊搜索職缺

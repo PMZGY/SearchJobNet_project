@@ -56,7 +56,8 @@
 
     function sendJobDetailId(e) {
         dataItem = $("#jobGrid").data("kendoGrid").dataItem($(e.currentTarget).closest("tr")).searchjobModel.Job_ID;
-        alert(dataItem);
+        var action = "../Job/toJobDetailView";
+        document.location.href = "/Job/toJobDetailView?jobID=" + dataItem;
     }
  //按下job button只顯示瀏覽history 隱藏評論history
 $("#jobGridButton").click(function () {
