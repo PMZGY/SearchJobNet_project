@@ -22,7 +22,7 @@ $(function () {
            .done(function (Data) {
                if (Data.User_ID != "")                                   //userid不為空則登入成功
                    alert(Data.UserName + "登入成功!");
-
+               window.location.reload();
                if (Data.User_ID == "")                                   //userid為空則登入失敗
                    alert("帳號密碼錯誤!");
                $('.close').click();
@@ -49,14 +49,13 @@ $(function () {
                 PassWord: $('#password').val(),
                 Re_Time: null
             };
-            debugger;
             //傳資料給後端
             $.post(action, formData)
                 .done(function (Data) {
-                    debugger;
                     if (Data == "insert success!")
                     alert("註冊成功!");
                     $('.close').click();
+                    window.location.reload();
                 })
                 .fail(function (data) {
                     alert("註冊失敗!");
@@ -66,4 +65,13 @@ $(function () {
         }
         
     })
+
+    //是否有登入，顯示帳號或會員登入icon
+    if ($("#suserName").val() != "") {
+        $("#loginimg").hide();
+        $("#loginName").show();
+    } else {
+        $("#loginimg").show();
+        $("#loginName").hide();
+    }
 })

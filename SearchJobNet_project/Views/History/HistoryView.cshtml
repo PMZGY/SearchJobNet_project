@@ -1,6 +1,7 @@
 ﻿@{
     Layout = null;
     var suserID = "";                                                                                   //判斷是否登入 不然跳轉回主頁
+    var suserName = "";
     if (Session["suserID"] == null || string.IsNullOrWhiteSpace(Session["suserID"].ToString()))
     {
         <script>alert("請先登入");</script>
@@ -8,6 +9,7 @@
     }
     else
     {
+        suserName = Session["suserName"].ToString();
         suserID = Session["suserID"].ToString();
     }
 }
@@ -67,10 +69,7 @@
                     <div class="w3-header-top-right">
                         <div class="agileinfo-social-grids">
                             <ul>
-                                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                <li><a href="#"><i class="fa fa-rss"></i></a></li>
-                                <li><a href="#"><i class="fa fa-vk"></i></a></li>
+                                <h3 id="loginName" style="font-family:Microsoft JhengHei;color:white">@suserName</h3>
                             </ul>
                         </div>
                         <div class="clearfix"> </div>

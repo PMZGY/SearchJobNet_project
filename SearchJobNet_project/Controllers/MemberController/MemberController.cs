@@ -33,7 +33,6 @@ namespace SearchJobNet_project.Controllers.MemberController
             //儲存seesion userID ,如果沒登入則會存null
             Session["suserID"] = mbdata.User_ID;
             Session["suserName"] = mbdata.UserName;
-
             return Json(mbdata);            
         }
 
