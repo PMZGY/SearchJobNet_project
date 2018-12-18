@@ -20,8 +20,8 @@ namespace SearchJobNet_project.Models.CommentModel
             string doDB = bsc.ActionDB(
                             string.Format(
                             @"INSERT INTO [Comment] (JOB_ID,USER_ID,CONTENT_TEXT,TIME)
-                              VALUES({0},'{1}','{2}','{3}');"
-                              ,iComment.Job_ID ,iComment.User_ID,iComment.Content_Text ,iComment.Time)
+                              VALUES({0},'{1}','{2}',CURRENT_TIMESTAMP);"
+                              , iComment.Job_ID , iComment.SessionID, iComment.Content_Text)
                             );
 
             // 如果 doDB為"success" ,代表DB連線成功 ,反之失敗
@@ -48,9 +48,8 @@ namespace SearchJobNet_project.Models.CommentModel
                 for (int i = 0; i < cm.Count; i++)
                 {
                     if ((cm[i].Job_ID       == iComment.Job_ID) &&
-                        (cm[i].User_ID      == iComment.User_ID) &&
-                        (cm[i].Content_Text == iComment.Content_Text) &&
-                        (cm[i].Time         == iComment.Time)                        
+                        (cm[i].User_ID      == iComment.SessionID) &&
+                        (cm[i].Content_Text == iComment.Content_Text)                       
                       )
                     {
                         return "insert success!";
@@ -171,7 +170,7 @@ namespace SearchJobNet_project.Models.CommentModel
         }
 
         // 檢舉評論
-        public string reportComment(int comment_ID)
+        public string reportComment(int comment_ID ,string suserID)
         {
             // 建立DB連線
             Tools.DBConnection bsc = new Tools.DBConnection();
@@ -185,7 +184,7 @@ namespace SearchJobNet_project.Models.CommentModel
                                  FROM [Report] AS R
                                  WHERE 1=1
                                  AND R.USER_ID = '{0}'"
-                                 , Session["suserID"])
+                                 , suserID)
                                 );
 
             // 若已檢舉過 ,直接回傳"Can't report again!"
@@ -243,7 +242,7 @@ namespace SearchJobNet_project.Models.CommentModel
                                          string.Format(
                                                 @"INSERT INTO[Report](COMMENT_ID,USER_ID)
                                                 VALUES({0},'{1}'); "
-                                                  , comment_ID, Session["suserID"])
+                                                  , comment_ID, suserID)
                                         );
 
                 // 如果 modifyreport == "success" ,代表DB連線成功 ,反之失敗
