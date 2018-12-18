@@ -1,14 +1,13 @@
 ﻿using System.Collections.Generic;
 using System.Web.Mvc;
 using HM = SearchJobNet_project.Models.HistoryModel;
-using CC = SearchJobNet_project.Controllers.CommentController;
 using CM = SearchJobNet_project.Models.CommentModel;
-using Newtonsoft.Json;
+
 
 namespace SearchJobNet_project.Controllers.HistoryController
 {
-	public class HistoryController:Controller
-	{
+    public class HistoryController : Controller
+    {
         // 建立建構子
         public HistoryController() { }
 
@@ -22,25 +21,28 @@ namespace SearchJobNet_project.Controllers.HistoryController
 
         // 傳入 歷史model, 執行[生成瀏覽職缺紀錄] 功能
         // 回傳 成功新增資料與否
-        public string insertHistory(string userID,int jobID)
+        [HttpPost]
+        public ActionResult insertHistory(int jobID)
         {
             string msg = "";
             HM.History hm = new HM.History();
             msg = hm.insertHistory(Session["suserID"].ToString(), jobID);
-            return msg;
+            System.Diagnostics.Debug.Print(msg + "wwwwww");
+            return Content(msg);
         }
+        [HttpPost]
         // 傳入 使用者PK 執行 [瀏覽瀏覽職缺紀錄] 功能
         // 回傳 整筆資料或部分資料(json的HistoryModel型態)
         public ActionResult browseHistoryjob()
         {
-            
+
             HM.History hm = new HM.History();
             List<HM.HistoryModel> hmModel = new List<HM.HistoryModel>();
-             
+
             hmModel = hm.browseHistoryjob(Session["suserID"].ToString());
-           
-           
-            string json = JsonConvert.SerializeObject(hmModel);
+
+
+
 
             return Json(hmModel);
 
@@ -51,11 +53,11 @@ namespace SearchJobNet_project.Controllers.HistoryController
         // 回傳 整筆資料或部分資料(json的HistoryModel型態)
         public ActionResult browseHistoryComment()
         {
-            System.Diagnostics.Debug.Print(Session["suserID"].ToString()+" this is");         
+            System.Diagnostics.Debug.Print(Session["suserID"].ToString() + " this is");
             CM.Comment comment = new CM.Comment();
             List<CM.CommentModel> hcommentModel = new List<CM.CommentModel>();
             hcommentModel = comment.browseHistoryComment(Session["suserID"].ToString());
-           
+
 
             return Json(hcommentModel);
         }

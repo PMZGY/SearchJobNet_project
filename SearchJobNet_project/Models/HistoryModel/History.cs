@@ -16,24 +16,24 @@ namespace SearchJobNet_project.Models.HistoryModel
 
             // 建立DB連線
             Tools.DBConnection bsc = new Tools.DBConnection();
-
+           
             // 放入瀏覽歷史的資料
             string doDB = bsc.ActionDB(
                             string.Format(
                             @"INSERT INTO [History] (USER_ID,JOB_ID,TIME)
-                              VALUES({0},{1},CURRENT_TIMESTAMP);"
+                              VALUES('{0}', {1} , CURRENT_TIMESTAMP);"    
                               , userID, jobID)
                             );
 
 
             // 如果 doDB為"success" ,代表DB連線成功 ,反之失敗
-            if (doDB != "success")
+            if (doDB == "success")
             {
-                return "DB處理錯誤";
+                return "insert history success";
             }
             else
             {
-                return "DB處理成功";
+                return "insert history fail";
             }
             #endregion
 
