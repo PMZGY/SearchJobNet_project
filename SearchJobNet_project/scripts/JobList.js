@@ -43,6 +43,18 @@
 
     function sendJobDetailId(e) {
         dataItem = $("#grid").data("kendoGrid").dataItem($(e.currentTarget).closest("tr")).Job_ID;
+        var action = '../History/insertHistory'
+        $.post(action, { jobID: dataItem })
+            .done(function (Data) {
+                if (Data == "insert history success")
+                    alert("插入歷史紀錄成功");
+
+
+            })
+            .fail(function (Data) {
+                if (Data == "insert history fail")
+                    alert("插入歷史紀錄失敗");
+            });
         alert(dataItem);
     }
 
