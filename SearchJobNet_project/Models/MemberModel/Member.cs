@@ -16,17 +16,12 @@ namespace SearchJobNet_project.Models.MemberModel
             // 建立DB連線
             Tools.DBConnection bsc = new Tools.DBConnection();
 
-            // 將會員註冊時間 ,填入membermodel裡面
-            DateTime datetime = new DateTime();
-            rMember.Re_Time = datetime.ToString();
-
             // 放入 UserID的資料
             string doDB = bsc.ActionDB(
                             string.Format(
                             @"INSERT INTO [Account] (USER_ID,USERNAME,PASSWORD,RE_TIME)
-                              VALUES('{0}','{1}','{2}','{3}');"
-                              , rMember.User_ID, rMember.UserName, rMember.PassWord
-                              , rMember.Re_Time)
+                              VALUES('{0}','{1}','{2}',CURRENT_TIMESTAMP);"
+                              , rMember.User_ID, rMember.UserName, rMember.PassWord)
                             );
 
             // 如果 doDB為"success" ,代表DB連線成功 ,反之失敗

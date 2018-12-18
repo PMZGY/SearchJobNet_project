@@ -19,60 +19,58 @@ namespace SearchJobNet_project.Controllers.CommentController
         {
             string msg = "";
             CM.Comment cm = new CM.Comment();
+            commentModel.SessionID = Session["suserID"].ToString();
             msg = cm.insertComment(commentModel);
             return Content(msg);
         }
 
-        // 傳入 評論model,執行 [修改評論] 功能
+        // 傳入 評論內容和commentID ,執行 [修改評論] 功能
         // 回傳 成功修改資料與否
         [HttpPost]
-        public ActionResult modifyComment(CM.CommentModel commentModel)
+        public ActionResult modifyComment(int comment_ID ,string content_text)
         {
             string msg = "";
             CM.Comment cm = new CM.Comment();
-            msg = cm.modifyComment(commentModel);
+            msg = cm.modifyComment(comment_ID ,content_text);
             return Content(msg);
         }
 
-        // 傳入 評論PK,執行 [刪除評論] 功能
+        // 傳入 commentID,執行 [刪除評論] 功能
         // 回傳 成功修改資料與否
         [HttpPost]
-        public ActionResult deleteComment(int commentID ,string time)
+        public ActionResult deleteComment(int comment_ID)
         {
             string msg = "";
             CM.Comment cm = new CM.Comment();
-            msg = cm.delComment(commentID ,time);
+            msg = cm.delComment(comment_ID);
             return Content(msg);
         }
 
-        // 傳入 sessionID以及commentID ,執行 [檢舉評論] 功能
-        // 回傳 成功修改資料與否(string 型態)
-        //[HttpPost]
-        //public ActionResult reportComment(object formData)
-        //{
-        //    string msg = "";
-        //    CM.Comment cm = new CM.Comment();
-        //    msg = cm.reportComment(formData);
-        //    return Content(msg);
-        //}
-
-        // 傳入 USERPK,執行 [瀏覽會員評論 / 職缺評論] 功能
-        // 回傳 整筆資料或部分資料(list的CommentModel型態)
+       // 傳入 commentID, 執行[檢舉評論] 功能
+       //回傳 成功修改資料與否(string 型態)
         [HttpPost]
-        public ActionResult browseMemberComment(object ID, int phase)
+        public ActionResult reportComment(int comment_ID)
+        {
+            string msg = "";
+            CM.Comment cm = new CM.Comment();
+            msg = cm.reportComment(comment_ID ,Session["suserID"].ToString());
+            return Content(msg);
+        }
+
+        // 傳入 comment_ID ,執行 [瀏覽評論] 功能
+        // 回傳 list的CommentModel型態
+        [HttpPost]
+        public ActionResult browseMemberComment(int comment_ID)
         {
             CM.Comment comment = new CM.Comment();
             List<CM.CommentModel> cmMemberModel = new List<CM.CommentModel>();
-            cmMemberModel = comment.browseMemberOrJobComment(ID, phase);
+            cmMemberModel = comment.browseComment(comment_ID);
 
-            // message for debugged 12/16
+            //序列化
             string json = JsonConvert.SerializeObject(cmMemberModel);
-            System.Diagnostics.Debug.Print(json + "wwwwww");
 
-            // try to use json to det data 12/16
             return Json(cmMemberModel);
         }
-
 
         // 傳入 USER_ID ,執行 [瀏覽歷史評論] 功能
         // 回傳 list的CommentModel型態
@@ -85,9 +83,6 @@ namespace SearchJobNet_project.Controllers.CommentController
 
             return Json(cmHistoryModel);
         }
-
-
-
 
         #region [先暫時不用]
         // 傳入 評論PK,執行 [瀏覽評論] 功能

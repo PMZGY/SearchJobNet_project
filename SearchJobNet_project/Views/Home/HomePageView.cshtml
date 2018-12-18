@@ -1,5 +1,13 @@
 ﻿@{
     Layout = null;
+    var suserName = "";
+    if (Session["suserName"] == null || string.IsNullOrWhiteSpace(Session["suserName"].ToString()))
+    {
+
+    }else
+    {
+        suserName = Session["suserName"].ToString();
+    }
 }
 @model SearchJobNet_project.Models.SearchJobModel.SearchJobModel
 
@@ -57,9 +65,8 @@
                     </div>
                     <div class="w3-header-top-right">
                         <div class="agileinfo-social-grids">
-                            <ul>
-                                <img src="browser_components/images/login.png" class="img-responsive" width="40" height="40" data-toggle="modal" data-target="#member"  />          
-                            </ul>
+                                <img src="~/browser_components/images/login.png" class="img-responsive" width="40" height="40" data-toggle="modal" data-target="#member" id="loginimg" />          
+                                <h3 id="loginName" style="font-family:Microsoft JhengHei;color:white">@suserName</h3>
                         </div>
                         <div class="clearfix"> </div>
                     </div>
@@ -112,7 +119,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </li>style="font-family: 'Microsoft JhengHei'"
+                            </li>
                             <li>
                                 <div class="agileits-banner-info">
                                     <h3 style="font-family: 'Microsoft JhengHei'">尋夢</h3>
@@ -152,6 +159,7 @@
             </div>
         </div>
     </div>
+    <input id="suserName" type="hidden" value=@suserName>
     <!-- //banner -->
     <!-- footer -->
     <footer>
