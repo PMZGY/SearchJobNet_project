@@ -118,9 +118,11 @@
     if ($("#suserName").val() != "") {
         $("#loginimg").hide();
         $("#loginName").show();
+        console.log("有");
     } else {
         $("#loginimg").show();
         $("#loginName").hide();
+        console.log("沒有");
     }
 
 
