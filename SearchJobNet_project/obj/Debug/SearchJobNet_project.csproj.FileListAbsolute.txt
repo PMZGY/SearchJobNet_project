@@ -44,9 +44,55 @@ D:\SearchJob\SearchJobNet_project\bin\System.Web.Webpages.Deployment.xml
 D:\SearchJob\SearchJobNet_project\bin\System.Web.Webpages.Razor.xml
 D:\SearchJob\SearchJobNet_project\bin\System.Web.Helpers.xml
 D:\SearchJob\SearchJobNet_project\bin\System.Web.Mvc.xml
-<<<<<<< HEAD
-=======
 D:\SearchJob\SearchJobNet_project\obj\Debug\SearchJobNet_project.csprojResolveAssemblyReference.cache
->>>>>>> 6982bf8b60ff5025c57aab3f81682b26b82e8d6e
 D:\SearchJob\SearchJobNet_project\obj\Debug\SearchJobNet_project.dll
 D:\SearchJob\SearchJobNet_project\obj\Debug\SearchJobNet_project.pdb
+D:\Program\Software Engineering\SearchJobNet_project\bin\ApplicationInsights.config
+D:\Program\Software Engineering\SearchJobNet_project\bin\roslyn\csc.exe
+D:\Program\Software Engineering\SearchJobNet_project\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+D:\Program\Software Engineering\SearchJobNet_project\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+D:\Program\Software Engineering\SearchJobNet_project\bin\roslyn\Microsoft.CodeAnalysis.dll
+D:\Program\Software Engineering\SearchJobNet_project\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+D:\Program\Software Engineering\SearchJobNet_project\bin\roslyn\Microsoft.CSharp.Core.targets
+D:\Program\Software Engineering\SearchJobNet_project\bin\roslyn\Microsoft.VisualBasic.Core.targets
+D:\Program\Software Engineering\SearchJobNet_project\bin\roslyn\System.Collections.Immutable.dll
+D:\Program\Software Engineering\SearchJobNet_project\bin\roslyn\System.Reflection.Metadata.dll
+D:\Program\Software Engineering\SearchJobNet_project\bin\roslyn\vbc.exe
+D:\Program\Software Engineering\SearchJobNet_project\bin\roslyn\VBCSCompiler.exe
+D:\Program\Software Engineering\SearchJobNet_project\bin\roslyn\VBCSCompiler.exe.config
+D:\Program\Software Engineering\SearchJobNet_project\bin\SearchJobNet_project.dll.config
+D:\Program\Software Engineering\SearchJobNet_project\bin\SearchJobNet_project.dll
+D:\Program\Software Engineering\SearchJobNet_project\bin\SearchJobNet_project.pdb
+D:\Program\Software Engineering\SearchJobNet_project\bin\Microsoft.AI.Agent.Intercept.dll
+D:\Program\Software Engineering\SearchJobNet_project\bin\Microsoft.AI.DependencyCollector.dll
+D:\Program\Software Engineering\SearchJobNet_project\bin\Microsoft.AI.PerfCounterCollector.dll
+D:\Program\Software Engineering\SearchJobNet_project\bin\Microsoft.AI.ServerTelemetryChannel.dll
+D:\Program\Software Engineering\SearchJobNet_project\bin\Microsoft.AI.Web.dll
+D:\Program\Software Engineering\SearchJobNet_project\bin\Microsoft.AI.WindowsServer.dll
+D:\Program\Software Engineering\SearchJobNet_project\bin\Microsoft.ApplicationInsights.dll
+D:\Program\Software Engineering\SearchJobNet_project\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+D:\Program\Software Engineering\SearchJobNet_project\bin\Microsoft.Web.Infrastructure.dll
+D:\Program\Software Engineering\SearchJobNet_project\bin\Newtonsoft.Json.dll
+D:\Program\Software Engineering\SearchJobNet_project\bin\System.Web.Helpers.dll
+D:\Program\Software Engineering\SearchJobNet_project\bin\System.Web.Mvc.dll
+D:\Program\Software Engineering\SearchJobNet_project\bin\System.Web.Razor.dll
+D:\Program\Software Engineering\SearchJobNet_project\bin\System.Web.Webpages.Deployment.dll
+D:\Program\Software Engineering\SearchJobNet_project\bin\System.Web.Webpages.dll
+D:\Program\Software Engineering\SearchJobNet_project\bin\System.Web.Webpages.Razor.dll
+D:\Program\Software Engineering\SearchJobNet_project\bin\Microsoft.AI.DependencyCollector.xml
+D:\Program\Software Engineering\SearchJobNet_project\bin\Microsoft.AI.ServerTelemetryChannel.xml
+D:\Program\Software Engineering\SearchJobNet_project\bin\Microsoft.AI.Web.xml
+D:\Program\Software Engineering\SearchJobNet_project\bin\Microsoft.AI.WindowsServer.xml
+D:\Program\Software Engineering\SearchJobNet_project\bin\Microsoft.ApplicationInsights.xml
+D:\Program\Software Engineering\SearchJobNet_project\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+D:\Program\Software Engineering\SearchJobNet_project\bin\Newtonsoft.Json.pdb
+D:\Program\Software Engineering\SearchJobNet_project\bin\Newtonsoft.Json.xml
+D:\Program\Software Engineering\SearchJobNet_project\bin\System.Web.Razor.xml
+D:\Program\Software Engineering\SearchJobNet_project\bin\System.Web.Webpages.xml
+D:\Program\Software Engineering\SearchJobNet_project\bin\System.Web.Webpages.Deployment.xml
+D:\Program\Software Engineering\SearchJobNet_project\bin\System.Web.Webpages.Razor.xml
+D:\Program\Software Engineering\SearchJobNet_project\bin\System.Web.Helpers.xml
+D:\Program\Software Engineering\SearchJobNet_project\bin\System.Web.Mvc.xml
+D:\Program\Software Engineering\SearchJobNet_project\obj\Debug\SearchJobNet_project.csprojResolveAssemblyReference.cache
+D:\Program\Software Engineering\SearchJobNet_project\obj\Debug\SearchJobNet_project.dll
+D:\Program\Software Engineering\SearchJobNet_project\obj\Debug\SearchJobNet_project.pdb

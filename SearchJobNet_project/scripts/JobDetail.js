@@ -1,6 +1,4 @@
 ﻿$(function () {
-
-
     $(".column").css({
         "float": "left",
         "width": "100%",
@@ -22,20 +20,26 @@
         "margin-bottom": "50px"
     });
 
+    /*沒登入不能新增*/
+    $("Document").ready(function () {
+        if ($("#sessionID").val() == "") {
+            $(".comment_table").css({
+                "display":"none"
+            });
+        }
+    })
+
     /*insert comment*/
-    $("#insert_comment").click(function (e) {
+    $("#insert_comment").click(function () {
         //取要傳到的action url
         var action = '../../Comment/insertComment'
-        //var date = new Date.toString();
         
         //取form資料
         var formData = {
             Job_ID: $('#Job_ID').val(),
-            User_ID: $('#User_ID').val(),
             Content_Text: $('#Content_Text').val(),
-            Time: 'date',
         };
-        debugger;
+
         //傳資料給後端
         $.post(action, formData)
             .done(function (Data) {
@@ -47,7 +51,6 @@
             })
             .fail(function (data) {
                 alert("新增失敗!");
-                console.log('post nooooooooooo');
             });
     })
     /*end insert comment*/
@@ -55,105 +58,85 @@
     /*delete comment*/
     $("#delete_comment").click(function (e) {
         //取要傳到的action url
-        var action = '../Comment/deleteComment'
+        var action = '../../Comment/deleteComment'
 
         //取form資料
         var formData = {
-            Comment_ID: $('delete_commentID').val()
+            Comment_ID: $('#delete_commentID').val()
         };
 
-        //看看是不是評論者本人
-        if ($('delete_userID').val() == $('delete_sessionID').val()) {
-            //傳資料給後端
-            $.post(action, formData)
-                .done(function (Data) {
-                    if (Data == "delete success!")
-                        alert("刪除成功!");
-                    $('.close').click();
-
-                })
-                .fail(function (data) {
-                    alert("刪除失敗!");
-                });
-        } else {
-            alert("你不能刪除不是你的評論。")
-        };
+        //傳資料給後端
+        $.post(action, formData)
+            .done(function (Data) {
+                if (Data == "delete success!")
+                    alert("刪除成功!");
+                $('.close').click();
+            })
+            .fail(function (data) {
+                alert("刪除失敗!");
+            });
     })
     /*end delete comment*/
 
     /*modify comment*/
     $("#modify_comment").click(function (e) {
         //取要傳到的action url
-        var action = '../Comment/modifyComment'
+        var action = '../../Comment/modifyComment'
 
         //取form資料
         var formData = {
-            Comment_ID: $('modify_commentID').val(),
-           // Content_Text: $('')
+            Comment_ID: $('#modify_commentID').val(),
+            Content_Text: $('#modify_content').val()
         };
 
-        //看看是不是評論者本人
-        if ($('delete_userID').val() == $('delete_sessionID').val()) {
             //傳資料給後端
-            $.post(action, formData)
-                .done(function (Data) {
-                    if (Data == "delete success!")
-                        alert("刪除成功!");
-                    $('.close').click();
-
-                })
-                .fail(function (data) {
-                    alert("刪除失敗!");
-                });
-        } else {
-            alert("你不能刪除不是你的評論。")
-        };
+        $.post(action, formData)
+            .done(function (Data) {
+                if (Data == "modify success!")
+                    alert("修改成功!");
+                $('.close').click();
+            })
+            .fail(function (data) {
+                alert("刪除失敗!");
+            });
     })
     /*end modify comment*/
 
     /*report comment*/
     $("#report_comment").click(function (e) {
         //取要傳到的action url
-        var action = '../Comment/reportComment'
+        var action = '../../Comment/reportComment'
 
         //取form資料
         var formData = {
-            Comment_ID: $('report_commentID').val(),
-            User_ID: $('report_sessionID').val()
+            Comment_ID: $('#report_commentID').val()
         };
 
-        //看看是不是評論者本人
-        if ($('report_userID').val() != $('report_sessionID').val()) {
             //傳資料給後端
-            $.post(action, formData)
-                .done(function (Data) {
-                    if (Data == "report success!")
-                        alert("檢舉成功!");
-                    $('.close').click();
-
-                })
-                .fail(function (data) {
-                    alert("檢舉失敗!");
-                });
-        } else {
-            alert("你不能檢舉這則評論。")
-        };
+        $.post(action, formData)
+            .done(function (Data) {
+                if (Data == "report success!")
+                    alert("檢舉成功!");
+                $('.close').click();
+            })
+            .fail(function (data) {
+                alert("檢舉失敗!");
+            });
     })
     /*end report comment*/
 
     /* show comment */    
-    $("Document").ready(function (jobID) {
-
+    $("Document").ready(function () {
         /*用jobID去撈comment*/
   
         var action = '../../Comment/browseMemberComment'
            var formData = {
-               ID: 1,
-               phase: 1
+               job_ID: $('#Job_ID').val(),
            };
 
            $.post(action,formData)
-                .done(function (Data) {                    
+                .done(function (Data) {
+                    console.log(Data);
                     /*傳一個List<CommentModel> 進來  each 建一個 container 來放資料*/
                     $.each(Data,function (index , Model) {
                         //建一個model來接值
@@ -190,9 +173,7 @@
                                                                                 '</div>' +
                                                                                 '<div class="modal-body">' +
                                                                                     //更新 comment是誰的/哪支comment/誰要改/跟改的內容
-                                                                                    '<input type="hidden" id="modify_userID" value="' + commentModel.User_ID + '">' +
                                                                                     '<input type="hidden" id="modify_commentID" value="' + commentModel.Comment_ID + '">' +
-                                                                                    '<input type="hidden" id="modify_sessionID" value="' + '!!!當前seeion的USER!!!!' + '">' +
                                                                                     '<textarea class="form-control" id="modify_content" placeholder="輸入新的內容" name="modify_content"></textarea>'+
                                                                                 '</div>' +
                                                                                 '<div class="modal-footer">' +
@@ -210,7 +191,6 @@
                                                                     '<div class="form-group" style="hright: 0%">' +
                                                                         '<input type="hidden" id="report_userID" value="' + commentModel.User_ID +'">' +
                                                                         '<input type="hidden" id="report_commentID" value="' + commentModel.Comment_ID + '">' +
-                                                                        '<input type="hidden" id="report_sessionID" value="' + '!!!當前seeion的USER!!!!' + '">' +
                                                                     '</div>' +
                                                                     '<button type="submit" class="btn btn-default" id="report_comment">檢舉</button>' +
                                                                 '</form>' +
@@ -221,7 +201,6 @@
                                                                     '<div class="form-group" style="hright: 0%">' +
                                                                         '<input type="hidden" id="delete_userID" value="' + commentModel.User_ID + '">' +
                                                                         '<input type="hidden" id="delete_commentID" value="' + commentModel.Comment_ID + '">' +
-                                                                        '<input type="hidden" id="delete_sessionID" value="' + '!!!當前seeion的USER!!!!' + '">' +
                                                                     '</div>' +
                                                                     '<button type="submit" class="btn btn-danger" id="delete_comment">刪除</button>' +
                                                                  '</form>' +
@@ -231,7 +210,7 @@
                                                         '<tr style = " clear : both; ">' +
                                                             //comment發表者
                                                             '<td style=" float : left; width : 50%; padding : 5px;">' +
-                                                                '會員：' + commentModel.User_ID +
+                                                                '會員：' + commentModel.UserName +
                                                             '</td>' +
                                                             //comment發表時間
                                                             '<td  style="float : left; width : 50%; padding : 5px;">' +
@@ -248,7 +227,10 @@
                                                     '</table>' +
                                                 '</div>' + '</div>'
                         //append這個comment
-                        $(".comment_table").append(comment_container)
+                        if ($('#sessionID').val() != "") {
+                            console.log($('#sessionID').val())
+                            $(".comment_table").append(comment_container)
+                        }
                     })
                 })
             .fail(function () {

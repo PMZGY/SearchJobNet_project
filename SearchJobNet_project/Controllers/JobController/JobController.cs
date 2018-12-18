@@ -48,12 +48,12 @@ namespace SearchJobNet_project.Controllers.JobController
             //for test 12/16
 
         //public ActionResult toJobDetailView(string jobID)
-        public ActionResult toJobDetailView()
+        public ActionResult toJobDetailView(int jobID)
         {
             SJM.SearchJob sjm = new SJM.SearchJob();
             JM.JobModel jmModel = new JM.JobModel();
-            //jmModel = sjm.jobDetail(jobID);
-            jmModel = sjm.jobDetail(1);
+            jmModel = sjm.jobDetail(jobID);
+            //jmModel = sjm.jobDetail(1);
             
             return View("JobDetailView", jmModel);
         }

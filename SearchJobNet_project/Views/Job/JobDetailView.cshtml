@@ -1,5 +1,9 @@
 ﻿@{
     Layout = null;
+    var suserID = "";
+    suserID = Session["suserID"].ToString();
+    //suserID = "ssssss";
+
 }
 @model SearchJobNet_project.Models.JobModel.JobModel
 
@@ -122,9 +126,11 @@
             <!--Job Detail start-->
             <div class="container detail_table">
                 <div class="row">
-                    <div class="column">
-                        <div id="jobID" style="color: #A5DEE4"></div> 
+                    <div class="column">                        
                         <h2>@Html.DisplayFor(model => model.Occu_Desc, new { style = "color : #2E5C6E" }) </h2>
+                        <input type="hidden" id="sessionID" value=@suserID>
+                        <!--記住使用者當前JobID-->
+                        @Html.Hidden("Job_ID")
                     </div>
                 </div>
                 <div class="row">
@@ -199,18 +205,16 @@
                     <!--寫在JS-->
                 <!--在這邊長出comment_poster-->
                 <!--action="../Comment/insertComment"-->
-                <div class="container" style="margin-bottom:50px;">
+                <div class="container" style="margin-bottom:50px;"  id="new_comment">
                     <h2 style="margin-bottom:30px;">新增評論</h2>
                     <form >
                         <div class="form-group">                            
                             <textarea class="form-control" id="Content_Text" placeholder="輸入評論" name="Content_Text"></textarea>
                         </div>        
                         <div class="form-group">
-                           <!--記住使用者session-->
-                            <input type="hidden" id="Job_ID" name="Job_ID" value=1>
-                            <input type="hidden" id="User_ID" name="User_ID" value="A000000011">                                                    
+                                        
                         </div>               
-                        <button type="button" class="btn btn-default" id="insert_comment">Submit</button>
+                        <button type="submit" class="btn btn-default" id="insert_comment">Submit</button>
                     </form>
                 </div>
             </div>
