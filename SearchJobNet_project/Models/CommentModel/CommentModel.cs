@@ -45,6 +45,10 @@ namespace SearchJobNet_project.Models.CommentModel
         [Display(Name = "當下會員Session")]
         public string SessionID { get; set; }
 
+        ///<summary> JobListDetail - 會員名字 </summary>
+        [Display(Name = "會員名字")]
+        public string UserName { get; set; }
+
     }
             
 }
