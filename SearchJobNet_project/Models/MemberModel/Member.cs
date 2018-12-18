@@ -16,10 +16,6 @@ namespace SearchJobNet_project.Models.MemberModel
             // 建立DB連線
             Tools.DBConnection bsc = new Tools.DBConnection();
 
-            // 將會員註冊時間 ,填入membermodel裡面
-            DateTime datetime = new DateTime();
-            rMember.Re_Time = datetime.ToString();
-
             // 放入 UserID的資料
             string doDB = bsc.ActionDB(
                             string.Format(
