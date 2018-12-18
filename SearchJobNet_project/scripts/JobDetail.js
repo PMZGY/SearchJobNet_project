@@ -20,6 +20,15 @@
         "margin-bottom": "50px"
     });
 
+    /*沒登入不能新增*/
+    $("Document").ready(function () {
+        if ($("#sessionID").val() == "") {
+            $(".comment_table").css({
+                "display":"none"
+            });
+        }
+    })
+
     /*insert comment*/
     $("#insert_comment").click(function () {
         //取要傳到的action url
@@ -122,11 +131,12 @@
   
         var action = '../../Comment/browseMemberComment'
            var formData = {
-               comment_ID: $('#Job_ID').val(),
+               job_ID: $('#Job_ID').val(),
            };
 
            $.post(action,formData)
-                .done(function (Data) {                    
+                .done(function (Data) {
+                    console.log(Data);
                     /*傳一個List<CommentModel> 進來  each 建一個 container 來放資料*/
                     $.each(Data,function (index , Model) {
                         //建一個model來接值
@@ -200,7 +210,7 @@
                                                         '<tr style = " clear : both; ">' +
                                                             //comment發表者
                                                             '<td style=" float : left; width : 50%; padding : 5px;">' +
-                                                                '會員：' + commentModel.User_ID +
+                                                                '會員：' + commentModel.UserName +
                                                             '</td>' +
                                                             //comment發表時間
                                                             '<td  style="float : left; width : 50%; padding : 5px;">' +

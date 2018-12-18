@@ -1,8 +1,8 @@
 ﻿@{
     Layout = null;
     var suserID = "";
-    //suserID = Session["suserID"].ToString();
-    suserID = "ssssss";
+    suserID = Session["suserID"].ToString();
+    //suserID = "ssssss";
 
 }
 @model SearchJobNet_project.Models.JobModel.JobModel
@@ -129,6 +129,8 @@
                     <div class="column">                        
                         <h2>@Html.DisplayFor(model => model.Occu_Desc, new { style = "color : #2E5C6E" }) </h2>
                         <input type="hidden" id="sessionID" value=@suserID>
+                        <!--記住使用者當前JobID-->
+                        @Html.Hidden("Job_ID")
                     </div>
                 </div>
                 <div class="row">
@@ -203,15 +205,14 @@
                     <!--寫在JS-->
                 <!--在這邊長出comment_poster-->
                 <!--action="../Comment/insertComment"-->
-                <div class="container" style="margin-bottom:50px;">
+                <div class="container" style="margin-bottom:50px;"  id="new_comment">
                     <h2 style="margin-bottom:30px;">新增評論</h2>
                     <form >
                         <div class="form-group">                            
                             <textarea class="form-control" id="Content_Text" placeholder="輸入評論" name="Content_Text"></textarea>
                         </div>        
                         <div class="form-group">
-                           <!--記住使用者當前JobID-->
-                             @Html.Hidden("Job_ID")                                        
+                                        
                         </div>               
                         <button type="submit" class="btn btn-default" id="insert_comment">Submit</button>
                     </form>
