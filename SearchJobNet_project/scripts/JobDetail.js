@@ -53,25 +53,19 @@
 
         //取form資料
         var formData = {
-            Comment_ID: $('delete_commentID').val()
+            Comment_ID: $('#delete_commentID').val()
         };
 
-        //看看是不是評論者本人
-        if ($('delete_userID').val() == $('#sessionID').val()) {
-            //傳資料給後端
-            $.post(action, formData)
-                .done(function (Data) {
-                    if (Data == "delete success!")
-                        alert("刪除成功!");
-                    $('.close').click();
-
-                })
-                .fail(function (data) {
-                    alert("刪除失敗!");
-                });
-        } else {
-            alert("你不能刪除不是你的評論。")
-        };
+        //傳資料給後端
+        $.post(action, formData)
+            .done(function (Data) {
+                if (Data == "delete success!")
+                    alert("刪除成功!");
+                $('.close').click();
+            })
+            .fail(function (data) {
+                alert("刪除失敗!");
+            });
     })
     /*end delete comment*/
 
@@ -82,26 +76,20 @@
 
         //取form資料
         var formData = {
-            Comment_ID: $('modify_commentID').val(),
-            Content_Text: $('modify_content').val()
+            Comment_ID: $('#modify_commentID').val(),
+            Content_Text: $('#modify_content').val()
         };
 
-        //看看是不是評論者本人
-        if ($('modify_userID').val() == $('#sessionID').val()) {
             //傳資料給後端
-            $.post(action, formData)
-                .done(function (Data) {
-                    if (Data == "modify success!")
-                        alert("修改成功!");
-                    $('.close').click();
-
-                })
-                .fail(function (data) {
-                    alert("刪除失敗!");
-                });
-        } else {
-            alert("你不能修改不是你的評論。")
-        };
+        $.post(action, formData)
+            .done(function (Data) {
+                if (Data == "modify success!")
+                    alert("修改成功!");
+                $('.close').click();
+            })
+            .fail(function (data) {
+                alert("刪除失敗!");
+            });
     })
     /*end modify comment*/
 
@@ -112,25 +100,19 @@
 
         //取form資料
         var formData = {
-            Comment_ID: $('report_commentID').val()
+            Comment_ID: $('#report_commentID').val()
         };
 
-        //看看是不是評論者本人
-        if ($('report_userID').val() != $('#sessionID').val()) {
             //傳資料給後端
-            $.post(action, formData)
-                .done(function (Data) {
-                    if (Data == "report success!")
-                        alert("檢舉成功!");
-                    $('.close').click();
-
-                })
-                .fail(function (data) {
-                    alert("檢舉失敗!");
-                });
-        } else {
-            alert("你不能檢舉這則評論。")
-        };
+        $.post(action, formData)
+            .done(function (Data) {
+                if (Data == "report success!")
+                    alert("檢舉成功!");
+                $('.close').click();
+            })
+            .fail(function (data) {
+                alert("檢舉失敗!");
+            });
     })
     /*end report comment*/
 
@@ -140,8 +122,7 @@
   
         var action = '../../Comment/browseMemberComment'
            var formData = {
-               ID: $('#Job_ID').val(),
-               phase: 1
+               comment_ID: $('#Job_ID').val(),
            };
 
            $.post(action,formData)
@@ -182,7 +163,6 @@
                                                                                 '</div>' +
                                                                                 '<div class="modal-body">' +
                                                                                     //更新 comment是誰的/哪支comment/誰要改/跟改的內容
-                                                                                    '<input type="hidden" id="modify_userID" value="' + commentModel.User_ID + '">' +
                                                                                     '<input type="hidden" id="modify_commentID" value="' + commentModel.Comment_ID + '">' +
                                                                                     '<textarea class="form-control" id="modify_content" placeholder="輸入新的內容" name="modify_content"></textarea>'+
                                                                                 '</div>' +
