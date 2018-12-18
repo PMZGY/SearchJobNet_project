@@ -12,7 +12,7 @@ namespace SearchJobNet_project.Controllers.CommentController
 
         #region 評論功能 [新增/修改/刪除/檢舉/瀏覽]
 
-        // 傳入 評論model,執行 [新增評論] 功能
+        // 傳入 評論model(只有 Content_Text ,jobID),執行 [新增評論] 功能
         // 回傳 成功新增資料與否
         [HttpPost]
         public ActionResult insertComment(CM.CommentModel commentModel)
@@ -60,11 +60,11 @@ namespace SearchJobNet_project.Controllers.CommentController
         // 傳入 comment_ID ,執行 [瀏覽評論] 功能
         // 回傳 list的CommentModel型態
         [HttpPost]
-        public ActionResult browseMemberComment(int comment_ID)
+        public ActionResult browseMemberComment(int job_ID)
         {
             CM.Comment comment = new CM.Comment();
             List<CM.CommentModel> cmMemberModel = new List<CM.CommentModel>();
-            cmMemberModel = comment.browseComment(comment_ID);
+            cmMemberModel = comment.browseJobComment(job_ID);
 
             //序列化
             string json = JsonConvert.SerializeObject(cmMemberModel);
