@@ -28,7 +28,7 @@
         //取form資料
         var formData = {
             Job_ID: $('#Job_ID').val(),
-            Content_Text: $('#Content_Text').val()
+            Content_Text: $('#Content_Text').val(),
         };
 
         //傳資料給後端
@@ -57,7 +57,7 @@
         };
 
         //看看是不是評論者本人
-        if ($('delete_userID').val() == $('delete_sessionID').val()) {
+        if ($('delete_userID').val() == $('#sessionID').val()) {
             //傳資料給後端
             $.post(action, formData)
                 .done(function (Data) {
@@ -87,7 +87,7 @@
         };
 
         //看看是不是評論者本人
-        if ($('modify_userID').val() == $('modify_sessionID').val()) {
+        if ($('modify_userID').val() == $('#sessionID').val()) {
             //傳資料給後端
             $.post(action, formData)
                 .done(function (Data) {
@@ -116,7 +116,7 @@
         };
 
         //看看是不是評論者本人
-        if ($('report_userID').val() != $('report_sessionID').val()) {
+        if ($('report_userID').val() != $('#sessionID').val()) {
             //傳資料給後端
             $.post(action, formData)
                 .done(function (Data) {
@@ -184,7 +184,6 @@
                                                                                     //更新 comment是誰的/哪支comment/誰要改/跟改的內容
                                                                                     '<input type="hidden" id="modify_userID" value="' + commentModel.User_ID + '">' +
                                                                                     '<input type="hidden" id="modify_commentID" value="' + commentModel.Comment_ID + '">' +
-                                                                                    '<input type="hidden" id="modify_sessionID" value="' + '!!!當前seeion的USER!!!!' + '">' +
                                                                                     '<textarea class="form-control" id="modify_content" placeholder="輸入新的內容" name="modify_content"></textarea>'+
                                                                                 '</div>' +
                                                                                 '<div class="modal-footer">' +
@@ -202,7 +201,6 @@
                                                                     '<div class="form-group" style="hright: 0%">' +
                                                                         '<input type="hidden" id="report_userID" value="' + commentModel.User_ID +'">' +
                                                                         '<input type="hidden" id="report_commentID" value="' + commentModel.Comment_ID + '">' +
-                                                                        '<input type="hidden" id="report_sessionID" value="' + '!!!當前seeion的USER!!!!' + '">' +
                                                                     '</div>' +
                                                                     '<button type="submit" class="btn btn-default" id="report_comment">檢舉</button>' +
                                                                 '</form>' +
@@ -213,7 +211,6 @@
                                                                     '<div class="form-group" style="hright: 0%">' +
                                                                         '<input type="hidden" id="delete_userID" value="' + commentModel.User_ID + '">' +
                                                                         '<input type="hidden" id="delete_commentID" value="' + commentModel.Comment_ID + '">' +
-                                                                        '<input type="hidden" id="delete_sessionID" value="' + '!!!當前seeion的USER!!!!' + '">' +
                                                                     '</div>' +
                                                                     '<button type="submit" class="btn btn-danger" id="delete_comment">刪除</button>' +
                                                                  '</form>' +
@@ -240,7 +237,10 @@
                                                     '</table>' +
                                                 '</div>' + '</div>'
                         //append這個comment
-                        $(".comment_table").append(comment_container)
+                        if ($('#sessionID').val() != "") {
+                            console.log($('#sessionID').val())
+                            $(".comment_table").append(comment_container)
+                        }
                     })
                 })
             .fail(function () {
