@@ -1,4 +1,6 @@
 ﻿$(function () {
+
+
     $(".column").css({
         "float": "left",
         "width": "100%",
@@ -141,6 +143,7 @@
 
     /* show comment */    
     $("Document").ready(function (jobID) {
+
         /*用jobID去撈comment*/
   
         var action = '../../Comment/browseMemberComment'
