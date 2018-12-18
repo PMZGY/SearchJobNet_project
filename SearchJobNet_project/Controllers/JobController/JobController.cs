@@ -53,7 +53,7 @@ namespace SearchJobNet_project.Controllers.JobController
             SJM.SearchJob sjm = new SJM.SearchJob();
             JM.JobModel jmModel = new JM.JobModel();
             //jmModel = sjm.jobDetail(jobID);
-        //    jmModel = sjm.jobDetail("111");
+            jmModel = sjm.jobDetail(1);
             
             return View("JobDetailView", jmModel);
         }

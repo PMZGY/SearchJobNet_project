@@ -30,19 +30,22 @@
     <link href="~/browser_components/css/lightcase.css" rel="stylesheet" type="text/css" />
     <!-- css file -->
     <!-- Testimonials-slider-css-files -->
-    <link rel="stylesheet" href="css/owl.carousel.css" type="text/css" media="all">
+    <link rel="stylesheet" href="~/browser_components/css/owl.carousel.css" type="text/css" media="all">
     <link href="~/browser_components/css/owl.theme.css" rel="stylesheet">
     <!-- //Testimonials-slider-css-files -->
     <!-- online fonts -->
     <link href="http://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
     <link href="http://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i" rel="stylesheet">
+
     <!-- //online fonts -->
-    <script src="~/scripts/jquery-1.9.1.min.js"></script>
-    <script src="~/scripts/kendo/2014.1.318/kendo.web.min.js"></script>
-    <link href="~/Content/kendo/2014.1.318/kendo.common.min.css" rel="stylesheet" />
-    <link href="~/Content/kendo/2014.1.318/kendo.default.min.css" rel="stylesheet" />
-    <link href="~/Content/kendo/2014.1.318/kendo.bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/kendo/kendo.default.min.css" rel="stylesheet" />
+    <link href="~/Content/kendo/kendo.common.min.css" rel="stylesheet" />
+    <!-- js -->
+    <script src="~/browser_components/js/jquery-2.2.3.min.js"></script>
+
     <script src="~/scripts/JobDetail.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 
 <body>
@@ -120,6 +123,7 @@
             <div class="container detail_table">
                 <div class="row">
                     <div class="column">
+                        <div id="jobID" style="color: #A5DEE4"></div> 
                         <h2>@Html.DisplayFor(model => model.Occu_Desc, new { style = "color : #2E5C6E" }) </h2>
                     </div>
                 </div>
@@ -187,11 +191,28 @@
             <div class="clearfix"> </div>
             <!--Job Detail end-->
             <!--以下為評論區塊-->
-            <div class="container comment_table">
+            <div class="comment_table">
                 <div class="wls_head_all">
                     <h3>評論</h3>
                 </div>
-                <!--在這邊長出comment-->
+                <!--在這邊長出comment_container-->
+                    <!--寫在JS-->
+                <!--在這邊長出comment_poster-->
+                <!--action="../Comment/insertComment"-->
+                <div class="container" style="margin-bottom:50px;">
+                    <h2 style="margin-bottom:30px;">新增評論</h2>
+                    <form >
+                        <div class="form-group">                            
+                            <textarea class="form-control" id="Content_Text" placeholder="輸入評論" name="Content_Text"></textarea>
+                        </div>        
+                        <div class="form-group">
+                           <!--記住使用者session-->
+                            <input type="hidden" id="Job_ID" name="Job_ID" value=1>
+                            <input type="hidden" id="User_ID" name="User_ID" value="A000000011">                                                    
+                        </div>               
+                        <button type="button" class="btn btn-default" id="insert_comment">Submit</button>
+                    </form>
+                </div>
             </div>
             <div class="clearfix"> </div>
             <!--評論結束-->
@@ -253,7 +274,7 @@
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 </div>
                 <div class="modal-body">
-                    <img src="browser_components/images/modal1.jpg" alt=" " class="img-responsive" />
+                    <img src="~/browser_components/images/modal1.jpg" alt=" " class="img-responsive" />
                     <p>
                         Ut enim ad minima veniam, quis nostrum
                         exercitationem ullam corporis suscipit laboriosam,
@@ -271,9 +292,6 @@
         </div>
     </div>
     <!-- //bootstrap-modal-pop-up -->
-    <!-- js -->
-    <script src="~/browser_components/js/jquery-2.2.3.min.js"></script>
-    <!-- //js-->
     <!-- banner-responsive-slider -->
     <script src="~/browser_components/js/responsiveslides.min.js"></script>
     <script>
