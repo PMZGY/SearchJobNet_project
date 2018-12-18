@@ -53,7 +53,7 @@ namespace SearchJobNet_project.Controllers.JobController
             SJM.SearchJob sjm = new SJM.SearchJob();
             JM.JobModel jmModel = new JM.JobModel();
             //jmModel = sjm.jobDetail(jobID);
-        //    jmModel = sjm.jobDetail("111");
+            jmModel = sjm.jobDetail(1);
             
             return View("JobDetailView", jmModel);
         }
@@ -69,6 +69,7 @@ namespace SearchJobNet_project.Controllers.JobController
             return View("MyFavoriteView");
         }
 
+        [HttpPost()]
         public ActionResult memberToMyFavoriteView()
         {
             SJM.SearchJob sjm = new SJM.SearchJob();
@@ -76,7 +77,7 @@ namespace SearchJobNet_project.Controllers.JobController
             string userID = Session["suserID"].ToString();
             sjModel = sjm.myFavorite(userID);
             
-            return Json(this.Json(sjModel), JsonRequestBehavior.AllowGet);
+            return this.Json(sjModel);
             //return View("MyFavoriteView");
         }
 
