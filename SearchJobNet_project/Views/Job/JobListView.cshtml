@@ -1,7 +1,7 @@
 ﻿@{
     Layout = null;
     var suserName = "";
-    if (Session["suserID"] == null || string.IsNullOrWhiteSpace(Session["suserID"].ToString()))
+    if (Session["suserName"] == null || string.IsNullOrWhiteSpace(Session["suserName"].ToString()))
     {
 
     }
@@ -131,38 +131,10 @@
     <footer>
         <div class="agileits-w3layouts-footer">
             <div class="container">
-                <div class="col-md-8 w3-agile-grid">
+                <div class="col-md-12 w3-agile-grid">
                     <h5>About Us</h5>
-                    <p style="font-family: 'Microsoft JhengHei'">中央大學資訊管理研究所碩士一年級<br />陳芃諭 王美淋 鍾文翔 劉冠慶 蔡沅廷</p>
-
+                    <p style="text-align:center;font-family: 'Microsoft JhengHei'">中央大學資訊管理研究所碩士一年級<br />陳芃諭 王美淋 鍾文翔 劉冠慶 蔡沅廷</p>
                 </div>
-
-                <div class="col-md-4 w3-agile-grid">
-                    <h5>Address</h5>
-                    <div class="w3-address">
-                        <div class="w3-address-grid">
-                            <div class="w3-address-left">
-                                <i class="fa fa-phone" aria-hidden="true"></i>
-                            </div>
-                            <div class="w3-address-right">
-                                <h6>Phone Number</h6>
-                                <p>+1 234 567 8901</p>
-                            </div>
-                            <div class="clearfix"> </div>
-                        </div>
-                        <div class="w3-address-grid">
-                            <div class="w3-address-left">
-                                <i class="fa fa-envelope" aria-hidden="true"></i>
-                            </div>
-                            <div class="w3-address-right">
-                                <h6>Email Address</h6>
-                                <p>Email :<a href="mailto:example@email.com"> mail@example.com</a></p>
-                            </div>
-                            <div class="clearfix"> </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="clearfix"> </div>
             </div>
         </div>
         <div class="copyright">
@@ -176,6 +148,7 @@
     <input id="Wk_Type" type="hidden" value="@ViewBag.Wk_Type" />
     <input id="CompName" type="hidden" value="@ViewBag.CompName" />
     <input id="Cjob_Name1" type="hidden" value="@ViewBag.Cjob_Name1" />
+    <input id="suserName" type="hidden" value=@suserName>
     <!-- banner-responsive-slider -->
     <script src="~/browser_components/js/responsiveslides.min.js"></script>
     <script>

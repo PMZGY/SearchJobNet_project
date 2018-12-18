@@ -43,19 +43,9 @@
 
     function sendJobDetailId(e) {
         dataItem = $("#grid").data("kendoGrid").dataItem($(e.currentTarget).closest("tr")).Job_ID;
-        var action = '../History/insertHistory'
-        $.post(action, { jobID: dataItem })
-            .done(function (Data) {
-                if (Data == "insert history success")
-                    alert("插入歷史紀錄成功");
-
-
-            })
-            .fail(function (Data) {
-                if (Data == "insert history fail")
-                    alert("插入歷史紀錄失敗");
-            });
-        alert(dataItem);
+        var action = "../Job/toJobDetailView";
+        //傳資料給後端
+        document.location.href = "/Job/toJobDetailView?jobID=" + dataItem;
     }
 
     //點擊搜索職缺
@@ -106,7 +96,6 @@
                 PassWord: $('#password').val(),
                 Re_Time: null
             };
-            debugger;
             //傳資料給後端
             $.post(action, formData)
                 .done(function (Data) {
@@ -129,9 +118,11 @@
     if ($("#suserName").val() != "") {
         $("#loginimg").hide();
         $("#loginName").show();
+        console.log("有");
     } else {
         $("#loginimg").show();
         $("#loginName").hide();
+        console.log("沒有");
     }
 
 
