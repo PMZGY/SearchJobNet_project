@@ -1,6 +1,4 @@
 ﻿$(function () {
-
-
     $(".column").css({
         "float": "left",
         "width": "100%",
@@ -23,19 +21,16 @@
     });
 
     /*insert comment*/
-    $("#insert_comment").click(function (e) {
+    $("#insert_comment").click(function () {
         //取要傳到的action url
         var action = '../../Comment/insertComment'
-        //var date = new Date.toString();
         
         //取form資料
         var formData = {
             Job_ID: $('#Job_ID').val(),
-            User_ID: $('#User_ID').val(),
-            Content_Text: $('#Content_Text').val(),
-            Time: 'date',
+            Content_Text: $('#Content_Text').val()
         };
-        debugger;
+
         //傳資料給後端
         $.post(action, formData)
             .done(function (Data) {
@@ -47,7 +42,6 @@
             })
             .fail(function (data) {
                 alert("新增失敗!");
-                console.log('post nooooooooooo');
             });
     })
     /*end insert comment*/
@@ -55,7 +49,7 @@
     /*delete comment*/
     $("#delete_comment").click(function (e) {
         //取要傳到的action url
-        var action = '../Comment/deleteComment'
+        var action = '../../Comment/deleteComment'
 
         //取form資料
         var formData = {
@@ -84,21 +78,21 @@
     /*modify comment*/
     $("#modify_comment").click(function (e) {
         //取要傳到的action url
-        var action = '../Comment/modifyComment'
+        var action = '../../Comment/modifyComment'
 
         //取form資料
         var formData = {
             Comment_ID: $('modify_commentID').val(),
-           // Content_Text: $('')
+            Content_Text: $('modify_content').val()
         };
 
         //看看是不是評論者本人
-        if ($('delete_userID').val() == $('delete_sessionID').val()) {
+        if ($('modify_userID').val() == $('modify_sessionID').val()) {
             //傳資料給後端
             $.post(action, formData)
                 .done(function (Data) {
-                    if (Data == "delete success!")
-                        alert("刪除成功!");
+                    if (Data == "modify success!")
+                        alert("修改成功!");
                     $('.close').click();
 
                 })
@@ -106,7 +100,7 @@
                     alert("刪除失敗!");
                 });
         } else {
-            alert("你不能刪除不是你的評論。")
+            alert("你不能修改不是你的評論。")
         };
     })
     /*end modify comment*/
@@ -114,12 +108,11 @@
     /*report comment*/
     $("#report_comment").click(function (e) {
         //取要傳到的action url
-        var action = '../Comment/reportComment'
+        var action = '../../Comment/reportComment'
 
         //取form資料
         var formData = {
-            Comment_ID: $('report_commentID').val(),
-            User_ID: $('report_sessionID').val()
+            Comment_ID: $('report_commentID').val()
         };
 
         //看看是不是評論者本人
@@ -142,13 +135,12 @@
     /*end report comment*/
 
     /* show comment */    
-    $("Document").ready(function (jobID) {
-
+    $("Document").ready(function () {
         /*用jobID去撈comment*/
   
         var action = '../../Comment/browseMemberComment'
            var formData = {
-               ID: 1,
+               ID: $('#Job_ID').val(),
                phase: 1
            };
 
