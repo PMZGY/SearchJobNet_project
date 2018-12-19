@@ -187,6 +187,7 @@
     <Content Include="JobList.html" />
     <Content Include="scripts\ai.0.22.9-build00167.js" />
     <Content Include="scripts\ai.0.22.9-build00167.min.js" />
+    <Content Include="scripts\CommentFunction.js" />
     <Content Include="scripts\History.js" />
     <Content Include="scripts\HomePage.js" />
     <Content Include="Content\kendo\fonts\DejaVu\DejaVuSans-Bold.ttf" />
