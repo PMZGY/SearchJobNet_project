@@ -26,8 +26,14 @@ namespace SearchJobNet_project.Controllers.HistoryController
         {
             string msg = "";
             HM.History hm = new HM.History();
-            msg = hm.insertHistory(Session["suserID"].ToString(), jobID);
-            System.Diagnostics.Debug.Print(msg + "wwwwww");
+            if (Session["suserID"] == null || string.IsNullOrWhiteSpace(Session["suserID"].ToString()))
+            {
+                System.Diagnostics.Debug.Print("還沒登入");
+            }
+            else
+            {
+                msg = hm.insertHistory(Session["suserID"].ToString(), jobID);
+            }
             return Content(msg);
         }
         [HttpPost]
