@@ -56,6 +56,7 @@
     <script src="~/scripts/kendo/kendo.all.min.js"></script>
     <!--//history js 控制-->
     <script src="~/scripts/History.js"></script>
+    <link href="~/scripts/Shared.css" rel="stylesheet" />
 </head>
 
 <body>
@@ -90,7 +91,7 @@
                             <span class="icon-bar"></span>
                         </button>
                         <div class="navbar-brand logo ">
-                            <h1>@Html.ActionLink("求職網", "Index", "Home")</h1>
+                            <h1 style="font-family:Microsoft JhengHei;">@Html.ActionLink("求職網", "Index", "Home")</h1>
                         </div>
 
                     </div>
@@ -122,12 +123,12 @@
     <div id="about" class="banner-bottom">
         <div class="container">
             <div class="wls_head_all">
-                <h3>歷史紀錄</h3>
+                <h3 style="font-family:Microsoft JhengHei;">歷史紀錄</h3>
             </div>
             <!--產生歷史紀錄表單-->
             <div style="margin-left:460px">
-                <button class="btn btn-primary" id="jobGridButton">職缺歷史紀錄</button>
-                <button class="btn btn-primary" id="commonGridButton">評論歷史紀錄</button>
+                <button class="btn btn-primary" id="jobGridButton" style="font-family:Microsoft JhengHei;">職缺歷史紀錄</button>
+                <button class="btn btn-primary" id="commonGridButton" style="font-family:Microsoft JhengHei;">評論歷史紀錄</button>
             </div>
 
             <div id="jobGrid"></div>
