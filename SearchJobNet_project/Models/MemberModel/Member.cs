@@ -16,6 +16,14 @@ namespace SearchJobNet_project.Models.MemberModel
             // 建立DB連線
             Tools.DBConnection bsc = new Tools.DBConnection();
 
+            // 確認user_ID是否重複
+            MemberModel mms = memberData(rMember.UserName);
+
+            if (mms.User_ID != null)
+            {
+                return "重複會員名稱!需換會員名稱";
+            }
+
             // 放入 UserID的資料
             string doDB = bsc.ActionDB(
                             string.Format(
@@ -76,7 +84,7 @@ namespace SearchJobNet_project.Models.MemberModel
             }
         }
 
-        // 使用USER_ID,瀏覽會員DB資料,也判斷新增/登入是否成功
+        // 使用UserName,瀏覽會員DB資料,也判斷新增/登入是否成功
         public MM.MemberModel memberData(string UserName)
         {
             MM.MemberModel bMemberModel = new MM.MemberModel();
