@@ -39,6 +39,7 @@
         editable: "inline"
     });
 
+    //抓取點選職缺ID及傳送至JobDetailView
     $("#grid").data("kendoGrid").table.on("click", "tr", sendJobDetailId);
 
     function sendJobDetailId(e) {
