@@ -189,7 +189,7 @@
                      var i = index + 1;
 
                      //建一個comment的位置
-                     var comment_container = '<div class="container">' + '<div class="row" style="content = ""; display : table; clear : both;">' +
+                     var comment_container = '<div class="container" id="comment_block' + commentModel.Comment_ID + '">' + '<div class="row" style="content = ""; display : table; clear : both;">' +
                                                  //這是一則comment
                                                  '<table style="border : 10px #2E5C6E solid; margin-bottom : 50px; width:100%" cellpadding="10" border=1>' +
                                                      //comment第一行
