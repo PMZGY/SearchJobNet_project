@@ -332,7 +332,7 @@ namespace SearchJobNet_project.Models.CommentModel
 
             DataTable dt = bsc.ReadDB(
                             string.Format(
-                            @"SELECT C.TIME , C.CONTENT_TEXT ,C.COMMENT_ID ,A.USERNAME
+                            @"SELECT C.TIME , C.CONTENT_TEXT ,C.COMMENT_ID ,A.USERNAME ,C.Is_Alive
                               FROM [Comment] AS C , [Account] AS A
                               WHERE 1=1
                               AND C.USER_ID = A.USER_ID
@@ -348,7 +348,8 @@ namespace SearchJobNet_project.Models.CommentModel
                     Time         = dt.Rows[i][0].ToString(),
                     Content_Text = dt.Rows[i][1].ToString(),
                     Comment_ID   = Convert.ToInt16(dt.Rows[i][2]),
-                    UserName     = dt.Rows[i][3].ToString()
+                    UserName     = dt.Rows[i][3].ToString(),
+                    Is_Alive     = dt.Rows[i][4].ToString()
                 });
             }
 
