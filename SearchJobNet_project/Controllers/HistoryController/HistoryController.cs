@@ -69,8 +69,7 @@ namespace SearchJobNet_project.Controllers.HistoryController
             CM.Comment comment = new CM.Comment();
             List<CM.CommentModel> hcommentModel = new List<CM.CommentModel>();
             hcommentModel = comment.browseHistoryComment(Session["suserID"].ToString());
-
-
+            
             return Json(hcommentModel);
         }
 
