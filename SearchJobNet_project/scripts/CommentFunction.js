@@ -66,7 +66,7 @@ function modifyComment(commentID) {
         comment_ID: commentID,
         content_text: $('#modify_content'+commentID).val()
     };
-    debugger;
+
     //傳資料給後端
     $.post(action, formData)
         .done(function (Data) {
