@@ -42,7 +42,7 @@ function deleteComment(commentID) {
 //        comment_ID: $('#delete_commentID').val()
         comment_ID: commentID
     };
-
+    debugger;
     //傳資料給後端
     $.post(action, formData)
         .done(function (Data) {

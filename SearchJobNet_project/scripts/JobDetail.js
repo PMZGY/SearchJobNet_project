@@ -126,8 +126,8 @@
                                                  '</table>' +
                                              '</div>' + '</div>'
                      //append這個comment
-                     if ($(commentModel.Is_Alive).val() != "false") {
-                         console.log($('#sessionID').val());
+                     if (commentModel.Is_Alive != "false") {
+                         console.log(commentModel.Is_Alive);
                          $(".comment_table").append(comment_container);
                      }
                  })
