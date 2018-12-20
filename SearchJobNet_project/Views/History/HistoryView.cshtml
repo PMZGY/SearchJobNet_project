@@ -55,6 +55,7 @@
     <!-- //kendo js-->
     <script src="~/scripts/kendo/kendo.all.min.js"></script>
     <!--//history js 控制-->
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="~/scripts/History.js"></script>
     <link href="~/scripts/Shared.css" rel="stylesheet" />
 </head>
@@ -62,16 +63,22 @@
 <body>
     <!-- banner -->
     <div class="banner jarallax">
-        <div class="w3layouts-header-top">
+        <div class="w3layouts-header-top" style="padding-top: 5px;padding-bottom: 5px;">
             <div class="container">
                 <div class="w3-header-top-grids">
                     <div class="w3-header-top-left">
                     </div>
                     <div class="w3-header-top-right">
                         <div class="agileinfo-social-grids">
-                            <ul>
-                                <h3 id="loginName" style="font-family:Microsoft JhengHei;color:white">@suserName</h3>
-                            </ul>
+                            <div id="loginName">
+                                <h3 style="font-family:Microsoft JhengHei;color:white">
+                                    @suserName
+                                    <button id="exitimg" style="background-color:transparent;border-color:transparent">
+                                        <img src="~/browser_components/images/exit.png" width="40" height="40" />
+                                    </button>
+                                </h3>
+
+                            </div>
                         </div>
                         <div class="clearfix"> </div>
                     </div>

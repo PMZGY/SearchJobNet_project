@@ -59,22 +59,31 @@
 <body>
     <!-- banner -->
     <div class="banner jarallax">
-        <div class="w3layouts-header-top">
+        <div class="w3layouts-header-top" style="padding-top: 5px;padding-bottom: 5px;">
             <div class="container">
                 <div class="w3-header-top-grids">
                     <div class="w3-header-top-left">
                     </div>
                     <div class="w3-header-top-right">
                         <div class="agileinfo-social-grids">
-                                <img src="~/browser_components/images/login.png" class="img-responsive" width="40" height="40" data-toggle="modal" data-target="#member" id="loginimg" /> 
-                                <h3 id="loginName" style="font-family:Microsoft JhengHei;color:white">@suserName</h3>
+                            <img src="~/browser_components/images/login.png" class="img-responsive" width="40" height="40" data-toggle="modal" data-target="#member" id="loginimg" />
+                            <div id="loginName">
+                                <h3 style="font-family:Microsoft JhengHei;color:white">
+                                    @suserName
+                                <button id="exitimg" style="background-color:transparent;border-color:transparent">
+                                    <img src="~/browser_components/images/exit.png" width="40" height="40" />
+                                </button>
+                            </h3>
+
                         </div>
-                        <div class="clearfix"> </div>
+
                     </div>
                     <div class="clearfix"> </div>
                 </div>
+                <div class="clearfix"> </div>
             </div>
         </div>
+    </div>
         <div class="head">
             <div class="container">
                 <div class="navbar-top">
