@@ -136,7 +136,36 @@ function sendJobDetailId2(e) {
     var action = "../Job/toJobDetailView";
     document.location.href = "/Job/toJobDetailView?jobID=" + dataItem;
 }
-    
+   
+    //點擊登出
+$("#exitimg").click(function () {
+    //取要傳到的action url
+    var action = '../Member/logoutMember'
+
+    //傳資料給後端
+    $.post(action)
+        .done(function (Data) {
+            if (Data == "logout success!") {
+                swal({
+                    title: "登出成功",
+                    icon: "success"
+                });
+                location.href = '/';
+            } else {
+                swal({
+                    title: "登出失敗",
+                    icon: "error"
+                });
+            }
+        })
+        .fail(function (Data) {
+            swal({
+                title: "登出失敗",
+                icon: "error"
+            });
+        });
+});
+
 })
 
 
