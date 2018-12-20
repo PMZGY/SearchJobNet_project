@@ -369,7 +369,7 @@ namespace SearchJobNet_project.Models.CommentModel
 
             DataTable dt = bsc.ReadDB(
                             string.Format(
-                            @"SELECT J.JOB_ID ,J.COMPNAME ,J.OCCU_DESC ,C.TIME ,C.IS_ALIVE
+                            @"SELECT J.JOB_ID ,J.COMPNAME ,J.OCCU_DESC ,C.TIME ,C.IS_ALIVE,C.CONTENT_TEXT
                               FROM [Comment] AS C , [Job] AS J
                               WHERE 1=1
                               AND C.JOB_ID = J.JOB_ID
@@ -386,7 +386,8 @@ namespace SearchJobNet_project.Models.CommentModel
                     CompName  = dt.Rows[i][1].ToString(),
                     Occu_Desc = dt.Rows[i][2].ToString(),
                     Time      = dt.Rows[i][3].ToString(),
-                    Is_Alive  = dt.Rows[i][4].ToString()
+                    Is_Alive  = dt.Rows[i][4].ToString(),
+                    Content_Text = dt.Rows[i][5].ToString()
                 });
             }
 

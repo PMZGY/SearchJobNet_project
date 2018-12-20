@@ -89,12 +89,11 @@ $("#commonGrid").kendoGrid({
         schema: {
             model: {
                 fields: {
-                    Comment_ID: { type: "number" },
+                    
                     Job_ID: { type: "number" },
                     User_ID: { type: "string" },
                     Content_Text: { type: "string" },
                     Time: { type: "string" },
-                    Report_no: { type: "number" },
                     Is_Alive: { type: "string" },
                     Occu_Desc: { type: "string" },
                     CompName: { type: "string" }
@@ -112,7 +111,6 @@ $("#commonGrid").kendoGrid({
         numeric: false
     },
     columns: [
-        { field: "Job_ID", title: "idww", width: "110px" },
         { field: "Occu_Desc", title: "評論職務名稱", width: "110px" },
         { field: "CompName", title: "評論公司名稱", width: "140px" },
         { field: "Content_Text", title: "評論內容", width: "160px" },
