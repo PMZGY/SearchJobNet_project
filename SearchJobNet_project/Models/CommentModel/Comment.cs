@@ -30,33 +30,7 @@ namespace SearchJobNet_project.Models.CommentModel
                 return "DB處理錯誤";
             }
             
-            #endregion
-
-            #region[檢查DB內容]
-
-            // 查看是否新增成功
-            List<CommentModel> cm = this.browseComment(iComment.Comment_ID);
-
-            // 如果list個數為0 ,則回傳插入失敗
-            if (cm.Count == 0)
-            {
-                return "insert error!";
-            }
-            else
-            {
-                // 判斷 DB 是否有插入一模一樣的資料筆
-                for (int i = 0; i < cm.Count; i++)
-                {
-                    if ((cm[i].Job_ID       == iComment.Job_ID) &&
-                        (cm[i].User_ID      == iComment.SessionID) &&
-                        (cm[i].Content_Text == iComment.Content_Text)                       
-                      )
-                    {
-                        return "insert success!";
-                    }
-                }
-                return "insert error!";
-            }
+            return "insert success!";
 
             #endregion
 
