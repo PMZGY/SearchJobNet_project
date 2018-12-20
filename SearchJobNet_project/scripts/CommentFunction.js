@@ -49,6 +49,10 @@ function deleteComment(commentID) {
                 $('#comment_block' + commentID).hide();
                 alert("刪除成功!");
             }
+            else
+            {
+                alert(Data);
+            }
             $('.close').click();
         })
         .fail(function (data) {

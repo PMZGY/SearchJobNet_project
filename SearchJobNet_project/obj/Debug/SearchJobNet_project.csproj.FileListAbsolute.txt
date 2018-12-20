@@ -44,5 +44,6 @@ D:\SearchJob\SearchJobNet_project\bin\System.Web.Webpages.Deployment.xml
 D:\SearchJob\SearchJobNet_project\bin\System.Web.Webpages.Razor.xml
 D:\SearchJob\SearchJobNet_project\bin\System.Web.Helpers.xml
 D:\SearchJob\SearchJobNet_project\bin\System.Web.Mvc.xml
+D:\SearchJob\SearchJobNet_project\obj\Debug\SearchJobNet_project.csprojResolveAssemblyReference.cache
 D:\SearchJob\SearchJobNet_project\obj\Debug\SearchJobNet_project.dll
 D:\SearchJob\SearchJobNet_project\obj\Debug\SearchJobNet_project.pdb
