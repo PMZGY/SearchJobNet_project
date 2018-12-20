@@ -45,8 +45,10 @@ function deleteComment(commentID) {
     //傳資料給後端
     $.post(action, formData)
         .done(function (Data) {
-            if (Data == "delete success!")
+            if (Data == "delete success!") {
+                $('#comment_block' + commentID).hide();
                 alert("刪除成功!");
+            }
             $('.close').click();
         })
         .fail(function (data) {
@@ -70,9 +72,7 @@ function modifyComment(commentID) {
     //傳資料給後端
     $.post(action, formData)
         .done(function (Data) {
-            if (Data == "modify success!")
-                alert("修改成功!");
-            //$('.close').click();
+            alert(Data);
         })
         .fail(function (data) {
             alert("刪除失敗!");
@@ -92,12 +92,7 @@ function reportComment(commentID) {
     //傳資料給後端
     $.post(action, formData)
         .done(function (Data) {
-            if (Data == "report success!")
-                alert("檢舉成功!");
-            if (Data == "Can't report again!") {
-                alert("Can't report again!");
-            }
-            $('.close').click();
+            alert(Data);
         })
         .fail(function (data) {
             alert("檢舉失敗!");
