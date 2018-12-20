@@ -76,6 +76,10 @@ namespace SearchJobNet_project.Models.JobModel
         [Display(Name = "應徵截止日期")]
         public string Stop_Date { get; set; }
 
-        
+        ///<summary> 是否為我的最愛 </summary>
+        [Display(Name = "是否為我的最愛")]
+        public int Is_Favorite { get; set; }
+
+
     }
 }
