@@ -52,7 +52,11 @@ namespace SearchJobNet_project.Controllers.JobController
         {
             SJM.SearchJob sjm = new SJM.SearchJob();
             JM.JobModel jmModel = new JM.JobModel();
-            jmModel = sjm.jobDetail(jobID);
+            string userID = "";
+            if (Session["suserID"]!=null) {
+                 userID = Session["suserID"].ToString();
+            }
+            jmModel = sjm.jobDetail(jobID, userID);
             //jmModel = sjm.jobDetail(1);
             
             return View("JobDetailView", jmModel);
