@@ -95,6 +95,9 @@ function reportComment(commentID) {
         .done(function (Data) {
             if (Data == "report success!")
                 alert("檢舉成功!");
+            if (Data == "Can't report again!") {
+                alert("Can't report again!");
+            }
             $('.close').click();
         })
         .fail(function (data) {

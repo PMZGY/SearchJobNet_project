@@ -126,7 +126,7 @@
                                                  '</table>' +
                                              '</div>' + '</div>'
                      //append這個comment
-                     if ($('#sessionID').val() != "") {
+                     if ($(commentModel.Is_Alive).val() != "false") {
                          console.log($('#sessionID').val());
                          $(".comment_table").append(comment_container);
                      }
@@ -142,12 +142,13 @@
 $(document).ready(function () {
     //0 是還沒加入最愛 1是已經加入最愛
     if ($("#Is_Favorite").val() == 0) {
-        var myFavoriteString = '<img id="favorite" src="../browser_components/images/dislike.png" onclick="addMyFavorite()" width="30px" hight="auto"> '
-    } else {
-        var myFavoriteString = '<img id="favorite" src="../browser_components/images/like.png" onclick="cancelMyFavorite()" width="30px" hight="auto">'
-    };
+        $("#dislike").show();
+        $("#like").hide();
 
-    $("#heart").append(myFavoriteString);
+    } else {
+        $("#dislike").hide();
+        $("#like").show();
+    };
 })
 
 function addMyFavorite() {
@@ -157,15 +158,16 @@ function addMyFavorite() {
         job_ID: $('#Job_ID').val()
     }
 
-    $.post(action, formData)
-        .done(function (Data) {
-           if (Data == "insert success!")
-               ("#favorite").src = "../browser_components/images/like.png";
-            $('.close').click();
-         })
-       .fail(function (Data) {
-            alert("加入失敗!");
-       });
+    $.ajax({
+        type: "POST",
+        url: action,
+        data: formData,
+        dataType: "text",
+        success: function (Data) {
+            $("#like").show();
+            $("#dislike").hide();
+        }
+    })
 
 }
 
@@ -175,13 +177,16 @@ function cancelMyFavorite() {
         user_ID: $("#sessionID").val(),
         job_ID: $('#Job_ID').val()
     }
-    $.post(action, formData)
-        .done(function (Data) {
-            if (Data == "delete success!")
-                ("#favorite").src = "../browser_components/images/dislike.png";
-            $('.close').click();
-        })
-        .fail(function (Data) {
-            alert("取消失敗!");
-        });
+
+    $.ajax({
+        type: "POST",
+        url: action,
+        data: formData,
+        dataType: "text",
+        success: function (Data) {
+            $("#dislike").show();
+            $("#like").hide();
+        }
+    })
+
 }

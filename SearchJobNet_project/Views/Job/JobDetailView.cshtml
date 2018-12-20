@@ -136,13 +136,26 @@
             <!--Job Detail start-->
             <div class="container detail_table">
                 <div class="row">
-                    <div class="column">                        
-                        <h2>@Html.DisplayFor(model => model.Occu_Desc, new { style = "color : #2E5C6E" }) </h2>
+                    <div class="column">
+                        <table>
+                            <tr>
+                                <td><h2>@Html.DisplayFor(model => model.Occu_Desc, new { style = "color : #2E5C6E" }) </h2></td>
+                                <td>
+                                    <div>
+                                        <div id="dislike">
+                                            <img src="../browser_components/images/dislike.png" onclick="addMyFavorite()" width="30" hight="auto">
+                                        </div>
+                                        <div id="like">
+                                            <img src="../browser_components/images/like.png" onclick="cancelMyFavorite()" width="30" hight="auto">
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>                            
+                        </table>
                         <input type="hidden" id="sessionID" value=@suserID>
                         <!--記住使用者當前JobID-->
                         @Html.Hidden("Job_ID")
-                        @Html.Hidden("Is_Favorite")
-                        <div id="heart"></div>
+                        @Html.Hidden("Is_Favorite")                       
                     </div>
                 </div>
                 <div class="row">
