@@ -131,7 +131,7 @@ namespace SearchJobNet_project.Models.CommentModel
                             string.Format(
                             @"DELETE FROM [Comment]
                               WHERE 1=1
-                              AND COMMENTID = {0};"
+                              AND COMMENT_ID = {0};"
                             , comment_ID)
                            );
 

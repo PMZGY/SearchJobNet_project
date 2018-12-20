@@ -356,11 +356,11 @@ namespace SearchJobNet_project.Models.SearchJobModel
             // 判斷 DB 是否有插入一模一樣的資料筆
             if (dt.Rows.Count == 0)
             {
-                return "insert error!";
+                return "insert success!";
             }
             else
             {
-                return "insert success!";
+                return "insert error!";
             }
 
             #endregion

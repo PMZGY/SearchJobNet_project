@@ -124,6 +124,8 @@
     <Content Include="browser_components\images\ban11.jpg" />
     <Content Include="browser_components\images\ching.png" />
     <Content Include="browser_components\images\chong.png" />
+    <Content Include="browser_components\images\dislike.png" />
+    <Content Include="browser_components\images\like.png" />
     <Content Include="browser_components\images\mei.png" />
     <Content Include="browser_components\images\modal1.jpg" />
     <Content Include="browser_components\images\pon.png" />
