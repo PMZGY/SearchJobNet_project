@@ -173,7 +173,7 @@ namespace SearchJobNet_project.Models.SearchJobModel
 
 
         // 搜尋職缺細項
-        public JM.JobModel jobDetail(int jobID)
+        public JM.JobModel jobDetail(int jobID , string userID)
         {
 
             // SQL指令 撈出職缺細項
@@ -197,6 +197,7 @@ namespace SearchJobNet_project.Models.SearchJobModel
                                   AND J.CJOB_ID = JT.CJOB_ID"
                                   , jobID)
                                 );
+            
             JM.JobModel jmModel = new JM.JobModel();
             // 將DataTable的資料轉換為model 將職缺細項列出
 
@@ -217,9 +218,28 @@ namespace SearchJobNet_project.Models.SearchJobModel
             jmModel.Comp_ID = Convert.ToInt16(dt.Rows[0][14]);
             jmModel.CompName = dt.Rows[0][15].ToString();
             jmModel.TranDate = dt.Rows[0][16].ToString();
-
-
-
+            
+            if (userID != "") {
+                DataTable dt1 = bsc.ReadDB(
+                              string.Format(
+                              @"SELECT JOB_ID
+                                  FROM [MyFavorite] 
+                                  WHERE 1=1
+                                  AND USER_ID = '{0}'
+                                  AND JOB_ID = {1}"
+                                , userID, jobID)
+                              );
+                if (dt1.Rows.Count > 0)
+                {
+                    jmModel.Is_Favorite = 1;
+                }
+                else
+                {
+                    jmModel.Is_Favorite = 0;
+                }
+            }
+            
+            
             #endregion
 
             return jmModel;
