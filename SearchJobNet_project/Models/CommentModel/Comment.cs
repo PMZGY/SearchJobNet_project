@@ -30,15 +30,21 @@ namespace SearchJobNet_project.Models.CommentModel
                 return "DB處理錯誤";
             }
             
-            return "insert success!";
+            return "新增評論成功!";
 
             #endregion
 
         }
 
         // 修改評論 
-        public string modifyComment(int comment_ID, string content_text)
+        public string modifyComment(int comment_ID, string content_text ,string suserID)
         {
+            // 判斷是不是自己下的評論 ,如果不是就直接 return "modify error!";
+            List<CM.CommentModel> cms = browseComment(comment_ID);
+            if (cms[0].User_ID != suserID)
+            {
+                return "不能修改其他人的評論!";
+            }
 
             #region [做DB連線 以及 執行DB處理]
 
@@ -93,8 +99,15 @@ namespace SearchJobNet_project.Models.CommentModel
         }
 
         // 刪除評論
-        public string delComment(int comment_ID)
+        public string delComment(int comment_ID ,string suserID)
         {
+            // 判斷是不是自己下的評論 ,如果不是就直接 return "modify error!";
+            List<CM.CommentModel> cms = browseComment(comment_ID);
+            if (cms[0].User_ID != suserID)
+            {
+                return "不能刪除其他人的評論!";
+            }
+
             #region [做DB連線 以及 執行DB處理]
 
             // 建立DB連線
@@ -165,7 +178,7 @@ namespace SearchJobNet_project.Models.CommentModel
             // 若已檢舉過 ,直接回傳"Can't report again!"
             if (dt.Rows.Count > 0)
             {
-                return "Can't report again!";
+                return "不能重複評論!";
             }
 
             #endregion
