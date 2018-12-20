@@ -24,7 +24,10 @@
     $("Document").ready(function () {
         if ($("#sessionID").val() == "") {
             $(".comment_table").css({
-                "display":"none"
+               "display":"none"
+            });
+            $("#heart").css({
+                "display": "none"
             });
         }
     })
@@ -64,25 +67,21 @@
                                                              '<form>' +
                                                                  '<div class="form-group" style="height: 0% ">' + '</div>' +
                                                                  //叫出浮動視窗的按鈕
-                                                                 '<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modify_modal">修改</button>' +
+                                                                 '<button type="button" class="btn btn-primary" onclick="document.getElementById(\'modify_modal\').style.display=\'block\'">修改</button>' +
                                                                  //modal
-                                                                 '<div class="modal fade" id="modify_modal" tabindex="-1" role="dialog" aria-labelledby="modifying" aria-hidden="true">' +
+                                                                 '<div class="modal" id="modify_modal" tabindex="-1" role="dialog" aria-labelledby="modifying">'+
                                                                      '<div class="modal-dialog modal-dialog-centered" role="document">' +
                                                                          '<div class="modal-content">' +
                                                                              '<div class="modal-header">' +
                                                                                  '<h5 class="modal-title" id="modifying">更新評論</h5>' +
-                                                                                 '<button type="button" class="close" data-dismiss="modal" aria-label="Close">' +
-                                                                                     '<span aria-hidden="true">&times;</span>' +
-                                                                                 '</button>' +
                                                                              '</div>' +
                                                                              '<div class="modal-body">' +
                                                                                  //更新 comment是誰的/哪支comment/誰要改/跟改的內容
-                                                                                 '<input type="hidden" id="modify_commentID" value="' + commentModel.Comment_ID + '">' +
                                                                                  '<textarea class="form-control" id="modify_content" placeholder="輸入新的內容" name="modify_content"></textarea>' +
                                                                              '</div>' +
                                                                              '<div class="modal-footer">' +
-                                                                                 '<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>' +
-                                                                                 '<button type="button" class="btn btn-primary" id="modify_comment">Save changes</button>' +
+                                                                                 '<button type="button" class="btn btn-secondary" onclick="document.getElementById(\'modify_modal\').style.display=\'none\'">Close</button>' +
+                                                                                 '<button type="button" class="btn btn-primary" id="modify_comment" onclick="modifyComment(\'' + commentModel.Comment_ID + '\')">Save changes</button>' +
                                                                              '</div>' +
                                                                          '</div>' +
                                                                      '</div>' +
@@ -93,20 +92,16 @@
                                                          '<td style = " float : left; width : 6%; padding : 5px; background-color : #A5DEE4">' +
                                                              '<form>' +
                                                                  '<div class="form-group" style="hright: 0%">' +
-                                                                     '<input type="hidden" id="report_userID" value="' + commentModel.User_ID + '">' +
-                                                                     '<input type="hidden" id="report_commentID" value="' + commentModel.Comment_ID + '">' +
                                                                  '</div>' +
-                                                                 '<button type="submit" class="btn btn-default" id="report_comment">檢舉</button>' +
+                                                                 '<button type="button" class="btn btn-default" id="report_comment" onclick="reportComment(\'' + commentModel.Comment_ID + '\')">檢舉</button>' +
                                                              '</form>' +
                                                          '</td>' +
                                                          //刪除按鈕 comment是誰的/哪支comment/誰要改/跟改的內容
                                                          '<td style = " float : left; width : 6%; padding : 5px; background-color : #A5DEE4">' +
                                                              '<form>' +
                                                                  '<div class="form-group" style="hright: 0%">' +
-                                                                     '<input type="hidden" id="delete_userID" value="' + commentModel.User_ID + '">' +
-                                                                     '<input type="hidden" id="delete_commentID" value="' + commentModel.Comment_ID + '">' +
                                                                  '</div>' +
-                                                                 '<button type="button" class="btn btn-danger" id="delete_comment">刪除</button>' +
+                                                                 '<button type="button" class="btn btn-danger" id="delete_comment" onclick="deleteComment(\'' + commentModel.Comment_ID + '\')">刪除</button>' +
                                                               '</form>' +
                                                          '</td>' +
                                                      '</tr>' +
@@ -140,10 +135,53 @@
          .fail(function () {
              $(".comment_table").append('<div style="color:#AAA; text-align:center;">沒有評論...</div>')
          });
-        /* show comment end */
+        /* show comment end */             
     })
-
-
-
-
 })
+
+(document).ready(function () {
+    var myFavoriteString = "";
+    //0 是還沒加入最愛 1是已經加入最愛
+    if ("#MyFavorite".val() == 0) {
+        myFavoriteString = '<img id="favorite" src="../browser_components/images/dislike.png" onclick="addMyfavorite()"';
+    } else {
+        myFavoriteString = '<img id="favorite" src="../browser_components/images/like.png" onclick="cancelMyfavorite()"';
+    };
+        
+    heart.append(myFavoriteString);
+})
+
+function addMyFavorite() {
+    var action = '../'
+    var dataForm = {
+        Job_ID: $('#Job_ID').val()
+    }
+
+    $.post(action, formData)
+    .done(function (Data) {
+        if (Data == "delete success!")
+            ("#favorite").src = "../browser_components/images/like.png"
+        $('.close').click();
+    })
+    .fail(function (Data) {
+        alert("加入失敗!");
+    });
+
+}
+
+function cancelMyFavorite() {
+    var action = '../'
+    var dataForm = {
+        Job_ID: $('#Job_ID').val()
+    }
+
+    $.post(action, formData)
+    .done(function (Data) {
+        if (Data == "delete success!")
+            ("#favorite").src = "../browser_components/images/dislike.png"
+        $('.close').click();
+    })
+    .fail(function (Data) {
+        alert("取消失敗!");
+    });
+}
