@@ -36,6 +36,20 @@ namespace SearchJobNet_project.Controllers.MemberController
             return Json(mbdata);            
         }
 
+        // 傳入 null,執行 [登出會員] 功能
+        // 回傳 登出成功失敗與否
+        [HttpPost]
+        public ActionResult logoutMember()
+        {
+            //儲存seesion userID ,如果沒登入則會存null
+            Session["suserID"] = null;
+            Session["suserName"] = null;
+
+            string msg = ( (Session["suserID"] == null) && (Session["suserName"] == null) )? "logout success!":"logout fail!";
+
+            return Content(msg);
+        }
+
         #region[暫時先沒有忘記密碼功能]
 
         // 傳入 會員帳號,執行 [忘記密碼] 功能
