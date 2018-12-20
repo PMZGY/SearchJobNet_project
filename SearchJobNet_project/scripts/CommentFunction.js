@@ -42,7 +42,6 @@ function deleteComment(commentID) {
 //        comment_ID: $('#delete_commentID').val()
         comment_ID: commentID
     };
-    debugger;
     //傳資料給後端
     $.post(action, formData)
         .done(function (Data) {
@@ -65,9 +64,9 @@ function modifyComment(commentID) {
     //取form資料
     var formData = {
         comment_ID: commentID,
-        content_text: $('#modify_content').val()
+        content_text: $('#modify_content'+commentID).val()
     };
-
+    debugger;
     //傳資料給後端
     $.post(action, formData)
         .done(function (Data) {

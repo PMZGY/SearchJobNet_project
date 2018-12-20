@@ -67,9 +67,9 @@
                                                              '<form>' +
                                                                  '<div class="form-group" style="height: 0% ">' + '</div>' +
                                                                  //叫出浮動視窗的按鈕
-                                                                 '<button type="button" class="btn btn-primary" onclick="document.getElementById(\'modify_modal\').style.display=\'block\'">修改</button>' +
+                                                                 '<button type="button" class="btn btn-primary" onclick="document.getElementById(\'modify_modal' + commentModel.Comment_ID + '\').style.display=\'block\'">修改</button>' +
                                                                  //modal
-                                                                 '<div class="modal" id="modify_modal" tabindex="-1" role="dialog" aria-labelledby="modifying">'+
+                                                                 '<div class="modal" id="modify_modal' + commentModel.Comment_ID + '" tabindex="-1" role="dialog" aria-labelledby="modifying">' +
                                                                      '<div class="modal-dialog modal-dialog-centered" role="document">' +
                                                                          '<div class="modal-content">' +
                                                                              '<div class="modal-header">' +
@@ -77,10 +77,10 @@
                                                                              '</div>' +
                                                                              '<div class="modal-body">' +
                                                                                  //更新 comment是誰的/哪支comment/誰要改/跟改的內容
-                                                                                 '<textarea class="form-control" id="modify_content" placeholder="輸入新的內容" name="modify_content"></textarea>' +
+                                                                                 '<textarea class="form-control" id="modify_content' + commentModel.Comment_ID + '" placeholder="輸入新的內容" name="modify_content"></textarea>' +
                                                                              '</div>' +
                                                                              '<div class="modal-footer">' +
-                                                                                 '<button type="button" class="btn btn-secondary" onclick="document.getElementById(\'modify_modal\').style.display=\'none\'">Close</button>' +
+                                                                                 '<button type="button" class="btn btn-secondary" onclick="document.getElementById(\'modify_modal' + commentModel.Comment_ID + '\').style.display=\'none\'">Close</button>' +
                                                                                  '<button type="button" class="btn btn-primary" id="modify_comment" onclick="modifyComment(\'' + commentModel.Comment_ID + '\')">Save changes</button>' +
                                                                              '</div>' +
                                                                          '</div>' +
