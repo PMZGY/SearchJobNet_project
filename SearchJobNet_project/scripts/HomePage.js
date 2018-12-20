@@ -93,11 +93,16 @@ $(function () {
     })
 
     //是否有登入，顯示帳號或會員登入icon
-    if ($("#suserName").val() != "") {
+    if ($("#suserName").val() != "") {//有登入
         $("#loginimg").hide();
         $("#loginName").show();
-    } else {
+        $("#myfavoriteview").show();
+        $("#historyview").show();
+    } else {//未登入
         $("#loginimg").show();
         $("#loginName").hide();
+        $("#myfavoriteview").hide();
+        $("#historyview").hide();
     }
+
 })

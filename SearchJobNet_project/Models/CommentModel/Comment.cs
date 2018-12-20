@@ -183,8 +183,9 @@ namespace SearchJobNet_project.Models.CommentModel
                                @"SELECT *
                                  FROM [Report] AS R
                                  WHERE 1=1
-                                 AND R.USER_ID = '{0}'"
-                                 , suserID)
+                                 AND R.USER_ID = '{0}'
+                                 AND R.COMMENT_ID = '{1}'"
+                                 , suserID , comment_ID)
                                 );
 
             // 若已檢舉過 ,直接回傳"Can't report again!"
@@ -214,14 +215,14 @@ namespace SearchJobNet_project.Models.CommentModel
                 reportsnum = reportsnum + 1;
 
                 // 若檢舉次數 = 5 ,不存活SQL指令
-                string SQLComment = (reportsnum == 5) ? ", Is_Alive  = \"false\"" : "";
+                string SQLComment = (reportsnum == 5) ? ", Is_Alive  = \'false\'" :null;
 
                 // 修改 commentID的資料(次數+1)
                 String doDBConnect = bsc.ActionDB(
                                          string.Format(
                                                 @"UPDATE [Comment]
-                                                  SET REPORT_NO = {0},
-                                                      '{1}'
+                                                  SET REPORT_NO = {0}
+                                                      {1}
                                                   WHERE 1=1
                                                   AND COMMENT_ID = {2};"
                                                   , reportsnum ,SQLComment , comment_ID)

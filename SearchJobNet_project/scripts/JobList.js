@@ -71,19 +71,29 @@
         //傳資料給後端
         $.post(action, formData)
             .done(function (Data) {
-                if (Data.User_ID != "")                                   //userid不為空則登入成功
-                    alert(Data.UserName + "登入成功!");
-                window.location.reload();
-                if (Data.User_ID == "")                                   //userid為空則登入失敗
-                    alert("帳號密碼錯誤!");
-                $('.close').click();
-
-
+                if (Data.User_ID != "") {                                  //userid不為空則登入成功
+                    swal({
+                        title: "登入成功",
+                        text: Data.UserName + "歡迎您回來!",
+                        icon: "success"
+                    });
+                    window.location.reload();
+                }
+                if (Data.User_ID == "") {                                   //userid為空則登入失敗
+                    swal({
+                        title: "帳號密碼錯誤",
+                        icon: "error"
+                    });
+                    $('.close').click();
+                }
             })
             .fail(function (Data) {
 
                 if (Data.User_ID == "")
-                    alert("登入失敗!");
+                    swal({
+                        title: "登入失敗",
+                        icon: "error"
+                    });
             });
     })
 
@@ -103,30 +113,48 @@
             //傳資料給後端
             $.post(action, formData)
                 .done(function (Data) {
-                    debugger;
-                    if (Data == "insert success!")
-                        alert("註冊成功!");
-                    $('.close').click();
-                    window.location.reload();
+                    if (Data == "insert success!") {
+                        swal({
+                            title: "註冊成功",
+                            icon: "success"
+                        });
+                        $('.close').click();
+                        window.location.reload();
+                    } else { Data = "重複會員名稱!需換會員名稱" } {
+                        swal({
+                            title: "重複會員名稱",
+                            text: "需更換會員名稱",
+                            icon: "error"
+                        });
+                    }
                 })
                 .fail(function (data) {
-                    alert("註冊失敗!");
+                    swal({
+                        title: "註冊失敗",
+                        icon: "error"
+                    });
                 });
         } else {
-            alert("密碼輸入不同");
+            swal({
+                title: "密碼輸入不同",
+                icon: "error"
+            });
         }
 
     })
 
+
     //是否有登入，顯示帳號或會員登入icon
-    if ($("#suserName").val() != "") {
+    if ($("#suserName").val() != "") {//有登入
         $("#loginimg").hide();
         $("#loginName").show();
-        console.log("有");
-    } else {
+        $("#myfavoriteview").show();
+        $("#historyview").show();
+    } else {//未登入
         $("#loginimg").show();
         $("#loginName").hide();
-        console.log("沒有");
+        $("#myfavoriteview").hide();
+        $("#historyview").hide();
     }
 
 
