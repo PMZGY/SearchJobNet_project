@@ -332,7 +332,7 @@ namespace SearchJobNet_project.Models.CommentModel
 
             DataTable dt = bsc.ReadDB(
                             string.Format(
-                            @"SELECT C.TIME , C.CONTENT_TEXT ,C.COMMENT_ID ,A.USERNAME ,C.Is_Alive
+                            @"SELECT C.TIME , C.CONTENT_TEXT ,C.COMMENT_ID ,A.USERNAME ,C.IS_ALIVE
                               FROM [Comment] AS C , [Account] AS A
                               WHERE 1=1
                               AND C.USER_ID = A.USER_ID
