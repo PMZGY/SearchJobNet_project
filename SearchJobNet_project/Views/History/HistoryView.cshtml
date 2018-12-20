@@ -41,7 +41,7 @@
     <link href="browser_components/css/lightcase.css" rel="stylesheet" type="text/css" />
     <!-- css file -->
     <!-- Testimonials-slider-css-files -->
-    <link rel="stylesheet" href="css/owl.carousel.css" type="text/css" media="all">
+    <link rel="stylesheet" href="~/browser_components/css/owl.carousel.css" type="text/css" media="all">
     <link href="browser_components/css/owl.theme.css" rel="stylesheet">
     <!-- //Testimonials-slider-css-files -->
     <!-- online fonts -->
@@ -56,6 +56,7 @@
     <script src="~/scripts/kendo/kendo.all.min.js"></script>
     <!--//history js 控制-->
     <script src="~/scripts/History.js"></script>
+    <link href="~/scripts/Shared.css" rel="stylesheet" />
 </head>
 
 <body>
@@ -90,7 +91,7 @@
                             <span class="icon-bar"></span>
                         </button>
                         <div class="navbar-brand logo ">
-                            <h1>@Html.ActionLink("求職網", "Index", "Home")</h1>
+                            <h1 style="font-family:Microsoft JhengHei;">@Html.ActionLink("求職網", "Index", "Home")</h1>
                         </div>
 
                     </div>
@@ -122,12 +123,12 @@
     <div id="about" class="banner-bottom">
         <div class="container">
             <div class="wls_head_all">
-                <h3>歷史紀錄</h3>
+                <h3 style="font-family:Microsoft JhengHei;">歷史紀錄</h3>
             </div>
             <!--產生歷史紀錄表單-->
             <div style="margin-left:460px">
-                <button class="btn btn-primary" id="jobGridButton">職缺歷史紀錄</button>
-                <button class="btn btn-primary" id="commonGridButton">評論歷史紀錄</button>
+                <button class="btn btn-primary" id="jobGridButton" style="font-family:Microsoft JhengHei;">職缺歷史紀錄</button>
+                <button class="btn btn-primary" id="commonGridButton" style="font-family:Microsoft JhengHei;">評論歷史紀錄</button>
             </div>
 
             <div id="jobGrid"></div>
@@ -182,6 +183,54 @@
     </div>
     <!-- //bootstrap-modal-pop-up -->
    
+    <!--搜尋職缺popup-->
+    <!-- bootstrap-modal-pop-up -->
+    <div class="modal video-modal fade" id="searchjob" tabindex="-1" role="dialog" aria-labelledby="searchjob">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    搜尋職缺
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                </div>
+
+                <div class="modal-body">
+                    <img src="browser_components/images/modal1.jpg" alt=" " class="img-responsive" />
+
+                    <ul class="fields" vailgn="center">
+
+                        <li class="first-list">
+                            <div class="fields-label" style="margin-top:20px;margin-left:180px;">
+                                @Html.Label("公司名稱：", new { style = "width: 80px;" })
+                                <input id="CompName" class="k-textbox k-input" style="width:160px;" />
+                            </div>
+                            <div class="fields-value" style="margin-top:20px;margin-left:180px">
+                                @Html.Label("工作性質：", new { style = "width: 80px;" })
+                                @Html.DropDownList("工作性質", (IEnumerable<SelectListItem>)ViewBag.WorkType, "不拘", new { @class = "k-textbox k-input", style = "width:160px;", id = "WorkType" })
+
+                            </div>
+                            <div class="fields-value" style="margin-top:20px;margin-left:180px">
+                                @Html.Label("工作地點：", new { style = "width: 80px;" })
+                                @Html.DropDownList("工作地點", (IEnumerable<SelectListItem>)ViewBag.CityName, "不拘", new { @class = "k-textbox k-input", style = "width:160px;", id = "CityName" })
+
+                            </div>
+                            <div class="fields-value" style="margin-top:20px;margin-left:180px">
+                                @Html.Label("職務類別：", new { style = "width: 80px;" })
+                                @Html.DropDownList("請選擇職務類別", (IEnumerable<SelectListItem>)ViewBag.Cjob_Name1, "不拘", new { @class = "k-textbox k-input", style = "width:160px;", id = "Cjob_Name1" })
+
+                            </div>
+                        </li>
+
+                    </ul>
+                    <div class="form-footer" style="text-align:right;margin-right:30px;margin-bottom:20px">
+                        <button type="submit" class="btn btn-primary" id="searchJobButton">搜尋</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!-- //bootstrap-modal-pop-up -->
+
     <!-- //js-->
     <!-- banner-responsive-slider -->
     <script src="browser_components/js/responsiveslides.min.js"></script>
@@ -207,13 +256,13 @@
     </script>
     <!-- //banner-responsive-slider -->
     <!-- light-case -->
-    <script src="browser_components/js/lightcase.js"></script>
+    <script src="~/browser_components/js/lightcase.js"></script>
     <script>
 		$('.showcase').lightcase();
     </script>
     <!-- //light-case -->
     <!-- for testimonials slider-js-file-->
-    <script src="browser_components/js/owl.carousel.js"></script>
+    <script src="~/browser_components/js/owl.carousel.js"></script>
     <!-- //for testimonials slider-js-file-->
     <script>
 		$(document).ready(function() {

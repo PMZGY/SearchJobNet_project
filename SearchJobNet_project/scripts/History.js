@@ -66,6 +66,11 @@ $("#jobGridButton").click(function () {
 
 });
 
+    //點擊搜索職缺
+$("#searchJobButton").click(function (e) {
+    document.location.href = "/Job/Index?CompName=" + $('#CompName').val() + "&Wk_Type=" + $("#WorkType option:selected").text() + "&CityName=" + $("#CityName option:selected").text() + "&Cjob_Name1=" + $("#Cjob_Name1 option:selected").text();
+})
+
 //按下comment button只顯示評論history 隱藏瀏覽history 
 $("#commonGridButton").click(function () {
     $("#jobGrid").hide();

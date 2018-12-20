@@ -46,5 +46,16 @@
         document.location.href = "/Job/Index?CompName=" + $('#DCompName').val() + "&Wk_Type=" + $("#DWorkType option:selected").text() + "&CityName=" + $("#DCityName option:selected").text() + "&Cjob_Name1=" + $("#DCjob_Name1 option:selected").text();
     })
 
+    //抓取點選職缺ID及傳送至JobDetailView
+    $("#grid").data("kendoGrid").table.on("click", "tr", sendJobDetailId);
 
+    function sendJobDetailId(e) {
+        dataItem = $("#grid").data("kendoGrid").dataItem($(e.currentTarget).closest("tr")).Job_ID;
+        var action = "../Job/toJobDetailView";
+        //傳資料給後端
+        var action2 = '../History/insertHistory'
+        document.location.href = "/Job/toJobDetailView?jobID=" + dataItem;
+
+        $.post(action2, { jobID: dataItem });
+    }
 })

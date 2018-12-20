@@ -2,6 +2,7 @@
 using System.Web.Mvc;
 using HM = SearchJobNet_project.Models.HistoryModel;
 using CM = SearchJobNet_project.Models.CommentModel;
+using SJM = SearchJobNet_project.Models.SearchJobModel;
 
 
 namespace SearchJobNet_project.Controllers.HistoryController
@@ -14,6 +15,11 @@ namespace SearchJobNet_project.Controllers.HistoryController
         //轉至歷史紀錄頁面
         public ActionResult Index()
         {
+            // 搜尋職缺欄位內容種類
+            SJM.SearchJob sjm = new SJM.SearchJob();
+            ViewBag.WorkType = sjm.getWorkType();
+            ViewBag.CityName = sjm.getCityName();
+            ViewBag.Cjob_Name1 = sjm.getCjob_Name1();
             return View("HistoryView");
         }
 
