@@ -58,7 +58,12 @@ namespace SearchJobNet_project.Controllers.JobController
             }
             jmModel = sjm.jobDetail(jobID, userID);
             //jmModel = sjm.jobDetail(1);
-            
+
+            // 搜尋職缺欄位內容種類
+            ViewBag.DWorkType = sjm.getWorkType();
+            ViewBag.DCityName = sjm.getCityName();
+            ViewBag.DCjob_Name1 = sjm.getCjob_Name1();
+
             return View("JobDetailView", jmModel);
         }
 

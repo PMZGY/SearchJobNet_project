@@ -42,7 +42,6 @@ function deleteComment(commentID) {
 //        comment_ID: $('#delete_commentID').val()
         comment_ID: commentID
     };
-
     //傳資料給後端
     $.post(action, formData)
         .done(function (Data) {
@@ -65,7 +64,7 @@ function modifyComment(commentID) {
     //取form資料
     var formData = {
         comment_ID: commentID,
-        content_text: $('#modify_content').val()
+        content_text: $('#modify_content'+commentID).val()
     };
 
     //傳資料給後端
@@ -95,6 +94,9 @@ function reportComment(commentID) {
         .done(function (Data) {
             if (Data == "report success!")
                 alert("檢舉成功!");
+            if (Data == "Can't report again!") {
+                alert("Can't report again!");
+            }
             $('.close').click();
         })
         .fail(function (data) {
