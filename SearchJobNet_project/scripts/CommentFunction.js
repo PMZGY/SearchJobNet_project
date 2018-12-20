@@ -90,7 +90,6 @@ function reportComment(commentID) {
     var formData = {
         comment_ID: commentID
     };
-    debugger;
     //傳資料給後端
     $.post(action, formData)
         .done(function (Data) {

@@ -139,49 +139,49 @@
     })
 })
 
-(document).ready(function () {
-    var myFavoriteString = "";
+$(document).ready(function () {
     //0 是還沒加入最愛 1是已經加入最愛
-    if ("#MyFavorite".val() == 0) {
-        myFavoriteString = '<img id="favorite" src="../browser_components/images/dislike.png" onclick="addMyfavorite()"';
+    if ($("#Is_Favorite").val() == 0) {
+        var myFavoriteString = '<img id="favorite" src="../browser_components/images/dislike.png" onclick="addMyFavorite()" width="30px" hight="auto"> '
     } else {
-        myFavoriteString = '<img id="favorite" src="../browser_components/images/like.png" onclick="cancelMyfavorite()"';
+        var myFavoriteString = '<img id="favorite" src="../browser_components/images/like.png" onclick="cancelMyFavorite()" width="30px" hight="auto">'
     };
-        
-    heart.append(myFavoriteString);
+
+    $("#heart").append(myFavoriteString);
 })
 
 function addMyFavorite() {
-    var action = '../'
-    var dataForm = {
-        Job_ID: $('#Job_ID').val()
+    var action = '../Job/insertMyFavorite'
+    var formData = {
+        user_ID: $("#sessionID").val(),
+        job_ID: $('#Job_ID').val()
     }
 
     $.post(action, formData)
-    .done(function (Data) {
-        if (Data == "delete success!")
-            ("#favorite").src = "../browser_components/images/like.png"
-        $('.close').click();
-    })
-    .fail(function (Data) {
-        alert("加入失敗!");
-    });
+        .done(function (Data) {
+           if (Data == "insert success!")
+               ("#favorite").src = "../browser_components/images/like.png";
+            $('.close').click();
+         })
+       .fail(function (Data) {
+            alert("加入失敗!");
+       });
 
 }
 
 function cancelMyFavorite() {
-    var action = '../'
-    var dataForm = {
-        Job_ID: $('#Job_ID').val()
+    var action = '../Job/deleteMyFavorite'
+    var formData = {
+        user_ID: $("#sessionID").val(),
+        job_ID: $('#Job_ID').val()
     }
-
     $.post(action, formData)
-    .done(function (Data) {
-        if (Data == "delete success!")
-            ("#favorite").src = "../browser_components/images/dislike.png"
-        $('.close').click();
-    })
-    .fail(function (Data) {
-        alert("取消失敗!");
-    });
+        .done(function (Data) {
+            if (Data == "delete success!")
+                ("#favorite").src = "../browser_components/images/dislike.png";
+            $('.close').click();
+        })
+        .fail(function (Data) {
+            alert("取消失敗!");
+        });
 }
