@@ -31,7 +31,7 @@ namespace SearchJobNet_project.Controllers.CommentController
         {
             string msg = "";
             CM.Comment cm = new CM.Comment();
-            msg = cm.modifyComment(comment_ID ,content_text);
+            msg = cm.modifyComment(comment_ID ,content_text , Session["suserID"].ToString());
             return Content(msg);
         }
 
@@ -42,7 +42,7 @@ namespace SearchJobNet_project.Controllers.CommentController
         {
             string msg = "";
             CM.Comment cm = new CM.Comment();
-            msg = cm.delComment(comment_ID);
+            msg = cm.delComment(comment_ID, Session["suserID"].ToString());
             return Content(msg);
         }
 
