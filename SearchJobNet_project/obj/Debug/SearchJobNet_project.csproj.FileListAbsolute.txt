@@ -95,3 +95,4 @@ E:\SearchJobNet_project\SearchJobNet_project\bin\System.Web.Mvc.xml
 E:\SearchJobNet_project\SearchJobNet_project\obj\Debug\SearchJobNet_project.dll
 E:\SearchJobNet_project\SearchJobNet_project\obj\Debug\SearchJobNet_project.pdb
 E:\SearchJobNet_project\SearchJobNet_project\obj\Debug\SearchJobNet_project.csprojResolveAssemblyReference.cache
+D:\SearchJob\SearchJobNet_project\obj\Debug\SearchJobNet_project.csprojResolveAssemblyReference.cache
