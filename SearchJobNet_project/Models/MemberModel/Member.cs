@@ -19,7 +19,7 @@ namespace SearchJobNet_project.Models.MemberModel
             // 確認user_ID是否重複
             MemberModel mms = memberData(rMember.UserName);
 
-            if (mms.User_ID != null)
+            if (mms.User_ID != "")
             {
                 return "重複會員名稱!需換會員名稱";
             }
@@ -48,8 +48,7 @@ namespace SearchJobNet_project.Models.MemberModel
             // 檢查MemberModel
             if ((rMember.User_ID  == cm.User_ID) &&
                 (rMember.UserName == cm.UserName) &&
-                (rMember.PassWord == cm.PassWord) &&
-                (rMember.Re_Time  == cm.Re_Time)
+                (rMember.PassWord == cm.PassWord)
                )
             {
                 return "insert success!";

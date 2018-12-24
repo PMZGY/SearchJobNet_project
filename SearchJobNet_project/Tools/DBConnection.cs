@@ -52,36 +52,53 @@ namespace SearchJobNet_project.Tools
         // [瀏覽] DB資料
         public DataTable ReadDB(string SQLComment)
         {
-            
-            // 設定連線資料[DB_IP / 資料庫名字 / 使用者帳號 / 密碼](這行是固定的，不用改)
-            string ConStr = "Data Source=140.115.87.142,1433; Initial Catalog=JobDB; User ID = searchjob; Password = searchjob";
+            try
+            {
 
-            // 建立連線
-            SqlConnection conn = new SqlConnection(ConStr);
+                // 設定連線資料[DB_IP / 資料庫名字 / 使用者帳號 / 密碼](這行是固定的，不用改)
+                string ConStr = "Data Source=140.115.87.142,1433; Initial Catalog=JobDB; User ID = searchjob; Password = searchjob";
 
-            //開始連線
-            conn.Open();
+                // 建立連線
+                SqlConnection conn = new SqlConnection(ConStr);
 
-            // 編輯 query 指令                      
-            string sql_query_string = SQLComment;
+                //開始連線
+                conn.Open();
 
-            // new 一個 SqlCommand
-            SqlCommand cmd = new SqlCommand(sql_query_string, conn);
+                // 編輯 query 指令                      
+                string sql_query_string = SQLComment;
 
-            //new 一個 SqlDataAdapter 接資料
-            SqlDataAdapter da = new SqlDataAdapter(cmd);
+                // new 一個 SqlCommand
+                SqlCommand cmd = new SqlCommand(sql_query_string, conn);
 
-            //new 一個 DataSet 存資料(一個DataSet裡可以有很多table)
-            DataSet ds = new DataSet();
+                //new 一個 SqlDataAdapter 接資料
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
 
-            //把 da  接到的table 存到 ds 裡，並命名為"GETTABLE"
-            da.Fill(ds, "GETTABLE");
+                //new 一個 DataSet 存資料(一個DataSet裡可以有很多table)
+                DataSet ds = new DataSet();
 
+                //把 da  接到的table 存到 ds 裡，並命名為"GETTABLE"
+                da.Fill(ds, "GETTABLE");
+
+<<<<<<< HEAD
             //關閉連線
             conn.Close();
 
             // 把table的欄位回傳至expert
             return ds.Tables["GETTABLE"];
+=======
+                //關閉連線
+                conn.Close();
+
+                // 把table的欄位回傳至expert
+                return ds.Tables["GETTABLE"];
+
+            }
+            catch (Exception e)
+            {
+                string s = "DB browse is wrong!" + e;
+                return null;
+            }
+>>>>>>> 8c65f3397ad245f188d90a2c6f89f3987f9025b4
                           
         }
        

@@ -256,7 +256,7 @@ namespace SearchJobNet_project.Models.CommentModel
                      (cms[i].Report_no  == reportsnum)
                    )
                 {
-                    return "report success!";
+                    return "檢舉成功";
                 }
             }
             return "delete success!";
