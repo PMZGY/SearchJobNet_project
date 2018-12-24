@@ -239,6 +239,7 @@
     <Content Include="scripts\kendo\cultures\kendo.culture.zh-TW.min.js" />
     <Content Include="scripts\kendo\cultures\kendo.culture.zh.min.js" />
     <Content Include="ClassDiagram1.cd" />
+    <None Include="Properties\PublishProfiles\SearchJobNet.pubxml" />
     <None Include="scripts\kendo\kendo.all-vsdoc.js" />
     <None Include="scripts\kendo\kendo.all.min.intellisense.js" />
     <Content Include="scripts\kendo\kendo.all.min.js" />

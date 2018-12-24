@@ -79,6 +79,12 @@ namespace SearchJobNet_project.Tools
                 //把 da  接到的table 存到 ds 裡，並命名為"GETTABLE"
                 da.Fill(ds, "GETTABLE");
 
+            //關閉連線
+            conn.Close();
+
+            // 把table的欄位回傳至expert
+            return ds.Tables["GETTABLE"];
+
                 //關閉連線
                 conn.Close();
 
@@ -91,6 +97,7 @@ namespace SearchJobNet_project.Tools
                 string s = "DB browse is wrong!" + e;
                 return null;
             }
+
                           
         }
        

@@ -26,7 +26,6 @@
             },
             pageSize: 20
         },
-        height: 550,
         scrollable: true,
         sortable: true,
         filterable: true,

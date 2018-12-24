@@ -2,7 +2,12 @@
 <Project ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <UseIISExpress>true</UseIISExpress>
+<<<<<<< HEAD
     <ProjectView>ProjectFiles</ProjectView>
+=======
+    <ProjectView>ShowAllFiles</ProjectView>
+    <NameOfLastUsedPublishProfile>SearchJobNet</NameOfLastUsedPublishProfile>
+>>>>>>> e1f634f39f441d8f6f440e7dbb4a1c2a9a81e6d1
   </PropertyGroup>
   <ProjectExtensions>
     <VisualStudio>
