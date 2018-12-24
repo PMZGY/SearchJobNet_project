@@ -77,9 +77,16 @@ function modifyComment(commentID) {
     $.post(action, formData)
         .done(function (Data) {
             alert(Data);
+            var url = window.location.href;
+            if (url.indexOf('?') > -1) {
+                url = url + '&jobID=' + $('#Job_ID').val();
+            } else {
+                url = url + '?jobID=' + $('#Job_ID').val();
+            }
+            window.location.href = url;
         })
         .fail(function (data) {
-            alert("刪除失敗!");
+            alert("修改失敗!");
         });
 }
 /*end modify comment*/
