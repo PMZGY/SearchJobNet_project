@@ -227,6 +227,9 @@
     <Content Include="browser_components\fonts\DFHsiu-W3-WINP-BF.woff" />
     <Content Include="scripts\JobDetail.js" />
     <Content Include="scripts\JobList.js" />
+    <None Include="scripts\jquery.validate-vsdoc.js" />
+    <Content Include="scripts\jquery.validate.js" />
+    <Content Include="scripts\jquery.validate.min.js" />
     <Content Include="scripts\kendo\cultures\kendo.culture.en-US.min.js" />
     <Content Include="scripts\kendo\cultures\kendo.culture.en.min.js" />
     <Content Include="scripts\kendo\cultures\kendo.culture.zh-CHS.min.js" />

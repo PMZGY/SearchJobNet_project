@@ -11,9 +11,12 @@ function insertComment() {
     //傳資料給後端
     $.post(action, formData)
         .done(function (Data) {
-            alert(Data);
-            if (Data == "insert success!")
-                alert("新增成功!");
+            debugger;
+            if (Data == "新增評論成功!")
+                swal({
+                    title: "新增成功",
+                    icon: "success"
+                });
             var url = window.location.href;
             if (url.indexOf('?') > -1) {
                 url = url + '&jobID=' + $('#Job_ID').val();
@@ -25,7 +28,10 @@ function insertComment() {
 
         })
         .fail(function (data) {
-            alert("新增失敗!");
+            swal({
+                title: "新增失敗",
+                icon: "error"
+            });
         });
 }
 /*end insert comment*/
@@ -47,7 +53,10 @@ function deleteComment(commentID) {
         .done(function (Data) {
             if (Data == "delete success!") {
                 $('#comment_block' + commentID).hide();
-                alert("刪除成功!");
+                swal({
+                    title: "刪除成功",
+                    icon: "success"
+                });
             }
             else
             {
@@ -56,7 +65,10 @@ function deleteComment(commentID) {
             $('.close').click();
         })
         .fail(function (data) {
-            alert("刪除失敗!");
+            swal({
+                title: "刪除失敗",
+                icon: "error"
+            });
         });
 }
 /*end delete comment*/
