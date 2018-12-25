@@ -1,0 +1,501 @@
+﻿@{
+    Layout = null;
+    var suserID = "";                                                                                   //判斷是否登入 不然跳轉回主頁
+    var suserName = "";
+    if (Session["suserID"] == null || string.IsNullOrWhiteSpace(Session["suserID"].ToString()))
+    {
+    }
+    else
+    {
+        suserName = Session["suserName"].ToString();
+        suserID = Session["suserID"].ToString();
+    }
+}
+@model SearchJobNet_project.Models.JobModel.JobModel
+
+<!DOCTYPE html>
+<html lang="zxx">
+<head>
+    <title>Home</title>
+    <!--/metadata -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+    <meta name="keywords" content="" />
+    <script>
+		addEventListener("load", function () {
+			setTimeout(hideURLbar, 0);
+		}, false);
+
+		function hideURLbar() {
+			window.scrollTo(0, 1);
+		}
+    </script>
+    <!-- //for-mobile-apps -->
+    <link href="~/browser_components/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="~/browser_components/css/font-awesome.css" rel="stylesheet" type="text/css" media="all" />
+    <!-- header and footer stylesheet -->
+    <link href="~/browser_components/css/style.css" rel="stylesheet" type="text/css" media="all" />
+    <!-- //header and footer stylesheet -->
+    <!-- lightbox css file -->
+    <link href="~/browser_components/css/lightcase.css" rel="stylesheet" type="text/css" />
+    <!-- css file -->
+    <!-- Testimonials-slider-css-files -->
+    <link rel="stylesheet" href="~/browser_components/css/owl.carousel.css" type="text/css" media="all">
+    <link href="~/browser_components/css/owl.theme.css" rel="stylesheet">
+    <!-- //Testimonials-slider-css-files -->
+    <!-- online fonts -->
+    <link href="http://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i" rel="stylesheet">
+
+    <!-- //online fonts -->
+    <link href="~/Content/kendo/kendo.default.min.css" rel="stylesheet" />
+    <link href="~/Content/kendo/kendo.common.min.css" rel="stylesheet" />
+    <!-- js -->
+    <script src="~/browser_components/js/jquery-2.2.3.min.js"></script>
+    <!-- //js-->
+    <script src="~/scripts/kendo/kendo.all.min.js"></script>
+    <link href="~/scripts/Shared.css" rel="stylesheet" />
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+    <script src="~/scripts/JobDetail.js"></script>
+    <script src="~/scripts/CommentFunction.js"></script>
+
+    @*<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>*@
+</head>
+
+<body>
+    <!-- banner -->
+    <div class="banner jarallax">
+        <div class="w3layouts-header-top" style="padding-top: 5px;padding-bottom: 5px;">
+            <div class="container">
+                <div class="w3-header-top-grids">
+                    <div class="w3-header-top-left">
+                    </div>
+                    <div class="w3-header-top-right">
+                        <div class="agileinfo-social-grids">
+                            <img src="~/browser_components/images/login.png" class="img-responsive" width="40" height="40" data-toggle="modal" data-target="#member" id="loginimg" />
+                            <div id="loginName">
+                                <h3 style="font-family:Microsoft JhengHei;color:white">
+                                    @suserName
+                                    <button id="exitimg" style="background-color:transparent;border-color:transparent">
+                                        <img src="~/browser_components/images/exit.png" width="40" height="40" />
+                                    </button>
+                                </h3>
+                            </div>
+                        </div>
+                        <div class="clearfix"> </div>
+                    </div>
+                    <div class="clearfix"> </div>
+                </div>
+            </div>
+        </div>
+        <div class="head">
+            <div class="container">
+                <div class="navbar-top">
+                    <!-- Brand and toggle get grouped for better mobile display -->
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <div class="navbar-brand logo ">
+                            <h1>@Html.ActionLink("求職網", "Index", "Home")</h1>
+                        </div>
+
+                    </div>
+
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                        <ul class="nav navbar-nav link-effect-4" style="font-size:large">
+                            <li class="active first-list">@Html.ActionLink("回首頁", "Index", "Home") </li>
+                            <li><a href="#" data-toggle="modal" data-target="#searchjob">職缺查詢</a> </li>
+                            <li id="myfavoriteview">@Html.ActionLink("我的最愛", "toMyFavoriteView", "Job") </li>
+                            <li id="historyview">@Html.ActionLink("歷史紀錄", "Index", "History")</li>
+                        </ul>
+                    </div><!-- /.navbar-collapse -->
+                </div>
+            </div>
+        </div>
+        <div class="w3layouts-banner-slider">
+            <div class="container">
+                <div class="slider">
+                    <div class="callbacks_container">
+                    </div>
+                    <div class="clearfix"> </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- //banner -->
+    <!-- banner-bottom -->
+    <div id="about" class="banner-bottom">
+        <div class="container">
+            <div class="wls_head_all">
+                <h3 style="font-family: 'Microsoft JhengHei'">職缺</h3>
+            </div>
+           
+            <!--這邊開始長表格沅廷-->
+            <!--Job Detail start-->
+            <div class="container detail_table">
+                <div class="row">
+                    <div class="column">
+                        <table>
+                            <tr>
+                                <td><h2>@Html.DisplayFor(model => model.Occu_Desc, new { style = "color : #2E5C6E" }) </h2></td>
+                                <td>
+                                    <div>
+                                        <div id="dislike">
+                                            <img src="../browser_components/images/dislike.png" onclick="addMyFavorite()" width="30" hight="auto">
+                                        </div>
+                                        <div id="like">
+                                            <img src="../browser_components/images/like.png" onclick="cancelMyFavorite()" width="30" hight="auto">
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>                            
+                        </table>
+                        <input type="hidden" id="sessionID" value=@suserID>
+                        <!--記住使用者當前JobID-->
+                        @Html.Hidden("Job_ID")
+                        @Html.Hidden("Is_Favorite")                       
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="column">
+                        <h4>公司名稱</h4>
+                        <p name="model_content">@Html.DisplayFor(model => model.CompName)</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="column">
+                        <h4>職缺URL</h4>                 
+                        <p name="model_content">@Html.DisplayFor(model => model.Url_Query,new { id="Url_Query"})</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="column">
+                        <h4>核薪方式</h4>
+                        <p name="model_content">@Html.DisplayFor(model => model.SalaryCd)</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="column">
+                        <h4>工作性質</h4>
+                        <p name="model_content">@Html.DisplayFor(model => model.Wk_Type)</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="column">
+                        <h4>工作地點</h4>
+                        <p name="model_content">@Html.DisplayFor(model => model.CityName)</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="column">
+                        <h4>工作內容</h4>
+                        <p name="model_content">@Html.DisplayFor(model => model.Job_Detail)</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="column">
+                        <h4>上班時段</h4>
+                        <p name="model_content">@Html.DisplayFor(model => model.WkTime)</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="column">
+                        <h4>工作經驗</h4>
+                        <p name="model_content">@Html.DisplayFor(model => model.Experience)</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="column">
+                        <h4>最低學歷要求</h4>
+                        <p name="model_content">@Html.DisplayFor(model => model.EdGrDesc)</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="column">
+                        <h4>需求人數</h4>
+                        <p name="model_content">@Html.DisplayFor(model => model.AvailReqNum)</p>
+                    </div>
+                </div>
+            </div>
+            <div class="clearfix"> </div>
+            <!--Job Detail end-->
+            <!--以下為評論區塊-->
+            <div class="comment_table">
+                <div class="wls_head_all">
+                    <h3 style="font-family: 'Microsoft JhengHei'">評論</h3>
+                </div>
+                <!--在這邊長出comment_container-->
+                    <!--寫在JS-->
+                <!--在這邊長出comment_poster-->
+                <!--action="../Comment/insertComment"-->
+                <div class="container" style="margin-bottom:50px;"  id="new_comment">
+                    <h2 style="margin-bottom:30px;">新增評論</h2>
+                    <form >
+                        <div class="form-group">                            
+                            <textarea class="form-control" id="Content_Text" placeholder="輸入評論" name="Content_Text" maxlength="250"></textarea>
+                        </div>        
+                        <div class="form-group">
+                                        
+                        </div>               
+                        <button type="button" class="btn btn-default" id="insert_comment" onclick="insertComment()">Submit</button>
+                    </form>
+                </div>
+            </div>
+            <div class="clearfix"> </div>
+            <!--評論結束-->
+                <div class="clearfix"> </div>
+         </div>
+    </div>
+    <!-- //banner-bottom -->
+    <!-- footer -->
+    <footer>
+        <div class="agileits-w3layouts-footer">
+            <div class="container">
+                <div class="col-md-12 w3-agile-grid">
+                    <h5>About Us</h5>
+                    <p style="text-align:center;font-family: 'Microsoft JhengHei'">中央大學資訊管理研究所碩士一年級<br />陳芃諭 王美淋 鍾文翔 劉冠慶 蔡沅廷</p>
+                </div>
+            </div>
+        </div>
+        <div class="copyright">
+            <div class="container">
+                <p>第八組</p>
+            </div>
+        </div>
+    </footer>
+    <!-- //footer -->
+    <input id="CityName" type="hidden" value="@ViewBag.CityName" />
+    <input id="Wk_Type" type="hidden" value="@ViewBag.Wk_Type" />
+    <input id="CompName" type="hidden" value="@ViewBag.CompName" />
+    <input id="Cjob_Name1" type="hidden" value="@ViewBag.Cjob_Name1" />
+    <input id="suserName" type="hidden" value=@suserName>
+
+    <!-- banner-responsive-slider -->
+    <script src="~/browser_components/js/responsiveslides.min.js"></script>
+    <script>
+		// You can also use "$(window).load(function() {"
+		$(function () {
+			// Slideshow 4
+			$("#slider4").responsiveSlides({
+				auto: true,
+				pager: true,
+				nav: false,
+				speed: 500,
+				namespace: "callbacks",
+				before: function () {
+					$('.events').append("<li>before event fired.</li>");
+				},
+				after: function () {
+					$('.events').append("<li>after event fired.</li>");
+				}
+			});
+
+		});
+    </script>
+    <!-- //banner-responsive-slider -->
+
+
+    <!--搜尋職缺popup-->
+    <!-- bootstrap-modal-pop-up -->
+    <div class="modal video-modal fade" id="searchjob" tabindex="-1" role="dialog" aria-labelledby="searchjob">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    搜尋職缺
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                </div>
+
+                <div class="modal-body">
+                    <img src="~/browser_components/images/modal1.jpg" class="img-responsive" />
+
+                    <ul class="fields" vailgn="center">
+
+                        <li class="first-list">
+                            <div class="fields-label" style="margin-top:20px;margin-left:180px;">
+                                @Html.Label("公司名稱：", new { style = "width: 80px;" })
+                                <input id="DCompName" class="k-textbox k-input" style="width:160px;" />
+                            </div>
+                            <div class="fields-value" style="margin-top:20px;margin-left:180px">
+                                @Html.Label("工作性質：", new { style = "width: 80px;" })
+                                @Html.DropDownList("工作性質", (IEnumerable<SelectListItem>)ViewBag.DWorkType, "不拘", new { @class = "k-textbox k-input", style = "width:160px;", id = "DWorkType" })
+
+                            </div>
+                            <div class="fields-value" style="margin-top:20px;margin-left:180px">
+                                @Html.Label("工作地點：", new { style = "width: 80px;" })
+                                @Html.DropDownList("工作地點", (IEnumerable<SelectListItem>)ViewBag.DCityName, "不拘", new { @class = "k-textbox k-input", style = "width:160px;", id = "DCityName" })
+
+                            </div>
+                            <div class="fields-value" style="margin-top:20px;margin-left:180px">
+                                @Html.Label("職務類別：", new { style = "width: 80px;" })
+                                @Html.DropDownList("請選擇職務類別", (IEnumerable<SelectListItem>)ViewBag.DCjob_Name1, "不拘", new { @class = "k-textbox k-input", style = "width:160px;", id = "DCjob_Name1" })
+
+                            </div>
+                        </li>
+
+                    </ul>
+                    <div class="form-footer" style="text-align:right;margin-right:30px;margin-bottom:20px">
+                        <button type="submit" class="btn btn-primary" id="searchJobButton">搜尋</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!-- //bootstrap-modal-pop-up -->
+    <!--會員popup-->
+    <!-- bootstrap-modal-pop-up -->
+    <div class="modal video-modal fade" id="member" tabindex="-1" role="dialog" aria-labelledby="member">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    會員登入
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                </div>
+
+                <div class="modal-body">
+                    <img src="~/browser_components/images/welcome.png" class="img-responsive" />
+
+                    <ul class="fields" vailgn="center">
+
+                        <li class="first-list">
+                            <div class="fields-label fields-label-50" style="margin-top:20px;margin-left:180px">
+                                @Html.Label("帳號：", new { style = "width: 50px" })
+                                <input id="UserName" class="k-textbox k-input" style="width:160px;" minlength="8" required validationMessage="請輸入帳號" />
+                            </div>
+                            <div class="fields-label fields-label-50" style="margin-top:20px;margin-left:180px;margin-bottom:20px">
+                                @Html.Label("密碼：", new { style = "width: 50px" })
+                                <input type="password" id="PassWord" class="k-textbox k-input" style="width:160px;" minlength="8" required validationMessage="請輸入密碼" />
+                            </div>
+                            <div class="form-footer" style="margin-left:230px;margin-bottom:20px">
+                                <button style="margin-right:20px" type="submit" data-toggle="modal" data-target="#memberRegister" class="btn btn-primary" data-url="@Url.Action("Index", "Job")">註冊</button>
+                                <button type="submit" class="btn btn-primary" id="login">登入</button>
+                            </div>
+                        </li>
+
+                    </ul>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+    <!-- //bootstrap-modal-pop-up -->
+    <!--註冊popup-->
+    <!-- bootstrap-modal-pop-up -->
+    <div class="modal video-modal fade" id="memberRegister" tabindex="-1" role="dialog" aria-labelledby="memberRegister" style="font-family: 'Microsoft JhengHei'">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    會員註冊
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                </div>
+
+                <div class="modal-body">
+                    <img src="~/browser_components/images/modal1.jpg" alt=" " class="img-responsive" />
+
+                    <ul class="fields" vailgn="center">
+
+                        <li class="first-list">
+                            <div class="fields-label fields-label-50" style="margin-top:20px;margin-left:20px">
+                                @Html.Label("帳號：", new { style = "width: 50px" })
+                                <input id="account" value="ponpon111" class="k-textbox k-input" style="width:160px;" minlength="8" required validationMessage="請輸入帳號" />
+                            </div>
+                            <div class="fields-label fields-label-50" style="margin-top:20px;margin-left:20px;margin-bottom:20px">
+                                @Html.Label("密碼：", new { style = "width: 50px" })
+                                <input type="password" value="12345678911" id="password" class="k-textbox k-input" style="width:160px;" minlength="8" required validationMessage="請輸入密碼" />
+                            </div>
+                            <div class="fields-label fields-label-50" style="margin-top:20px;margin-left:20px;margin-bottom:20px">
+                                @Html.Label("確認密碼：", new { style = "width: 100px" })
+                                <input type="password" value="12345678911" id="confirmpassword" class="k-textbox k-input" style="width:160px;" minlength="8" required validationMessage="請輸入密碼" />
+                            </div>
+                            <div class="fields-label fields-label-50" style="margin-top:20px;margin-left:20px;margin-bottom:20px">
+                                @Html.Label("身分證字號：", new { style = "width: 100px" })
+                                <input id="personid" value="F111111111" class="k-textbox k-input" style="width:160px;" minlength="8" required validationMessage="請輸入身分證字號" />
+                            </div>
+                            <div class="form-footer" style="margin-left:20px;margin-bottom:20px">
+                                <button style="margin-right:20px" type="submit" class="btn btn-primary" id="register">確認</button>
+                            </div>
+                        </li>
+
+                    </ul>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+    <!-- //bootstrap-modal-pop-up -->
+
+
+    <!-- light-case -->
+    <script src="~/browser_components/js/lightcase.js"></script>
+    <script>
+		$('.showcase').lightcase();
+    </script>
+    <!-- //light-case -->
+    <!-- for testimonials slider-js-file-->
+    <script src="~/browser_components/js/owl.carousel.js"></script>
+    <!-- //for testimonials slider-js-file-->
+    <script>
+		$(document).ready(function() {
+		$("#owl-demo").owlCarousel({
+
+			autoPlay: 3000, //Set AutoPlay to 3 seconds
+			autoPlay:true,
+			items : 3,
+			itemsDesktop : [640,5],
+			itemsDesktopSmall : [414,4]
+		});
+		});
+    </script>
+    <!-- for testimonials slider-js-script-->
+    <!-- smooth-scrolling -->
+    <script src="~/browser_components/js/move-top.js"></script>
+    <script src="~/browser_components/js/easing.js"></script>
+    <script>
+		jQuery(document).ready(function ($) {
+			$(".scroll").click(function (event) {
+				event.preventDefault();
+
+				$('html,body').animate({
+					scrollTop: $(this.hash).offset().top
+				}, 1000);
+			});
+		});
+    </script>
+    <script src="~/browser_components/js/SmoothScroll.min.js"></script>
+    <!-- //smooth-scrolling -->
+    <script>
+		$(document).ready(function () {
+			/*
+			var defaults = {
+				containerID: 'toTop', // fading element id
+				containerHoverID: 'toTopHover', // fading element hover id
+				scrollSpeed: 1200,
+				easingType: 'linear'
+			};
+			*/
+
+			$().UItoTop({
+				easingType: 'easeOutQuart'
+			});
+
+		});
+
+
+    </script>
+    <!-- smooth-scrolling-of-move-up -->
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="~/browser_components/js/bootstrap.js"></script>
+</body>
+
+</html>
