@@ -57,9 +57,11 @@ namespace SearchJobNet_project.Models.HistoryModel
                 
                 DataTable dt = bhj.ReadDB(
                                 string.Format(
-                                @"SELECT Job.COMP_ID,Job.COMPNAME,Job.JOB_ID,Job.CITYNAME,Job.OCCU_DESC,Job.WK_TYPE,Job.CJOB_ID,Job.CJOB_NAME1,History.TIME
-                                  FROM [Job],[History] 
+                                @"SELECT Job.COMP_ID,Company.COMPNAME,Job.JOB_ID,Job.CITYNAME,Job.OCCU_DESC,Job.WK_TYPE,Job.CJOB_ID,JobType.CJOB_NAME1,History.TIME
+                                  FROM [Job],[History],[Company],[JobType]
                                   WHERE Job.JOB_ID=History.JOB_ID
+                                  AND Job.COMP_ID=Company.COMP_ID
+                                  AND Job.CJOB_ID = JobType.CJOB_ID
                                   AND History.USER_ID = '{0}'", userID
                                   )
                                 );

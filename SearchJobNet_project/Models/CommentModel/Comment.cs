@@ -358,10 +358,11 @@ namespace SearchJobNet_project.Models.CommentModel
 
             DataTable dt = bsc.ReadDB(
                             string.Format(
-                            @"SELECT J.JOB_ID ,J.COMPNAME ,J.OCCU_DESC ,C.TIME ,C.IS_ALIVE,C.CONTENT_TEXT
-                              FROM [Comment] AS C , [Job] AS J
+                            @"SELECT J.JOB_ID ,Com.COMPNAME ,J.OCCU_DESC ,C.TIME ,C.IS_ALIVE,C.CONTENT_TEXT
+                              FROM [Comment] AS C , [Job] AS J , [Company] AS Com
                               WHERE 1=1
                               AND C.JOB_ID = J.JOB_ID
+                              AND Com.COMP_ID = J.COMP_ID
                               AND C.USER_ID = '{0}'"
                               , user_ID)
                             );
