@@ -3,6 +3,7 @@
     //頁面進來只顯示瀏覽history 隱藏評論history
     $("#commonGrid").hide();
     $("#jobGrid").show();
+
     //呼叫job grid
     $("#jobGrid").kendoGrid({
         
@@ -58,19 +59,32 @@
         var action = "../Job/toJobDetailView";
         document.location.href = "/Job/toJobDetailView?jobID=" + dataItem;
     }
- //按下job button只顯示瀏覽history 隱藏評論history
-$("#jobGridButton").click(function () {
+    //按下job button只顯示瀏覽history 隱藏評論history
+    $("#jobGridButton").click(function () {
     $("#jobGrid").show();
     $("#commonGrid").hide();
 
-});
-
+    });
     //點擊搜索職缺
-$("#searchJobButton").click(function (e) {
-    document.location.href = "/Job/Index?CompName=" + $('#CompName').val() + "&Wk_Type=" + $("#WorkType option:selected").text() + "&CityName=" + $("#CityName option:selected").text() + "&Cjob_Name1=" + $("#Cjob_Name1 option:selected").text();
-})
+    $("#searchJobButton").click(function (e) {
 
-$("#commonGrid").kendoGrid({
+        // 驗證 輸入公司名稱 是否 非全數字或亂碼
+        var reg = /^[\u4E00-\u9FA5]+$/;
+        if (($('#CompName').val() != "") && (!reg.test($('#CompName').val()))) {
+            swal(
+                {
+                    title: "請輸入全中文公司名稱",
+                    icon: "error"
+                }
+                );
+            $('#CompName').val("");
+        }
+        else {
+            document.location.href = "/Job/Index?CompName=" + $('#CompName').val() + "&Wk_Type=" + $("#WorkType option:selected").text() + "&CityName=" + $("#CityName option:selected").text() + "&Cjob_Name1=" + $("#Cjob_Name1 option:selected").text();
+        }
+    })
+
+    $("#commonGrid").kendoGrid({
 
     dataSource: {
 
@@ -116,27 +130,27 @@ $("#commonGrid").kendoGrid({
         { field: "Time", title: "評論時間", width: "80px" }
     ]
 
-});
-//按下comment button只顯示評論history 隱藏瀏覽history 
-$("#commonGridButton").click(function () {
+    });
+    //按下comment button只顯示評論history 隱藏瀏覽history 
+    $("#commonGridButton").click(function () {
     $("#jobGrid").hide();
     $("#commonGrid").show();
     
 
-});
+    });
 
-$("#commonGrid").data("kendoGrid").table.on("click", "tr", sendJobDetailId2);
+    $("#commonGrid").data("kendoGrid").table.on("click", "tr", sendJobDetailId2);
 
-function sendJobDetailId2(e) {
+    function sendJobDetailId2(e) {
     
     dataItem = $("#commonGrid").data("kendoGrid").dataItem($(e.currentTarget).closest("tr")).Job_ID;
     
     var action = "../Job/toJobDetailView";
     document.location.href = "/Job/toJobDetailView?jobID=" + dataItem;
-}
+    }
    
     //點擊登出
-$("#exitimg").click(function () {
+    $("#exitimg").click(function () {
     //取要傳到的action url
     var action = '../Member/logoutMember'
 
@@ -162,7 +176,7 @@ $("#exitimg").click(function () {
                 icon: "error"
             });
         });
-});
+    });
 
 })
 

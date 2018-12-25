@@ -42,7 +42,21 @@
 
     //點擊搜索職缺
     $("#searchJobButton").click(function (e) {
-        document.location.href = "/Job/Index?CompName=" + $('#DCompName').val() + "&Wk_Type=" + $("#DWorkType option:selected").text() + "&CityName=" + $("#DCityName option:selected").text() + "&Cjob_Name1=" + $("#DCjob_Name1 option:selected").text();
+
+        // 驗證 輸入公司名稱 是否 非全數字或亂碼
+        var reg = /^[\u4E00-\u9FA5]+$/;
+        if (($('#CompName').val() != "") && (!reg.test($('#CompName').val()))) {
+            swal(
+                {
+                    title: "請輸入全中文公司名稱",
+                    icon: "error"
+                }
+                );
+            $('#CompName').val("");
+        }
+        else {
+            document.location.href = "/Job/Index?CompName=" + $('#CompName').val() + "&Wk_Type=" + $("#WorkType option:selected").text() + "&CityName=" + $("#CityName option:selected").text() + "&Cjob_Name1=" + $("#Cjob_Name1 option:selected").text();
+        }
     })
 
     //抓取點選職缺ID及傳送至JobDetailView
