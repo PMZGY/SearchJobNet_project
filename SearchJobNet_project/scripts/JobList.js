@@ -53,32 +53,34 @@
     }
 
     //點擊搜索職缺
-    $("#searchJobButton").click(function (e) {
-
+    $("#searchJobButton").click(function (e)
+    {
         // 驗證 輸入公司名稱 是否 非全數字或亂碼
         var reg = /^[\u4E00-\u9FA5]+$/;
-        if (($('#CompName').val() != "") && (!reg.test($('#CompName').val()))) {
+        if (($('#DCompName').val() != "") && (!reg.test($('#DCompName').val())))
+        {
             swal(
                 {
                     title: "請輸入全中文公司名稱",
                     icon: "error"
                 }
                 );
-            $('#CompName').val("");
+            $('#DCompName').val("");
         }
-        else {
-            document.location.href = "/Job/Index?CompName=" + $('#CompName').val() + "&Wk_Type=" + $("#WorkType option:selected").text() + "&CityName=" + $("#CityName option:selected").text() + "&Cjob_Name1=" + $("#Cjob_Name1 option:selected").text();
+        else
+        {
+            document.location.href = "/Job/Index?CompName=" + $('#DCompName').val() + "&Wk_Type=" + $("#DWorkType option:selected").text() + "&CityName=" + $("#DCityName option:selected").text() + "&Cjob_Name1=" + $("#DCjob_Name1 option:selected").text();
         }
     })
 
     //點擊登入
     $("#login").click(function (e) {
 
-        // 驗證輸入的帳號(非中文 且 4-10碼) ,密碼(非中文 且 6-10碼) 是否正確
-        var namereg = /^\w.{3,11}$/;
-        var passwordreg = /^\w.{5,11}$/;
+        // 驗證輸入的帳號(只能英文大小寫,數字或底線 且 4-10碼) ,密碼(只能英文大小寫,數字或底線 且 6-10碼) 是否正確
+        var namereg = /^\w+$/;
+        var passwordreg = /^\w+$/;
 
-        if (!namereg.test($('#UserName').val())) {
+        if ((!namereg.test($('#UserName').val())) || $('#UserName').val().length < 4 || $('#UserName').val().length > 10) {
             swal(
                  {
                      title: "帳號格式須為 非中文且4-10碼",
@@ -87,7 +89,7 @@
                 );
             $('#UserName').val("");
         }
-        else if (!passwordreg.test($('#PassWord').val())) {
+        else if (!passwordreg.test($('#PassWord').val()) || $('#PassWord').val().length < 6 || $('#PassWord').val().length > 10) {
             swal(
                  {
                      title: "密碼格式須為 非中文且6-10碼",
@@ -96,8 +98,8 @@
                 );
             $('#PassWord').val("");
         }
-        else {
-
+        else
+        {
             //取要傳到的action url
             var action = '../Member/loginMember'
 
@@ -139,11 +141,11 @@
 
     //點擊註冊
     $("#register").click(function (e) {
-
-        // 驗證輸入的 身分證(身分證格式) ,帳號(非中文 且 4-10碼) ,密碼(非中文 且 6-10碼) 是否正確
+        
+        // 驗證輸入的 身分證(身分證格式) ,帳號(只能英文大小寫,數字或底線 且 4-10碼) ,密碼(只能英文大小寫,數字或底線 且 6-10碼) 是否正確
         var idreg = /^[A-Z]\d{9}$/;
-        var namereg = /^\w.{3,11}$/;
-        var passwordreg = /^\w.{5,11}$/;
+        var namereg = /^\w+$/;
+        var passwordreg = /^\w+$/;
 
         if (!idreg.test($('#personid').val())) {
             swal(
@@ -154,7 +156,7 @@
                 );
             $('#personid').val("");
         }
-        else if (!namereg.test($('#account').val())) {
+        else if ((!namereg.test($('#account').val())) || $('#account').val().length < 4 || $('#account').val().length > 10) {
             swal(
                  {
                      title: "帳號格式須為 非中文且4-10碼",
@@ -163,7 +165,7 @@
                 );
             $('#account').val("");
         }
-        else if (!passwordreg.test($('#password').val())) {
+        else if (!passwordreg.test($('#password').val()) || $('#password').val().length < 6 || $('#password').val().length > 10) {
             swal(
                  {
                      title: "密碼格式須為 非中文且6-10碼",
@@ -173,10 +175,12 @@
             $('#password').val("");
             $('#confirmpassword').val("");
         }
-        else {
+        else
+        {
             //取要傳到的action url
             var action = '../Member/registerMember'
             //取form資料
+            //var formData = $('form#memberRegisterTable').serializeArray();
             if ($('#confirmpassword').val() === $('#password').val()) {
                 var formData = {
                     User_ID: $('#personid').val(),
@@ -215,6 +219,7 @@
                 });
             }
         }
+
     })
 
 
