@@ -107,7 +107,7 @@
                     User_ID: { type: "string" },
                     Content_Text: { type: "string" },
                     Time: { type: "string" },
-                    Is_Alive: { type: "string" },
+                    Is_Alive: { type: "boolean" },
                     Occu_Desc: { type: "string" },
                     CompName: { type: "string" }
                 }
@@ -126,7 +126,7 @@
         { field: "Occu_Desc", title: "評論職務名稱", width: "110px" },
         { field: "CompName", title: "評論公司名稱", width: "140px" },
         { field: "Content_Text", title: "評論內容", width: "160px" },
-        { field: "Is_Alive", title: "是否存活", width: "80px", template: function (data) { if (data.Is_Alive == 1) return '是'; else return '否'; } },
+        { field: "Is_Alive", title: "是否存活", width: "80px", template: function (data) { if (data.Is_Alive ==true) return '是'; else return '否'; } },
         { field: "Time", title: "評論時間", width: "80px" }
     ]
 
