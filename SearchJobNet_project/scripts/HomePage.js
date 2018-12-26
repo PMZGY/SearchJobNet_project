@@ -141,14 +141,16 @@ $(function () {
                //傳資料給後端
                $.post(action, formData)
                    .done(function (Data) {
-                       if (Data == "insert success!") {
+                       if (Data === "insert success!")
+                       {
                            swal({
                                title: "註冊成功",
                                icon: "success"
                            });
-                           $('.close').click();
                            window.location.reload();
-                       } else { Data = "重複會員名稱!需換會員名稱" } {
+                       } 
+                       else  
+                       {
                            swal({
                                title: "重複會員名稱",
                                text: "需更換會員名稱",
