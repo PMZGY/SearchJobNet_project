@@ -24,11 +24,11 @@ $(function () {
     //點擊登入
     $("#login").click(function (e) {
 
-        // 驗證輸入的帳號(非中文 且 4-10碼) ,密碼(非中文 且 6-10碼) 是否正確
-        var namereg = /^\w.{3,11}$/;
-        var passwordreg = /^\w.{5,11}$/;
+        // 驗證輸入的帳號(只能英文大小寫,數字或底線 且 4-10碼) ,密碼(只能英文大小寫,數字或底線 且 6-10碼) 是否正確
+        var namereg = /^\w+$/;
+        var passwordreg = /^\w+$/;
 
-        if (!namereg.test($('#UserName').val())) {
+        if ((!namereg.test($('#UserName').val())) || $('#UserName').val().length < 4 || $('#UserName').val().length > 10) {
             swal(
                  {
                      title: "帳號格式須為 非中文且4-10碼",
@@ -37,7 +37,7 @@ $(function () {
                 );
             $('#UserName').val("");
         }
-        else if (!passwordreg.test($('#PassWord').val())) {
+        else if (!passwordreg.test($('#PassWord').val()) || $('#PassWord').val().length < 6 || $('#PassWord').val().length > 10) {
             swal(
                  {
                      title: "密碼格式須為 非中文且6-10碼",
@@ -90,10 +90,10 @@ $(function () {
     //點擊註冊
     $("#register").click(function (e) {
 
-        // 驗證輸入的 身分證(身分證格式) ,帳號(非中文 且 4-10碼) ,密碼(非中文 且 6-10碼) 是否正確
+        // 驗證輸入的 身分證(身分證格式) ,帳號(只能英文大小寫,數字或底線 且 4-10碼) ,密碼(只能英文大小寫,數字或底線 且 6-10碼) 是否正確
         var idreg = /^[A-Z]\d{9}$/;
-        var namereg = /^\w.{3,11}$/;
-        var passwordreg = /^\w.{5,11}$/;
+        var namereg = /^\w+$/;
+        var passwordreg = /^\w+$/;
 
         if (!idreg.test($('#personid').val()))
         {
@@ -105,7 +105,7 @@ $(function () {
                 );
             $('#personid').val("");
         }
-        else if (!namereg.test($('#account').val()))
+        else if ((!namereg.test($('#account').val())) || $('#account').val().length < 4 || $('#account').val().length > 10)
         {
             swal(
                  {
@@ -115,7 +115,7 @@ $(function () {
                 );
             $('#account').val("");
         }
-        else if (!passwordreg.test($('#password').val()))
+        else if (!passwordreg.test($('#password').val()) || $('#password').val().length < 6 || $('#password').val().length > 10)
         {
             swal(
                  {
