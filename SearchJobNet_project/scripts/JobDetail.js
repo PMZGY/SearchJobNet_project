@@ -240,7 +240,7 @@
             });
     });
 
-    /* show comment */
+    /* 顯示評論 */
     $(document).ready(function () {
         /*用jobID去撈comment*/
 
@@ -285,7 +285,7 @@
                                                                              '</div>' +
                                                                              '<div class="modal-body">' +
                                                                                  //更新 comment是誰的/哪支comment/誰要改/跟改的內容
-                                                                                 '<textarea class="form-control" id="modify_content' + commentModel.Comment_ID + '" placeholder="輸入新的內容" name="modify_content"></textarea>' +
+                                                                                 '<textarea class="form-control" id="modify_content' + commentModel.Comment_ID + '" placeholder="輸入新的內容" name="modify_content">' + commentModel.Content_Text + '</textarea>' +
                                                                              '</div>' +
                                                                              '<div class="modal-footer">' +
                                                                                  '<button type="button" class="btn btn-secondary" onclick="document.getElementById(\'modify_modal' + commentModel.Comment_ID + '\').style.display=\'none\'">Close</button>' +
@@ -347,6 +347,7 @@
     })
 })
 
+//最愛按鈕
 $(document).ready(function () {
     //0 是還沒加入最愛 1是已經加入最愛
     if ($("#Is_Favorite").val() == 0) {
@@ -357,12 +358,9 @@ $(document).ready(function () {
         $("#dislike").hide();
         $("#like").show();
     };
-
-
-
-
 })
 
+//加入最愛
 function addMyFavorite() {
     var action = '../Job/insertMyFavorite'
     var formData = {
@@ -383,6 +381,7 @@ function addMyFavorite() {
 
 }
 
+//取消最愛
 function cancelMyFavorite() {
     var action = '../Job/deleteMyFavorite'
     var formData = {
@@ -402,3 +401,8 @@ function cancelMyFavorite() {
     })
 
 }
+
+//職缺URL
+$(document).ready(function () {
+    $("#url").append('<a href=' + $('#Url_Query').val() + '>' + $('#Url_Query').val() + '</a>');
+})
