@@ -287,7 +287,7 @@
                                                                              '</div>' +
                                                                              '<div class="modal-body">' +
                                                                                  //更新 comment是誰的/哪支comment/誰要改/跟改的內容
-                                                                                 '<textarea class="form-control" id="modify_content' + commentModel.Comment_ID + '" placeholder="輸入新的內容" name="modify_content">' + commentModel.Content_Text + '</textarea>' +
+                                                                                 '<textarea class="form-control" id="modify_content' + commentModel.Comment_ID + '" placeholder="輸入新的內容" name="modify_content"  maxlength="250">' + commentModel.Content_Text + '</textarea>' +
                                                                              '</div>' +
                                                                              '<div class="modal-footer">' +
                                                                                  '<button type="button" class="btn btn-secondary" onclick="document.getElementById(\'modify_modal' + commentModel.Comment_ID + '\').style.display=\'none\'">Close</button>' +
