@@ -101,12 +101,27 @@ namespace SearchJobNet_project.Models.CommentModel
         // 刪除評論
         public string delComment(int comment_ID ,string suserID)
         {
+
             // 判斷是不是自己下的評論 ,如果不是就直接 return "modify error!";
             List<CM.CommentModel> cms = browseComment(comment_ID);
             if (cms[0].User_ID != suserID)
             {
                 return "不能刪除其他人的評論!";
             }
+
+            // 判斷 那筆資料是否存在
+            #region[判斷 那筆資料是否存在DB]
+
+            // 查看是否修改成功
+            List<CommentModel> checkcm = this.browseComment(comment_ID);
+
+            // 如果list個數為0 ,則回傳此筆資料已刪除
+            if (checkcm.Count == 0)
+            {
+                return "delete already ,can't delete it!";
+            }
+
+            #endregion
 
             #region [做DB連線 以及 執行DB處理]
 
@@ -117,10 +132,10 @@ namespace SearchJobNet_project.Models.CommentModel
             String doDB = bsc.ActionDB(
                             string.Format(
                             @"DELETE FROM [Comment]
-                              WHERE 1=1
-                              AND COMMENT_ID = {0};"
+                                WHERE 1=1
+                                AND COMMENT_ID = {0};"
                             , comment_ID)
-                           );
+                            );
 
             // 如果 doDB為"success" ,代表DB連線成功 ,反之失敗
             if (doDB != "success")
@@ -154,6 +169,8 @@ namespace SearchJobNet_project.Models.CommentModel
             }
 
             #endregion
+
+
         }
 
         // 檢舉評論
