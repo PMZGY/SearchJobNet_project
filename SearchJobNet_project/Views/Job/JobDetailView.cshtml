@@ -171,8 +171,9 @@
                 </div>
                 <div class="row">
                     <div class="column">
-                        <h4>職缺URL</h4>                 
-                        <p name="model_content">@Html.DisplayFor(model => model.Url_Query,new { id="Url_Query"})</p>
+                        <h4>職缺URL</h4>
+                        @Html.Hidden("Url_Query")                 
+                        <p name="model_content" id="url"></p>
                     </div>
                 </div>
                 <div class="row">
